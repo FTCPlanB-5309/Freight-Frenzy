@@ -63,6 +63,9 @@ public class BasicMechanumTeleop extends LinearOpMode {
             telemetry.addData("lifter position", robot.armLifter.getPosition());
             telemetry.update();
 
+
+            // Attachments
+
             right_stick_y = gamepad2.right_stick_y;
             if(Math.abs(right_stick_y) > robot.TELEOPDEADZONE) {
                 lift_rate = Math.abs(right_stick_y)*.001+.000737;
@@ -82,7 +85,22 @@ public class BasicMechanumTeleop extends LinearOpMode {
                 robot.leftGrabber.setPosition(robot.LEFT_GRABBER_OPEN);
                 robot.rightGrabber.setPosition(robot.RIGHT_GRABBER_OPEN);
             }
-            // Normal mode
+
+            if (gamepad2.a)
+                robot.duckSpinner.setPower(1);
+            else robot.duckSpinner.setPower(0);
+
+            if (gamepad2.dpad_right)
+                robot.duckArm.setPosition(robot.DUCK_ARM_OUT);
+
+            if (gamepad2.dpad_left)
+                robot.duckArm.setPosition(robot.DUCK_ARM_IN);
+
+
+            // Driver
+
+
+            // Drive Train
             ly = -gamepad1.left_stick_y; //drive forward
             lx = -gamepad1.left_stick_x; //strafe
             rx = -gamepad1.right_stick_x; //turn

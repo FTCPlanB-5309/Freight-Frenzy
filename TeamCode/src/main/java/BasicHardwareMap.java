@@ -48,7 +48,6 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 public class BasicHardwareMap
 {
-    public static final double TELEOPDEADZONE = 0.05;
 
 //    public final int ARM_UP = 2987;
 //    public final int ARM_DOWN = 0;
@@ -57,23 +56,30 @@ public class BasicHardwareMap
     public DcMotor  rightFrontDrive = null;
     public DcMotor  leftRearDrive  = null;
     public DcMotor  rightRearDrive = null;
+    public DcMotor  duckSpinner = null;
 //    public DcMotor armMotor = null;
 
     public Servo armRotator = null;
     public Servo armLifter = null;
     public Servo leftGrabber = null;
     public Servo rightGrabber = null;
-
+    public Servo duckArm = null;
 
 
     HardwareMap hwMap = null;
 
     //Hardware constants
+
+    public static final double TELEOPDEADZONE = 0.05;
+
     public final double LEFT_GRABBER_OPEN = 0.0;
     public final double RIGHT_GRABBER_OPEN = 0.5;
 
     public final double LEFT_GRABBER_CLOSED = 0.5;
     public final double RIGHT_GRABBER_CLOSED = 0;
+
+    public static final double DUCK_ARM_OUT = 0;
+    public static final double DUCK_ARM_IN = 0.33;
 
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -85,17 +91,21 @@ public class BasicHardwareMap
         rightFrontDrive = hwMap.get(DcMotor.class, "rightFrontDrive");
         leftRearDrive  = hwMap.get(DcMotor.class, "leftRearDrive");
         rightRearDrive = hwMap.get(DcMotor.class, "rightRearDrive");
+        duckSpinner = hwMap.get(DcMotor.class, "duckSpinner");
+
 //        armMotor = hwMap.get(DcMotor.class, "armMotor");
 
         armRotator = hwMap.get(Servo.class, "armRotator");
         armLifter = hwMap.get(Servo.class, "armLifter");
         leftGrabber = hwMap.get(Servo.class, "leftGrabber");
         rightGrabber = hwMap.get(Servo.class, "rightGrabber");
-
+        duckArm = hwMap.get(Servo.class, "duckArm");
 
         leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
+        // Set servos to start positions
+        duckArm.setPosition(DUCK_ARM_IN);
         armLifter.setPosition(.5);
         armRotator.setPosition(.5);
         leftGrabber.setPosition(LEFT_GRABBER_OPEN);
@@ -106,6 +116,7 @@ public class BasicHardwareMap
         rightFrontDrive.setPower(0);
         leftRearDrive.setPower(0);
         rightRearDrive.setPower(0);
+        duckSpinner.setPower(0);
 //        armMotor.setPower(0);
 //
 //        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
