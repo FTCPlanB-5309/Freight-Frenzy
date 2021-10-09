@@ -64,7 +64,8 @@ public class BasicHardwareMap
     public Servo leftGrabber = null;
     public Servo rightGrabber = null;
     public Servo duckArm = null;
-
+    public Servo frontWheel = null;
+    public Servo rearWheel = null;
 
     HardwareMap hwMap = null;
 
@@ -80,6 +81,13 @@ public class BasicHardwareMap
 
     public static final double DUCK_ARM_OUT = 0;
     public static final double DUCK_ARM_IN = 0.33;
+
+    public static final double FRONT_WHEEL_DOWN = 0.33;
+    public static final double FRONT_WHEEL_UP = 0.5;
+    public static final double REAR_WHEEL_DOWN = 0.33;
+    public static final double REAR_WHEEL_UP = 0.5;
+
+
 
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -100,6 +108,9 @@ public class BasicHardwareMap
         leftGrabber = hwMap.get(Servo.class, "leftGrabber");
         rightGrabber = hwMap.get(Servo.class, "rightGrabber");
         duckArm = hwMap.get(Servo.class, "duckArm");
+        frontWheel = hwMap.get(Servo.class, "frontWheel");
+        rearWheel = hwMap.get(Servo.class, "rearWheel");
+
 
         leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -110,6 +121,8 @@ public class BasicHardwareMap
         armRotator.setPosition(.5);
         leftGrabber.setPosition(LEFT_GRABBER_OPEN);
         rightGrabber.setPosition(RIGHT_GRABBER_OPEN);
+        frontWheel.setPosition(FRONT_WHEEL_DOWN);
+        rearWheel.setPosition(REAR_WHEEL_DOWN);
 
 //         Set all motors to zero power
         leftFrontDrive.setPower(0);

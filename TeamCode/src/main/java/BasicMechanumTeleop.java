@@ -133,6 +133,15 @@ public class BasicMechanumTeleop extends LinearOpMode {
                 robot.stop();
             }
 
+            if (gamepad2.dpad_up) {
+                robot.frontWheel.setPosition(robot.FRONT_WHEEL_UP);
+                robot.rearWheel.setPosition(robot.REAR_WHEEL_UP);
+            }
+
+            if (gamepad2.dpad_down) {
+                robot.frontWheel.setPosition(robot.FRONT_WHEEL_DOWN);
+                robot.rearWheel.setPosition(robot.REAR_WHEEL_DOWN);
+            }
 
            /* //arm control section todo add when hardware is there
             if (gamepad2.dpad_left){
