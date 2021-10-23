@@ -2,6 +2,8 @@ import androidx.core.math.MathUtils;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.internal.camera.delegating.DelegatingCaptureSequence;
+
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Two Wheel Tank Drive", group="Teleop")
 
 public class Teleop extends LinearOpMode {
@@ -79,7 +81,10 @@ public class Teleop extends LinearOpMode {
             }
 
             if (Math.abs(gamepad2.left_stick_y) > robot.TELEOPDEADZONE) {
-                robot.armMotor.setPower(-gamepad2.left_stick_y * 0.25);
+                robot.armMotor.setPower(-gamepad2.left_stick_y * 0.4);
+
+            } else {
+                robot.armMotor.setPower(0);
             }
         }
     }
