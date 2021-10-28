@@ -37,6 +37,8 @@ public class RobotHardware
     public static final double LEFT_CLAW_CLOSED = 0.27;
     public static final double LEFT_CLAW_OPEN = 0.5;
 
+    public static final double CLICKS_PER_INCH = 75.5;
+
 
     public void teleopInit(com.qualcomm.robotcore.hardware.HardwareMap ahwMap) {
         // Save reference to Hardware map
@@ -100,6 +102,5 @@ public class RobotHardware
     public void stop () {
         leftDrive.setPower(0);
         rightDrive.setPower(0);
-        armMotor.setPower(0);
     }
 }

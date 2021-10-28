@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.util.Range;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Two Wheel Tank Drive", group="Teleop")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mechanaum Teleop", group="Teleop")
 
 public class MechanumTeleop extends LinearOpMode {
 
