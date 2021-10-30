@@ -11,11 +11,13 @@ public class MechanumHardware
     public DcMotor rightRearDrive = null;
     public DcMotor  duckSpinner = null;
     public DcMotor armMotor = null;
+
+
     public Servo duckArm = null;
     public Servo leftClawServo = null;
     public Servo rightClawServo = null;
     public Servo wristServo = null;
-
+    public Servo mastRotator = null;
 
 
     HardwareMap hwMap = null;
@@ -49,6 +51,7 @@ public class MechanumHardware
         leftClawServo = hwMap.get(Servo.class, "leftClawServo");
         rightClawServo = hwMap.get(Servo.class, "rightClawServo");
         wristServo = hwMap.get(Servo.class, "wristServo");
+        mastRotator = hwMap.get(Servo.class, "mastRotator");
 
 
         leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);

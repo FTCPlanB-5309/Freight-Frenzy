@@ -54,7 +54,7 @@ public class MechanumTeleop extends LinearOpMode {
 
                 normal_mode = true;
                 slow_mode = false;
-                // Compute the drive speed of each drive motor based on formula from redit
+                // Compute the drive speed of each drive motor based on formula from reddit
                 double FL_power_raw = ly + lx - (rx * .7f);
                 double FR_power_raw = ly - lx + (rx * .7f);
                 double RL_power_raw = ly - lx - (rx * .7f);
@@ -72,6 +72,36 @@ public class MechanumTeleop extends LinearOpMode {
                 robot.rightRearDrive.setPower(RR_power);
                 
                 // Attachments
+
+                //Rotate Center Mast
+
+                if (gamepad2.dpad_left)
+                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() + 0.005);
+
+                if (gamepad2.dpad_right)
+                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.005);
+
+
+                // Grabber Open/Close
+                if (gamepad2.right_trigger > 0.5) {
+                    robot.leftClawServo.setPosition(robot.LEFT_CLAW_CLOSED);
+                    robot.rightClawServo.setPosition(robot.RIGHT_CLAW_CLOSED);
+                }
+
+                if (gamepad2.right_bumper) {
+                    robot.leftClawServo.setPosition(robot.LEFT_CLAW_OPEN);
+                    robot.rightClawServo.setPosition(robot.RIGHT_CLAW_OPEN);
+                }
+
+                // Arm Control
+                if (Math.abs(gamepad2.left_stick_y) > robot.TELEOPDEADZONE) {
+                    robot.armMotor.setPower(-gamepad2.left_stick_y * 0.4);
+
+                } else {
+                    robot.armMotor.setPower(0);
+                }
+
+
             }
         }
     }
