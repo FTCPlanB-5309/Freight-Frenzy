@@ -30,22 +30,10 @@ public class MechanumTeleop extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-//  Duck attachment code, WIP
-//
-//            if (gamepad2.a)
-//                robot.duckSpinner.setPower(1);
-//            else robot.duckSpinner.setPower(0);
-//
-//            if (gamepad2.dpad_right)
-//                robot.duckArm.setPosition(robot.DUCK_ARM_OUT);
-//
-//            if (gamepad2.dpad_left)
-//                robot.duckArm.setPosition(robot.DUCK_ARM_IN);
 
             // Drivetrain
             ly = -gamepad1.left_stick_y; //drive forward
             lx = gamepad1.left_stick_x; //strafe
-            //todo above was negative, changed to fix
             rx = -gamepad1.right_stick_x; //turn
 
             if (Math.abs(ly) > robot.TELEOPDEADZONE ||
@@ -70,16 +58,24 @@ public class MechanumTeleop extends LinearOpMode {
                 robot.rightFrontDrive.setPower(FR_power);
                 robot.leftRearDrive.setPower(RL_power);
                 robot.rightRearDrive.setPower(RR_power);
+            }
                 
                 // Attachments
+                if (gamepad2.left_bumper) {
+                    robot.duckSpinner.setPower(.25);
+                }
+                else if (gamepad2.left_trigger>0.5){
+                    robot.duckSpinner.setPower(-0.25);
+                }
+                else {robot.duckSpinner.setPower(0);}
 
                 //Rotate Center Mast
 
                 if (gamepad2.dpad_left)
-                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() + 0.005);
+                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() + 0.000005);
 
                 if (gamepad2.dpad_right)
-                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.005);
+                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.000005);
 
 
                 // Grabber Open/Close
@@ -105,4 +101,3 @@ public class MechanumTeleop extends LinearOpMode {
             }
         }
     }
-}

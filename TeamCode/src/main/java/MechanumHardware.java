@@ -9,11 +9,11 @@ public class MechanumHardware
     public DcMotor rightFrontDrive = null;
     public DcMotor leftRearDrive = null;
     public DcMotor rightRearDrive = null;
-    public DcMotor  duckSpinner = null;
+    public DcMotor duckSpinner = null;
     public DcMotor armMotor = null;
 
 
-    public Servo duckArm = null;
+//    public Servo duckArm = null;
     public Servo leftClawServo = null;
     public Servo rightClawServo = null;
     public Servo wristServo = null;
@@ -47,7 +47,7 @@ public class MechanumHardware
         duckSpinner = hwMap.get(DcMotor.class, "duckSpinner");
         armMotor = hwMap.get(DcMotor.class, "armMotor");
 
-        duckArm = hwMap.get(Servo.class, "duckArm");
+//        duckArm = hwMap.get(Servo.class, "duckArm");
         leftClawServo = hwMap.get(Servo.class, "leftClawServo");
         rightClawServo = hwMap.get(Servo.class, "rightClawServo");
         wristServo = hwMap.get(Servo.class, "wristServo");
@@ -58,7 +58,7 @@ public class MechanumHardware
         leftRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set servos to start positions
-        duckArm.setPosition(DUCK_ARM_IN);
+//        duckArm.setPosition(DUCK_ARM_IN);
         leftClawServo.setPosition(LEFT_CLAW_OPEN);
         rightClawServo.setPosition(RIGHT_CLAW_OPEN);
         wristServo.setPosition(GRABBER_GROUND_POS);
