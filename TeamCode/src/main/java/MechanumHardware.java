@@ -33,6 +33,7 @@ public class MechanumHardware
     public static final double RIGHT_CLAW_OPEN = 0.67;
     public static final double LEFT_CLAW_CLOSED = 0.27;
     public static final double LEFT_CLAW_OPEN = 0.5;
+    public static final double MAST_START_POSITION = 0.5;
 
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -62,6 +63,7 @@ public class MechanumHardware
         leftClawServo.setPosition(LEFT_CLAW_OPEN);
         rightClawServo.setPosition(RIGHT_CLAW_OPEN);
         wristServo.setPosition(GRABBER_GROUND_POS);
+        mastRotator.setPosition(MAST_START_POSITION);
 
         // Set all motors to zero power
         leftFrontDrive.setPower(0);
@@ -109,6 +111,6 @@ public class MechanumHardware
         rightFrontDrive.setPower(0);
         leftRearDrive.setPower(0);
         rightRearDrive.setPower(0);
-        armMotor.setPower(0);
+       // armMotor.setPower(0);
     }
 }

@@ -59,23 +59,32 @@ public class MechanumTeleop extends LinearOpMode {
                 robot.leftRearDrive.setPower(RL_power);
                 robot.rightRearDrive.setPower(RR_power);
             }
-                
+                else robot.stop();
+
+
                 // Attachments
                 if (gamepad2.left_bumper) {
-                    robot.duckSpinner.setPower(.25);
+                    robot.duckSpinner.setPower(1);
                 }
                 else if (gamepad2.left_trigger>0.5){
-                    robot.duckSpinner.setPower(-0.25);
+                    robot.duckSpinner.setPower(-1);
                 }
                 else {robot.duckSpinner.setPower(0);}
 
                 //Rotate Center Mast
 
                 if (gamepad2.dpad_left)
-                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() + 0.000005);
+                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() + 0.0005);
 
                 if (gamepad2.dpad_right)
-                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.000005);
+                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.0005);
+
+                // Wrist Up/Down
+            if (gamepad2.dpad_up)
+                robot.wristServo.setPosition(robot.wristServo.getPosition() + 0.0005);
+
+            if (gamepad2.dpad_down)
+                robot.wristServo.setPosition(robot.wristServo.getPosition() - 0.0005);
 
 
                 // Grabber Open/Close
