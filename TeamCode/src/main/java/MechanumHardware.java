@@ -35,6 +35,8 @@ public class MechanumHardware
     public static final double LEFT_CLAW_OPEN = 0.5;
     public static final double MAST_START_POSITION = 0.5;
 
+    public static final int CLICKS_PER_INCH = 44;
+
 
     public void teleopInit(HardwareMap ahwMap) {
         // Save reference to Hardware map

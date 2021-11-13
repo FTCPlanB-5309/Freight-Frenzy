@@ -4,12 +4,15 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 @Autonomous(name = "Autonomous")
 
 public class DuckSideAuto extends LinearOpMode {
-    RobotHardware robot = new RobotHardware();
+    MechanumHardware robot = new MechanumHardware();
     Drive drive = new Drive(robot, telemetry, this);
 
     public void runOpMode() throws InterruptedException {
         robot.teleopInit(hardwareMap);
         waitForStart();
+
+
+        drive.forward(0.25, 36 );
         //drive.forward1000(.5);
 
         /*
