@@ -74,6 +74,8 @@ public class MechanumTeleop extends LinearOpMode {
 
                 if (Math.abs(gamepad2.right_stick_x) > robot.TELEOPDEADZONE)
                     robot.mastRotator.setPower(0.2);
+                else
+                    robot.mastRotator.setPower(0);
 
 //                if (gamepad2.dpad_right)
 //                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.0005);
