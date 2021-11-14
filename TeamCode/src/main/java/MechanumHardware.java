@@ -83,6 +83,7 @@ public class MechanumHardware
         leftRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        mastRotator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
 
     public void resetDriveEncoders () {
