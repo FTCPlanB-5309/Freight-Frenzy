@@ -11,19 +11,20 @@ public class MechanumHardware
     public DcMotor rightRearDrive = null;
     public DcMotor duckSpinner = null;
     public DcMotor armMotor = null;
+    public DcMotor mastRotator = null;
 
 
 //    public Servo duckArm = null;
     public Servo leftClawServo = null;
     public Servo rightClawServo = null;
     public Servo wristServo = null;
-    public Servo mastRotator = null;
-
 
     HardwareMap hwMap = null;
 
     //Hardware constants
     public static final double TELEOPDEADZONE = 0.05;
+    public static final int CLICKS_PER_INCH = 44;
+    public static final double DRIVE_SPEED_REDUCTION = 0.75;
 
     public static final double DUCK_ARM_OUT = 0;
     public static final double DUCK_ARM_IN = 0.33;
@@ -35,7 +36,6 @@ public class MechanumHardware
     public static final double LEFT_CLAW_OPEN = 0.5;
     public static final double MAST_START_POSITION = 0.5;
 
-    public static final int CLICKS_PER_INCH = 44;
 
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -54,7 +54,8 @@ public class MechanumHardware
         leftClawServo = hwMap.get(Servo.class, "leftClawServo");
         rightClawServo = hwMap.get(Servo.class, "rightClawServo");
         wristServo = hwMap.get(Servo.class, "wristServo");
-        mastRotator = hwMap.get(Servo.class, "mastRotator");
+
+        mastRotator = hwMap.get(DcMotor.class, "mastRotator");
 
 
         leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -65,7 +66,6 @@ public class MechanumHardware
         leftClawServo.setPosition(LEFT_CLAW_OPEN);
         rightClawServo.setPosition(RIGHT_CLAW_OPEN);
         wristServo.setPosition(GRABBER_GROUND_POS);
-        mastRotator.setPosition(MAST_START_POSITION);
 
         // Set all motors to zero power
         leftFrontDrive.setPower(0);
@@ -74,6 +74,7 @@ public class MechanumHardware
         rightRearDrive.setPower(0);
         duckSpinner.setPower(0);
         armMotor.setPower(0);
+        mastRotator.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
