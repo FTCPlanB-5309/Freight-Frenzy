@@ -73,7 +73,7 @@ public class MechanumTeleop extends LinearOpMode {
                 //Rotate Center Mast
 
                 if (Math.abs(gamepad2.right_stick_x) > robot.TELEOPDEADZONE)
-                    robot.mastRotator.setPower(gamepad1.right_stick_x * 0.2);
+                    robot.mastRotator.setPower(gamepad2.right_stick_x * 0.2);
                 else
                     robot.mastRotator.setPower(0);
 
