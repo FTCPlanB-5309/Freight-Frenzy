@@ -29,6 +29,10 @@ public class MechanumHardware
     public static final double DUCK_ARM_OUT = 0;
     public static final double DUCK_ARM_IN = 0.33;
 
+    public static final int BLUE_DUCK_POSITION = 0;
+    public static final int RED_DUCK_POSITION = 0;
+    public static final double DUCK_SPINNER_SPEED = 0.5;
+
     public static final double GRABBER_GROUND_POS = 0.5;
     public static final double RIGHT_CLAW_CLOSED = 0.87;
     public static final double RIGHT_CLAW_OPEN = 0.67;
