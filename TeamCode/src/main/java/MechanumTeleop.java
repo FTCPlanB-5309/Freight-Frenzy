@@ -73,7 +73,7 @@ public class MechanumTeleop extends LinearOpMode {
                 //Rotate Center Mast
 
                 if (Math.abs(gamepad2.right_stick_x) > robot.TELEOPDEADZONE)
-                    robot.mastRotator.setPower(0.2);
+                    robot.mastRotator.setPower(gamepad1.right_stick_x * 0.2);
                 else
                     robot.mastRotator.setPower(0);
 
@@ -81,8 +81,10 @@ public class MechanumTeleop extends LinearOpMode {
 //                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.0005);
 
                 // Wrist Up/Down
-            if (Math.abs(gamepad2.right_stick_y) > robot.TELEOPDEADZONE)
+            if (gamepad2.right_stick_y > robot.TELEOPDEADZONE)
                 robot.wristServo.setPosition(robot.wristServo.getPosition() + 0.0005);
+            else if (gamepad2.right_stick_y < -robot.TELEOPDEADZONE)
+                robot.wristServo.setPosition(robot.wristServo.getPosition() - 0.0005);
 
 //            if (gamepad2.dpad_down)
 //                robot.wristServo.setPosition(robot.wristServo.getPosition() - 0.0005);
