@@ -34,6 +34,7 @@ public class MechanumHardware
     public static final double DUCK_SPINNER_SPEED = 0.5;
 
     public static final double GRABBER_GROUND_POS = 0.6 ;
+    public static final double GRABBER_AIR_POS = .21;
     public static final double RIGHT_CLAW_CLOSED = 0.87;
     public static final double RIGHT_CLAW_OPEN = 0.67;
     public static final double LEFT_CLAW_CLOSED = 0.27;
@@ -64,11 +65,12 @@ public class MechanumHardware
 
         leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         leftRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        mastRotator.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set servos to start positions
 //        duckArm.setPosition(DUCK_ARM_IN);
-        leftClawServo.setPosition(LEFT_CLAW_OPEN);
-        rightClawServo.setPosition(RIGHT_CLAW_OPEN);
+        leftClawServo.setPosition(LEFT_CLAW_CLOSED);
+        rightClawServo.setPosition(RIGHT_CLAW_CLOSED);
         wristServo.setPosition(GRABBER_GROUND_POS);
 
         // Set all motors to zero power

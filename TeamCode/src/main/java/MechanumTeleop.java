@@ -62,10 +62,10 @@ public class MechanumTeleop extends LinearOpMode {
 
 
                 // Attachments
-                if (gamepad2.left_bumper) {
+                if (gamepad1.left_bumper) {
                     robot.duckSpinner.setPower(.75);
                 }
-                else if (gamepad2.left_trigger>0.5){
+                else if (gamepad1.left_trigger>0.5){
                     robot.duckSpinner.setPower(-.75);
                 }
                 else {robot.duckSpinner.setPower(0);}
@@ -85,6 +85,10 @@ public class MechanumTeleop extends LinearOpMode {
                 robot.wristServo.setPosition(robot.wristServo.getPosition() - 0.0005);
             else if (gamepad2.right_stick_y < -robot.TELEOPDEADZONE)
                 robot.wristServo.setPosition(robot.wristServo.getPosition() + 0.0005);
+            if (gamepad2.a)
+                robot.wristServo.setPosition(robot.GRABBER_GROUND_POS);
+            if (gamepad2.y)
+                robot.wristServo.setPosition(robot.GRABBER_AIR_POS);
 
 //            if (gamepad2.dpad_down)
 //                robot.wristServo.setPosition(robot.wristServo.getPosition() - 0.0005);
@@ -108,7 +112,10 @@ public class MechanumTeleop extends LinearOpMode {
                 } else {
                     robot.armMotor.setPower(0);
                 }
-
+                telemetry.addData("wrist", robot.wristServo.getPosition());
+                telemetry.addData("arm",robot.armMotor.getCurrentPosition());
+                telemetry.addData("mast", robot.mastRotator.getCurrentPosition());
+                telemetry.update();
 
             }
         }

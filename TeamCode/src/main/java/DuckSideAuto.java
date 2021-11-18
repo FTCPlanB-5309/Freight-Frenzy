@@ -12,7 +12,7 @@ public class DuckSideAuto extends LinearOpMode {
         waitForStart();
 
 
-        drive.forward(0.25, 36 );
+        drive.forward(0.25, 32 );
         //drive.forward1000(.5);
 
         /*
