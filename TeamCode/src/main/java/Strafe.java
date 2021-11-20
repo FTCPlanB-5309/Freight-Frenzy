@@ -75,10 +75,10 @@ public class Strafe {
         robot.rightFrontDrive.setTargetPosition(-target);
         robot.rightRearDrive.setTargetPosition(target);
 
-        robot.leftFrontDrive.setPower(speed);
-        robot.leftRearDrive.setPower(-speed);
-        robot.rightFrontDrive.setPower(-speed);
-        robot.rightRearDrive.setPower(speed);
+        robot.leftFrontDrive.setPower(-speed);
+        robot.leftRearDrive.setPower(speed);
+        robot.rightFrontDrive.setPower(speed);
+        robot.rightRearDrive.setPower(-speed);
 
         telemetry.addData("linear opmode is working, target = ", target);
         telemetry.addData("Encoder Clicks", robot.leftRearDrive.getCurrentPosition());

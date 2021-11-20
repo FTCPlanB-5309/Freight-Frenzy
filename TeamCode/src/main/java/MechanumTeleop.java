@@ -107,7 +107,7 @@ public class MechanumTeleop extends LinearOpMode {
 
                 // Arm Control
                 if (Math.abs(gamepad2.left_stick_y) > robot.TELEOPDEADZONE) {
-                    robot.armMotor.setPower(-gamepad2.left_stick_y * 0.4);
+                    robot.armMotor.setPower(-gamepad2.left_stick_y * 0.7);
 
                 } else {
                     robot.armMotor.setPower(0);

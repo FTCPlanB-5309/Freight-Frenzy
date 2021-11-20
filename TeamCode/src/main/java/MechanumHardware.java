@@ -39,7 +39,22 @@ public class MechanumHardware
     public static final double RIGHT_CLAW_OPEN = 0.67;
     public static final double LEFT_CLAW_CLOSED = 0.27;
     public static final double LEFT_CLAW_OPEN = 0.5;
+
     public static final double MAST_START_POSITION = 0.5;
+
+    public static final double WRIST_FLOOR_POSITION = .36;
+    public static final double WRIST_BOTTOM_POSITION = .36;
+    public static final double WRIST_MIDDLE_POSITION = .36;
+    public static final double WRIST_TOP_POSITION = .27;
+
+    public static final int MAST_LEFT_POSITION = 0;
+    public static final int MAST_RIGHT_POSITION = 300;
+    public static final int MAST_FORWARD_POSITION = 600;
+
+    public static final int ARM_FLOOR_POSITION = 0;
+    public static final int ARM_BOTTOM_POSITION = 300;
+    public static final int ARM_MIDDLE_POSITION = 2400;
+    public static final int ARM_TOP_POSITION = 4250;
 
 
 

@@ -16,10 +16,14 @@ public class Claw {
     }
 
    public void open(){
+       if (!linearOpMode.opModeIsActive())
+           return;
         robot.leftClawServo.setPosition(robot.LEFT_CLAW_OPEN);
         robot.rightClawServo.setPosition(robot.RIGHT_CLAW_OPEN);
    }
    public void close(){
+       if (!linearOpMode.opModeIsActive())
+           return;
         robot.leftClawServo.setPosition(robot.LEFT_CLAW_CLOSED);
         robot.rightClawServo.setPosition(robot.RIGHT_CLAW_CLOSED);
    }

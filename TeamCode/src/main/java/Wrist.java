@@ -8,10 +8,6 @@ public class Wrist {
     Telemetry telemetry;
     LinearOpMode linearOpMode;
 
-    int floorPosition;
-    int bottomPosition;
-    int middlePosition;
-    int topPosition;
 
     public Wrist(MechanumHardware robot, Telemetry telemetry, LinearOpMode linearOpMode){
         this.robot = robot;
@@ -19,23 +15,11 @@ public class Wrist {
         this.linearOpMode = linearOpMode;
     }
 
-    public void floor() throws InterruptedException {
-        robot.wristServo.setPosition(floorPosition);
+    public void setPosition(double newPosition) throws InterruptedException {
+        if (!linearOpMode.opModeIsActive())
+            return;
+        robot.wristServo.setPosition(newPosition);
         Thread.sleep(1000);
     }
 
-    public void bottom() throws InterruptedException {
-        robot.wristServo.setPosition(bottomPosition);
-        Thread.sleep(1000);
-    }
-
-    public void middle() throws InterruptedException {
-        robot.wristServo.setPosition(middlePosition);
-        Thread.sleep(1000);
-    }
-
-    public void top() throws InterruptedException {
-        robot.wristServo.setPosition(topPosition);
-        Thread.sleep(1000);
-    }
 }

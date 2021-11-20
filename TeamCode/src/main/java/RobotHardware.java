@@ -39,7 +39,6 @@ public class RobotHardware
 
     public static final double CLICKS_PER_INCH = 75.5;
 
-
     public void teleopInit(com.qualcomm.robotcore.hardware.HardwareMap ahwMap) {
         // Save reference to Hardware map
         hwMap = ahwMap;
