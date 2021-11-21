@@ -60,54 +60,53 @@ public class GyroTurn {
             telemetry.addData("diff:", diff);
             telemetry.update();
 
-//            if (diff > 0) {
-//                if (Math.abs(diff) > 25) {
-//                    robot.leftFrontDrive.setPower(robot.HIGH_TURN_POWER);
-//                    robot.leftRearDrive.setPower(robot.HIGH_TURN_POWER);
-//                    robot.rightFrontDrive.setPower(-robot.HIGH_TURN_POWER);
-//                    robot.rightRearDrive.setPower(-robot.HIGH_TURN_POWER);
-//                } else if (Math.abs(diff) > 5) {
-//                    robot.leftFrontDrive.setPower(robot.MEDIUM_TURN_POWER);
-//                    robot.leftRearDrive.setPower(robot.MEDIUM_TURN_POWER);
-//                    robot.rightFrontDrive.setPower(-robot.MEDIUM_TURN_POWER);
-//                    robot.rightRearDrive.setPower(-robot.MEDIUM_TURN_POWER);
-//                } else {
-//                    robot.leftFrontDrive.setPower(robot.LOW_TURN_POWER);
-//                    robot.leftRearDrive.setPower(robot.LOW_TURN_POWER);
-//                    robot.rightFrontDrive.setPower(-robot.LOW_TURN_POWER);
-//                    robot.rightRearDrive.setPower(-robot.LOW_TURN_POWER);
-//                }
-//            }
-//            if (diff < 0) {
-//                if (Math.abs(diff) > 25) {
-//                    robot.leftFrontDrive.setPower(-robot.HIGH_TURN_POWER);
-//                    robot.leftRearDrive.setPower(-robot.HIGH_TURN_POWER);
-//                    robot.rightFrontDrive.setPower(robot.HIGH_TURN_POWER);
-//                    robot.rightRearDrive.setPower(robot.HIGH_TURN_POWER);
-//                } else if (Math.abs(diff) > 5) {
-//                    robot.leftFrontDrive.setPower(-robot.MEDIUM_TURN_POWER);
-//                    robot.leftRearDrive.setPower(-robot.MEDIUM_TURN_POWER);
-//                    robot.rightFrontDrive.setPower(robot.MEDIUM_TURN_POWER);
-//                    robot.rightRearDrive.setPower(robot.MEDIUM_TURN_POWER);
-//                } else {
-//                    robot.leftFrontDrive.setPower(-robot.LOW_TURN_POWER);
-//                    robot.leftRearDrive.setPower(-robot.LOW_TURN_POWER);
-//                    robot.rightFrontDrive.setPower(robot.LOW_TURN_POWER);
-//                    robot.rightRearDrive.setPower(robot.LOW_TURN_POWER);
-//                }
-//            }
-//            updateHeading();
-//        }
-//        robot.stop ();
-//    }
-//
-//
-//    public void updateHeading() {
-//        angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-//        gravity = robot.imu.getGravity();
-//        currHeading = angles.firstAngle;
-//        telemetry.addData("Heading: ", currHeading);
-//        telemetry.update();
+            if (diff > 0) {
+                if (Math.abs(diff) > 25) {
+                    robot.leftFrontDrive.setPower(robot.HIGH_TURN_POWER);
+                    robot.leftRearDrive.setPower(robot.HIGH_TURN_POWER);
+                    robot.rightFrontDrive.setPower(-robot.HIGH_TURN_POWER);
+                    robot.rightRearDrive.setPower(-robot.HIGH_TURN_POWER);
+                } else if (Math.abs(diff) > 5) {
+                    robot.leftFrontDrive.setPower(robot.MEDIUM_TURN_POWER);
+                    robot.leftRearDrive.setPower(robot.MEDIUM_TURN_POWER);
+                    robot.rightFrontDrive.setPower(-robot.MEDIUM_TURN_POWER);
+                    robot.rightRearDrive.setPower(-robot.MEDIUM_TURN_POWER);
+                } else {
+                    robot.leftFrontDrive.setPower(robot.LOW_TURN_POWER);
+                    robot.leftRearDrive.setPower(robot.LOW_TURN_POWER);
+                    robot.rightFrontDrive.setPower(-robot.LOW_TURN_POWER);
+                    robot.rightRearDrive.setPower(-robot.LOW_TURN_POWER);
+                }
+            }
+            if (diff < 0) {
+                if (Math.abs(diff) > 25) {
+                    robot.leftFrontDrive.setPower(-robot.HIGH_TURN_POWER);
+                    robot.leftRearDrive.setPower(-robot.HIGH_TURN_POWER);
+                    robot.rightFrontDrive.setPower(robot.HIGH_TURN_POWER);
+                    robot.rightRearDrive.setPower(robot.HIGH_TURN_POWER);
+                } else if (Math.abs(diff) > 5) {
+                    robot.leftFrontDrive.setPower(-robot.MEDIUM_TURN_POWER);
+                    robot.leftRearDrive.setPower(-robot.MEDIUM_TURN_POWER);
+                    robot.rightFrontDrive.setPower(robot.MEDIUM_TURN_POWER);
+                    robot.rightRearDrive.setPower(robot.MEDIUM_TURN_POWER);
+                } else {
+                    robot.leftFrontDrive.setPower(-robot.LOW_TURN_POWER);
+                    robot.leftRearDrive.setPower(-robot.LOW_TURN_POWER);
+                    robot.rightFrontDrive.setPower(robot.LOW_TURN_POWER);
+                    robot.rightRearDrive.setPower(robot.LOW_TURN_POWER);
+                }
+            }
+            updateHeading();
         }
+        robot.stop ();
     }
+
+
+    public void updateHeading() {
+        angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        gravity = robot.imu.getGravity();
+        currHeading = angles.firstAngle;
+        telemetry.addData("Heading: ", currHeading);
+        telemetry.update();
+        }
 }
