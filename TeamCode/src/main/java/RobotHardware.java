@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class RobotHardware
 {
+    //decleration of motors and servos 
     public DcMotor leftDrive = null;
     public DcMotor rightDrive = null;
     public DcMotor  duckSpinner = null;
