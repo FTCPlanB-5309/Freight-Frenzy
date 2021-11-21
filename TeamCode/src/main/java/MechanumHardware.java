@@ -22,9 +22,10 @@ public class MechanumHardware
     public Servo rightClawServo = null;
     public Servo wristServo = null;
 
+    BNO055IMU imu;
+
     HardwareMap hwMap = null;
 
-    BNO055IMU imu;
 
 
     //Hardware constants
@@ -102,8 +103,8 @@ public class MechanumHardware
         imu.initialize(parameters);
 
 
-        leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        right  RearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         mastRotator.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set servos to start positions
