@@ -32,6 +32,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         }
         drive.forward(0.25, 32 );
         strafe.right(.15, 2);
+        Thread.sleep(5000);
         claw.open();
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
