@@ -66,8 +66,8 @@ public class MechanumHardware
     public static final double WRIST_MIDDLE_POSITION = .39;
     public static final double WRIST_TOP_POSITION = .27;
 
-    public static final int MAST_LEFT_POSITION = 0;
-    public static final int MAST_RIGHT_POSITION = 860;
+    public static final int MAST_LEFT_POSITION = 860;
+    public static final int MAST_RIGHT_POSITION = 0;
     public static final int MAST_FORWARD_POSITION = 430;
 
     public static final int ARM_FLOOR_POSITION = 0;

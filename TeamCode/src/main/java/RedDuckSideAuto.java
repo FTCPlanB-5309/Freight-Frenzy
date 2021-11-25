@@ -18,22 +18,31 @@ public class RedDuckSideAuto extends LinearOpMode {
         robot.teleopInit(hardwareMap);
         waitForStart();
 
+        arm.setPosition(robot.ARM_MIDDLE_POSITION);
+        mast.setPosition(robot.MAST_FORWARD_POSITION);
+        drive.forward(0.10, 32 );
+
         FreightLevel level = findTeamFreight.getLevel();
         if (level == FreightLevel.level1) {
             arm.setPosition(robot.ARM_BOTTOM_POSITION);
-            Thread.sleep(3000);
+            wrist.setPosition(robot.WRIST_BOTTOM_POSITION);
+            mast.setPosition(robot.MAST_RIGHT_POSITION);
+
+            Thread.sleep(1500);
         }
         if (level == FreightLevel.level2) {
             arm.setPosition(robot.ARM_MIDDLE_POSITION);
             wrist.setPosition(robot.WRIST_MIDDLE_POSITION);
-            Thread.sleep(3000);
+            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            Thread.sleep(1500);
         }
         if (level == FreightLevel.level3) {
             arm.setPosition(robot.ARM_TOP_POSITION);
             wrist.setPosition(robot.WRIST_TOP_POSITION);
-            Thread.sleep(3000);
+            mast.setPosition(robot.MAST_RIGHT_POSITION);
+
+            Thread.sleep(1500);
         }
-        drive.forward(0.25, 32 );
         strafe.right(.15, 2);
         Thread.sleep(1000);
         claw.open();
@@ -41,7 +50,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         wrist.setPosition(robot.WRIST_FLOOR_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
-        drive.backward(0.25, 24);
+        drive.backward(0.25, 26);
         duckspinner.spin(AllianceColor.red);
         Thread.sleep(2000);
 

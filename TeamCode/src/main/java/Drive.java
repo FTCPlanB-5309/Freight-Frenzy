@@ -36,6 +36,7 @@ public class Drive {
        telemetry.addData("RightDistanseSensorValue", robot.rightObjectDistance);
 
        telemetry.addData("linear opmode is working, target = ", target);
+       telemetry.update();
 
 //       Thread.sleep(5000);
 //        telemetry.addData("", target);
