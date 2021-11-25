@@ -1,10 +1,12 @@
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
-
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class MechanumHardware
 {
@@ -23,6 +25,9 @@ public class MechanumHardware
     public Servo wristServo = null;
 
     BNO055IMU imu;
+
+    public Rev2mDistanceSensor rightDistanceSensor;
+    public Rev2mDistanceSensor leftDistanceSensor;
 
     HardwareMap hwMap = null;
 
@@ -69,6 +74,8 @@ public class MechanumHardware
     public static final int ARM_MIDDLE_POSITION = 2400;
     public static final int ARM_TOP_POSITION = 4250;
 
+    public static double leftObjectDistance = 40;
+    public static double rightObjectDistance = 40;
 
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -90,6 +97,8 @@ public class MechanumHardware
 
         mastRotator = hwMap.get(DcMotor.class, "mastRotator");
 
+        leftDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "leftDistanceSensor");
+        rightDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "rightDistanceSensor");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
@@ -102,9 +111,8 @@ public class MechanumHardware
         imu = hwMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
 
-
         rightFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        right  RearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         mastRotator.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set servos to start positions
@@ -130,6 +138,16 @@ public class MechanumHardware
         rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mastRotator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+    public void getDistanceToWall() {
+        double leftDistance = leftDistanceSensor.getDistance(DistanceUnit.INCH);
+        double rightDistance = rightDistanceSensor.getDistance(DistanceUnit.INCH);
+        if (leftDistance < leftObjectDistance) {
+            leftObjectDistance = leftDistance;
+        }
+        if (rightDistance < rightObjectDistance) {
+            rightObjectDistance = rightDistance;
+        }
     }
 
     public void resetDriveEncoders () {

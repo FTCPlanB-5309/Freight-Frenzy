@@ -18,7 +18,6 @@ public class Drive {
     public void forward(double speed, int distance) throws InterruptedException{
         if (!linearOpMode.opModeIsActive())
             return;
-
         int target = distance * robot.CLICKS_PER_INCH;
        robot.leftFrontDrive.setTargetPosition(target);
        robot.leftRearDrive.setTargetPosition(target);
@@ -31,6 +30,8 @@ public class Drive {
        robot.leftRearDrive.setPower(speed);
        robot.rightFrontDrive.setPower(speed);
        robot.rightRearDrive.setPower(speed);
+
+       robot.getDistanceToWall();
 
        telemetry.addData("linear opmode is working, target = ", target);
 
