@@ -12,6 +12,8 @@ public class RedDuckSideAuto extends LinearOpMode {
     Claw claw = new Claw(robot, telemetry, this);
     Mast mast = new Mast(robot, telemetry, this);
     Wrist wrist = new Wrist(robot, telemetry, this);
+    DuckSpinner duckspinner = new DuckSpinner(robot, telemetry,this);
+
     public void runOpMode() throws InterruptedException {
         robot.teleopInit(hardwareMap);
         waitForStart();
@@ -23,6 +25,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         }
         if (level == FreightLevel.level2) {
             arm.setPosition(robot.ARM_MIDDLE_POSITION);
+            wrist.setPosition(robot.WRIST_MIDDLE_POSITION);
             Thread.sleep(3000);
         }
         if (level == FreightLevel.level3) {
@@ -32,8 +35,16 @@ public class RedDuckSideAuto extends LinearOpMode {
         }
         drive.forward(0.25, 32 );
         strafe.right(.15, 2);
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         claw.open();
+        strafe.left(0.25, 31);
+        mast.setPosition(robot.MAST_FORWARD_POSITION);
+        wrist.setPosition(robot.WRIST_FLOOR_POSITION);
+        arm.setPosition(robot.ARM_FLOOR_POSITION);
+        drive.backward(0.25, 24);
+        duckspinner.spin(AllianceColor.red);
+        Thread.sleep(2000);
+
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
         telemetry.addData("wrist", robot.wristServo.getPosition());

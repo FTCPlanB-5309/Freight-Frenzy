@@ -15,7 +15,7 @@ public class FindTeamFreight {
     }
 
 public FreightLevel getLevel() {
-    return FreightLevel.level3;
+    return FreightLevel.level2;
 }
 
 }
