@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class MechanumHardware
@@ -139,7 +140,7 @@ public class MechanumHardware
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mastRotator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
-    public void getDistanceToWall() {
+    public void getSideDistance() {
         double leftDistance = leftDistanceSensor.getDistance(DistanceUnit.INCH);
         double rightDistance = rightDistanceSensor.getDistance(DistanceUnit.INCH);
         if (leftDistance < leftObjectDistance) {

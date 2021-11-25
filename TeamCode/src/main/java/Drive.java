@@ -31,7 +31,9 @@ public class Drive {
        robot.rightFrontDrive.setPower(speed);
        robot.rightRearDrive.setPower(speed);
 
-       robot.getDistanceToWall();
+       robot.getSideDistance();
+       telemetry.addData("leftDistanceSensorValue", robot.leftObjectDistance);
+       telemetry.addData("RightDistanseSensorValue", robot.rightObjectDistance);
 
        telemetry.addData("linear opmode is working, target = ", target);
 
