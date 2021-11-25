@@ -61,19 +61,19 @@ public class MechanumHardware
 
     public static final double MAST_START_POSITION = 0.5;
 
-    public static final double WRIST_FLOOR_POSITION = .36;
-    public static final double WRIST_BOTTOM_POSITION = .36;
-    public static final double WRIST_MIDDLE_POSITION = .36;
+    public static final double WRIST_FLOOR_POSITION = .60;
+    public static final double WRIST_BOTTOM_POSITION = .47;
+    public static final double WRIST_MIDDLE_POSITION = .39;
     public static final double WRIST_TOP_POSITION = .27;
 
     public static final int MAST_LEFT_POSITION = 0;
-    public static final int MAST_RIGHT_POSITION = 300;
-    public static final int MAST_FORWARD_POSITION = 600;
+    public static final int MAST_RIGHT_POSITION = 860;
+    public static final int MAST_FORWARD_POSITION = 430;
 
     public static final int ARM_FLOOR_POSITION = 0;
-    public static final int ARM_BOTTOM_POSITION = 300;
-    public static final int ARM_MIDDLE_POSITION = 2400;
-    public static final int ARM_TOP_POSITION = 4250;
+    public static final int ARM_BOTTOM_POSITION = 1150;
+    public static final int ARM_MIDDLE_POSITION = 2700;
+    public static final int ARM_TOP_POSITION = 4300;
 
     public static double leftObjectDistance = 40;
     public static double rightObjectDistance = 40;
@@ -130,6 +130,10 @@ public class MechanumHardware
         duckSpinner.setPower(0);
         armMotor.setPower(0);
         mastRotator.setPower(0);
+
+        mastRotator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.

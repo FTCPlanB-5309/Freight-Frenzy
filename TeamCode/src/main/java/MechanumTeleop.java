@@ -77,8 +77,6 @@ public class MechanumTeleop extends LinearOpMode {
                 else
                     robot.mastRotator.setPower(0);
 
-//                if (gamepad2.dpad_right)
-//                    robot.mastRotator.setPosition(robot.mastRotator.getPosition() - 0.0005);
 
                 // Wrist Up/Down
             if (gamepad2.right_stick_y > robot.TELEOPDEADZONE)
@@ -89,9 +87,6 @@ public class MechanumTeleop extends LinearOpMode {
                 robot.wristServo.setPosition(robot.GRABBER_GROUND_POS);
             if (gamepad2.y)
                 robot.wristServo.setPosition(robot.GRABBER_AIR_POS);
-
-//            if (gamepad2.dpad_down)
-//                robot.wristServo.setPosition(robot.wristServo.getPosition() - 0.0005);
 
 
                 // Grabber Open/Close

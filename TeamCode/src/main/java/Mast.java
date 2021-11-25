@@ -23,9 +23,8 @@ public class Mast {
         robot.mastRotator.setTargetPosition(newPosition);
         robot.mastRotator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.mastRotator.setPower(0.1);
-        while (robot.armMotor.isBusy() && linearOpMode.opModeIsActive()) {
+        while (robot.mastRotator.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
-            return;
         }
         robot.mastRotator.setPower(0);
     }
