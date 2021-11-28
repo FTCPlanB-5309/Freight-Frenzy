@@ -18,8 +18,8 @@ public class Arm {
     }
 
     public void setPosition(int newPosition) {
-        robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.armMotor.setTargetPosition(newPosition);
+        robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.armMotor.setPower(-0.7);
         while (robot.armMotor.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();

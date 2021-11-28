@@ -33,7 +33,7 @@ public class MechanumTeleop extends LinearOpMode {
             // Drivetrain
             ly = -gamepad1.left_stick_y; //drive forward
             lx = gamepad1.left_stick_x; //strafe
-            rx = -gamepad1.right_stick_x; //turn
+            rx = gamepad1.right_stick_x; //turn
 
             if (Math.abs(ly) > robot.TELEOPDEADZONE ||
                     Math.abs(lx) > robot.TELEOPDEADZONE ||
@@ -102,7 +102,7 @@ public class MechanumTeleop extends LinearOpMode {
 
                 // Arm Control
                 if (Math.abs(gamepad2.left_stick_y) > robot.TELEOPDEADZONE) {
-                    robot.armMotor.setPower(-gamepad2.left_stick_y * 0.7);
+                    robot.armMotor.setPower(-gamepad2.left_stick_y * 0.8);
 
                 } else {
                     robot.armMotor.setPower(0);
