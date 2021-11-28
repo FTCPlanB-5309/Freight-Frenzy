@@ -31,12 +31,7 @@ public class Drive {
        robot.rightFrontDrive.setPower(speed);
        robot.rightRearDrive.setPower(speed);
 
-       robot.getSideDistance();
-       telemetry.addData("leftDistanceSensorValue", robot.leftObjectDistance);
-       telemetry.addData("RightDistanseSensorValue", robot.rightObjectDistance);
 
-       telemetry.addData("linear opmode is working, target = ", target);
-       telemetry.update();
 
 //       Thread.sleep(5000);
 //        telemetry.addData("", target);
@@ -47,6 +42,13 @@ public class Drive {
                 robot.leftRearDrive.setPower(speed);
                 robot.rightFrontDrive.setPower(speed);
                 robot.rightRearDrive.setPower(speed);
+
+            robot.getSideDistance();
+            telemetry.addData("leftDistanceSensorValue", robot.leftObjectDistance);
+            telemetry.addData("RightDistanseSensorValue", robot.rightObjectDistance);
+
+            telemetry.addData("linear opmode is working, target = ", target);
+            telemetry.update();
        }
 
        robot.stop ();

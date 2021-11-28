@@ -55,9 +55,9 @@ public class MechanumHardware
     public static final double GRABBER_GROUND_POS = 0.6 ;
     public static final double GRABBER_AIR_POS = .21;
     public static final double RIGHT_CLAW_CLOSED = 0.87;
-    public static final double RIGHT_CLAW_OPEN = 0.67;
+    public static final double RIGHT_CLAW_OPEN = 0.72;
     public static final double LEFT_CLAW_CLOSED = 0.27;
-    public static final double LEFT_CLAW_OPEN = 0.5;
+    public static final double LEFT_CLAW_OPEN = 0.43;
 
     public static final double MAST_START_POSITION = 0.5;
 
