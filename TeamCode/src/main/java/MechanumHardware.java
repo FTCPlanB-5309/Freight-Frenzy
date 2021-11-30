@@ -62,7 +62,7 @@ public class MechanumHardware
     public static final double MAST_START_POSITION = 0.5;
 
     public static final double WRIST_FLOOR_POSITION = .60;
-    public static final double WRIST_BOTTOM_POSITION = .47;
+    public static final double WRIST_BOTTOM_POSITION = .60;
     public static final double WRIST_MIDDLE_POSITION = .39;
     public static final double WRIST_TOP_POSITION = .27;
 
@@ -71,12 +71,12 @@ public class MechanumHardware
     public static final int MAST_FORWARD_POSITION = 430;
 
     public static final int ARM_FLOOR_POSITION = 0;
-    public static final int ARM_BOTTOM_POSITION = 1150;
-    public static final int ARM_MIDDLE_POSITION = 2700;
-    public static final int ARM_TOP_POSITION = 4300;
+    public static final int ARM_BOTTOM_POSITION = 1550;
+    public static final int ARM_MIDDLE_POSITION = 3300;
+    public static final int ARM_TOP_POSITION = 4900;
 
-    public static double leftObjectDistance = 40;
-    public static double rightObjectDistance = 40;
+    public double leftObjectDistance;
+    public double rightObjectDistance;
 
 
     public void teleopInit(HardwareMap ahwMap) {

@@ -35,6 +35,8 @@ public class Drive {
 
 //       Thread.sleep(5000);
 //        telemetry.addData("", target);
+        robot.leftObjectDistance = 40;
+        robot.rightObjectDistance = 40;
         while (robot.leftRearDrive.isBusy() && robot.leftFrontDrive.isBusy() && robot.rightRearDrive.isBusy()
                 && robot.rightFrontDrive.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
