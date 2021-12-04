@@ -15,9 +15,9 @@ public class FindTeamFreight {
     }
 
 public FreightLevel getLevel() {
-    if (robot.leftObjectDistance < 5)
+    if (robot.leftObjectDistance < 7)
         return FreightLevel.level1;
-    else if (robot.rightObjectDistance < 5)
+    else if (robot.rightObjectDistance < 7)
         return FreightLevel.level3;
     else return FreightLevel.level2;
 

@@ -13,6 +13,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
     Mast mast = new Mast(robot, telemetry, this);
     Wrist wrist = new Wrist(robot, telemetry, this);
     DuckSpinner duckspinner = new DuckSpinner(robot, telemetry,this);
+    GyroTurn gyroTurn = new GyroTurn(robot, telemetry, this);
 
     public void runOpMode() throws InterruptedException {
         robot.teleopInit(hardwareMap);
@@ -26,18 +27,18 @@ public class BlueDuckSideAuto extends LinearOpMode {
         if (level == FreightLevel.level3) {
             arm.setPosition(robot.ARM_BOTTOM_POSITION);
             wrist.setPosition(robot.WRIST_BOTTOM_POSITION);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            mast.setPosition(robot.MAST_LEFT_POSITION);
 
         }
         if (level == FreightLevel.level2) {
             arm.setPosition(robot.ARM_MIDDLE_POSITION);
             wrist.setPosition(robot.WRIST_MIDDLE_POSITION);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            mast.setPosition(robot.MAST_LEFT_POSITION);
         }
         if (level == FreightLevel.level1) {
             arm.setPosition(robot.ARM_TOP_POSITION);
             wrist.setPosition(robot.WRIST_TOP_POSITION);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            mast.setPosition(robot.MAST_LEFT_POSITION);
 
         }
         strafe.left(.15, 2);
@@ -47,6 +48,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
         arm.setPosition(robot.ARM_FLOOR_POSITION);
         drive.backward(0.25, 27);
         duckspinner.spin(AllianceColor.blue);
+        gyroTurn.absolute(0);
         drive.forward(.25,17);
 
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
