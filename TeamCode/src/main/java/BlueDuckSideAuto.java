@@ -21,7 +21,8 @@ public class BlueDuckSideAuto extends LinearOpMode {
 
         arm.setPosition(robot.ARM_MIDDLE_POSITION);
         mast.setPosition(robot.MAST_FORWARD_POSITION);
-        drive.forward(0.10, 32 );
+        drive.forward(0.25, 22 );
+        drive.forward(0.10, 10 );
 
         FreightLevel level = findTeamFreight.getLevel();
         if (level == FreightLevel.level3) {
@@ -41,14 +42,19 @@ public class BlueDuckSideAuto extends LinearOpMode {
             mast.setPosition(robot.MAST_LEFT_POSITION);
 
         }
-        strafe.left(.15, 2);
+        strafe.left(.15, 4);
         claw.open();
-        strafe.right(0.25, 31);
+        strafe.right(0.25, 33);
         wrist.setPosition(robot.WRIST_FLOOR_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
         drive.backward(0.25, 27);
         duckspinner.spin(AllianceColor.blue);
-        gyroTurn.absolute(0);
+
+        drive.forward(0.25,3);
+        Thread.sleep(250);
+        gyroTurn.absolute(1);
+        Thread.sleep(250);
+
         drive.forward(.25,17);
 
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
@@ -56,6 +62,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
         telemetry.addData("wrist", robot.wristServo.getPosition());
         telemetry.update();
         //drive.forward1000(.5);
+
 
         /*
         find out where the special marker is (1 out of 3)
