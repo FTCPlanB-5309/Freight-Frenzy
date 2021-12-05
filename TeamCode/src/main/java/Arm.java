@@ -18,13 +18,11 @@ public class Arm {
     }
 
     public void setPosition(int newPosition) {
-        robot.armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.armMotor.setTargetPosition(newPosition);
-        robot.armMotor.setPower(-0.7);
+        robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.armMotor.setPower(-0.73);
         while (robot.armMotor.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
-            return;
         }
         robot.armMotor.setPower(0);
     }

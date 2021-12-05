@@ -1,10 +1,13 @@
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
-
+import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 public class MechanumHardware
 {
@@ -22,9 +25,13 @@ public class MechanumHardware
     public Servo rightClawServo = null;
     public Servo wristServo = null;
 
+    BNO055IMU imu;
+
+    public Rev2mDistanceSensor rightDistanceSensor;
+    public Rev2mDistanceSensor leftDistanceSensor;
+
     HardwareMap hwMap = null;
 
-    BNO055IMU imu;
 
 
     //Hardware constants
@@ -48,26 +55,28 @@ public class MechanumHardware
     public static final double GRABBER_GROUND_POS = 0.6 ;
     public static final double GRABBER_AIR_POS = .21;
     public static final double RIGHT_CLAW_CLOSED = 0.87;
-    public static final double RIGHT_CLAW_OPEN = 0.67;
+    public static final double RIGHT_CLAW_OPEN = 0.72;
     public static final double LEFT_CLAW_CLOSED = 0.27;
-    public static final double LEFT_CLAW_OPEN = 0.5;
+    public static final double LEFT_CLAW_OPEN = 0.43;
 
     public static final double MAST_START_POSITION = 0.5;
 
-    public static final double WRIST_FLOOR_POSITION = .36;
-    public static final double WRIST_BOTTOM_POSITION = .36;
-    public static final double WRIST_MIDDLE_POSITION = .36;
+    public static final double WRIST_FLOOR_POSITION = .60;
+    public static final double WRIST_BOTTOM_POSITION = .54;
+    public static final double WRIST_MIDDLE_POSITION = .39;
     public static final double WRIST_TOP_POSITION = .27;
 
-    public static final int MAST_LEFT_POSITION = 0;
-    public static final int MAST_RIGHT_POSITION = 300;
-    public static final int MAST_FORWARD_POSITION = 600;
+    public static final int MAST_LEFT_POSITION = 860;
+    public static final int MAST_RIGHT_POSITION = 0;
+    public static final int MAST_FORWARD_POSITION = 430;
 
     public static final int ARM_FLOOR_POSITION = 0;
-    public static final int ARM_BOTTOM_POSITION = 300;
-    public static final int ARM_MIDDLE_POSITION = 2400;
-    public static final int ARM_TOP_POSITION = 4250;
+    public static final int ARM_BOTTOM_POSITION = 1200;
+    public static final int ARM_MIDDLE_POSITION = 3000;
+    public static final int ARM_TOP_POSITION = 5000;
 
+    public double leftObjectDistance;
+    public double rightObjectDistance;
 
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -89,6 +98,8 @@ public class MechanumHardware
 
         mastRotator = hwMap.get(DcMotor.class, "mastRotator");
 
+        leftDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "leftDistanceSensor");
+        rightDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "rightDistanceSensor");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
@@ -101,9 +112,8 @@ public class MechanumHardware
         imu = hwMap.get(BNO055IMU.class, "imu");
         imu.initialize(parameters);
 
-
-        leftFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
-        leftRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         mastRotator.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set servos to start positions
@@ -121,6 +131,10 @@ public class MechanumHardware
         armMotor.setPower(0);
         mastRotator.setPower(0);
 
+        mastRotator.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
         leftFrontDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -129,6 +143,16 @@ public class MechanumHardware
         rightRearDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mastRotator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+    public void getSideDistance() {
+        double leftDistance = leftDistanceSensor.getDistance(DistanceUnit.INCH);
+        double rightDistance = rightDistanceSensor.getDistance(DistanceUnit.INCH);
+        if (leftDistance < leftObjectDistance) {
+            leftObjectDistance = leftDistance;
+        }
+        if (rightDistance < rightObjectDistance) {
+            rightObjectDistance = rightDistance;
+        }
     }
 
     public void resetDriveEncoders () {

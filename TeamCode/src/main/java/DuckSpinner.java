@@ -16,27 +16,19 @@ public class DuckSpinner {
         this.linearOpMode = linearOpMode;
     }
 
-    public void blue(){
-        robot.duckSpinner.setTargetPosition(robot.BLUE_DUCK_POSITION);
-        robot.duckSpinner.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.duckSpinner.setPower(robot.DUCK_SPINNER_SPEED);
-        while (robot.duckSpinner.isBusy()){
-            Thread.yield();
+    public void spin(AllianceColor alliance) throws InterruptedException {
+        if (alliance == AllianceColor.red)
+            robot.duckSpinner.setPower(-0.45);
+        else
+            robot.duckSpinner.setPower(0.45);
+        robot.leftFrontDrive.setPower(-.05);
+        robot.rightFrontDrive.setPower(-.05);
+        robot.rightRearDrive.setPower(-.05);
+        robot.leftRearDrive.setPower(-0.05);
+        for (int i=0; linearOpMode.opModeIsActive() && i < 30; i++) {
+            Thread.sleep(100);
         }
-        robot.duckSpinner.setPower(0);
-    }
-    public void red() {
-        robot.duckSpinner.setTargetPosition(robot.RED_DUCK_POSITION);
-        robot.duckSpinner.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.duckSpinner.setPower(robot.DUCK_SPINNER_SPEED);
-        while (robot.duckSpinner.isBusy()) {
-            Thread.yield();
-        }
-        robot.duckSpinner.setPower(0);
-    }
-    public void timed(int mils) throws InterruptedException {
-        robot.duckSpinner.setPower(robot.DUCK_SPINNER_SPEED);
-        Thread.sleep(mils);
+        robot.stop();
         robot.duckSpinner.setPower(0);
     }
 }

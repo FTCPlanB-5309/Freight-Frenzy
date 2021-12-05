@@ -21,13 +21,14 @@ public class Strafe {
 //        robot.setupDriveTrain();
         robot.driveUsingEncoders();
         robot.resetDriveEncoders();
-        robot.driveToPosition();
 
         int target = distance * robot.STRAFE_CLICKS_PER_INCH;
         robot.leftFrontDrive.setTargetPosition(-target);
         robot.leftRearDrive.setTargetPosition(target);
         robot.rightFrontDrive.setTargetPosition(target);
         robot.rightRearDrive.setTargetPosition(-target);
+
+        robot.driveToPosition();
 
         robot.leftFrontDrive.setPower(-speed);
         robot.leftRearDrive.setPower(speed);
@@ -68,7 +69,7 @@ public class Strafe {
         robot.resetDriveEncoders();
         robot.driveToPosition();
 
-        int target = distance; /* * robot.STRAFE_CLICKS_PER_INCH; */
+        int target = distance * robot.STRAFE_CLICKS_PER_INCH;
         robot.leftFrontDrive.setTargetPosition(target);
         robot.leftRearDrive.setTargetPosition(-target);
         robot.rightFrontDrive.setTargetPosition(-target);
