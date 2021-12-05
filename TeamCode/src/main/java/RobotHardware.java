@@ -39,7 +39,41 @@ public class RobotHardware
 
     public static final double CLICKS_PER_INCH = 75.5;
 
-    public void teleopInit(com.qualcomm.robotcore.hardware.HardwareMap ahwMap) {
+    public void teleopInit(HardwareMap ahwMap) {
+        // Save reference to Hardware map
+        hwMap = ahwMap;
+
+        // Define and Initialize Motors
+        leftDrive = hwMap.get(DcMotor.class, "leftDrive");
+        rightDrive = hwMap.get(DcMotor.class, "rightDrive");
+        duckSpinner = hwMap.get(DcMotor.class, "duckSpinner");
+        armMotor = hwMap.get(DcMotor.class, "armMotor");
+
+        duckArm = hwMap.get(Servo.class, "duckArm");
+        frontWheel = hwMap.get(Servo.class, "frontWheel");
+        rearWheel = hwMap.get(Servo.class, "rearWheel");
+        leftClawServo = hwMap.get(Servo.class, "leftClawServo");
+        rightClawServo = hwMap.get(Servo.class, "rightClawServo");
+        wristServo = hwMap.get(Servo.class, "wristServo");
+
+
+        leftDrive.setDirection(DcMotorSimple.Direction.REVERSE);
+
+        // Set all motors to zero power
+        leftDrive.setPower(0);
+        rightDrive.setPower(0);
+        duckSpinner.setPower(0);
+        armMotor.setPower(0);
+
+        // Set all motors to run without encoders.
+        // May want to use RUN_USING_ENCODERS if encoders are installed.
+        leftDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightDrive.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+
+    public void autoInit(com.qualcomm.robotcore.hardware.HardwareMap ahwMap) {
         // Save reference to Hardware map
         hwMap = ahwMap;
 

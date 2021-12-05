@@ -28,4 +28,12 @@ public class Mast {
         }
         robot.mastRotator.setPower(0);
     }
+
+    public void setPositionNoWait(int newPosition) {
+        if (!linearOpMode.opModeIsActive())
+            return;
+        robot.mastRotator.setTargetPosition(newPosition);
+        robot.mastRotator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.mastRotator.setPower(0.1);
+    }
 }

@@ -52,7 +52,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
 
         drive.forward(0.25,3);
         Thread.sleep(250);
-        gyroTurn.absolute(1);
+        gyroTurn.absolute(0); //ToDo: change back to 1 if zero fails
         Thread.sleep(250);
 
         drive.forward(.25,17);

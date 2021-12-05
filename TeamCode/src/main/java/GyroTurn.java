@@ -29,9 +29,8 @@ public class GyroTurn {
         robot.driveUsingEncoders();
 
 //        updateHeading();
-        double diff;
+        double diff = 42;
         int direction;
-        diff = 2;
         if (target == 180)
             target = -180;
         while (Math.abs(diff) > 1 && linearOpMode.opModeIsActive()) {
@@ -48,7 +47,8 @@ public class GyroTurn {
                 }
             } else {
                 if (target >= 0) {
-                    if ((target - currHeading) >= ((180 - target) - (-180 - currHeading))) {
+                    if ((target - currHeading) >= ((180 - target) + (-180 - currHeading))) {
+                        //todo change + to - if fails
                         diff = -((180 - target) - (-180 - currHeading));
                     } else {
                         diff = (target - currHeading);
