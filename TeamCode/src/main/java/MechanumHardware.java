@@ -39,6 +39,7 @@ public class MechanumHardware
     public static final int CLICKS_PER_INCH = 44;
     public static final double DRIVE_SPEED_REDUCTION = 0.75;
     public static final int STRAFE_CLICKS_PER_INCH = 48;
+    public static final int DIAGONAL_CLICKS_PER_INCH = 44;
 
 
     public final double HIGH_TURN_POWER = 0.3;
