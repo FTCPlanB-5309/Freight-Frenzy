@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 public class MechanumTeleop extends LinearOpMode {
 
     MechanumHardware robot = new MechanumHardware();
+    Wrist wrist = new Wrist(robot, telemetry, this);
 
 
     @Override
@@ -102,8 +103,8 @@ public class MechanumTeleop extends LinearOpMode {
 
                 // Arm Control
                 if (Math.abs(gamepad2.left_stick_y) > robot.TELEOPDEADZONE) {
-                    robot.armMotor.setPower(-gamepad2.left_stick_y * 0.8);
-
+                    robot.armMotor.setPower(-gamepad2.left_stick_y);
+                    wrist.updatePosition();
                 } else {
                     robot.armMotor.setPower(0);
                 }
