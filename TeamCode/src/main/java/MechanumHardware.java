@@ -83,7 +83,7 @@ public class MechanumHardware
     public double rightObjectDistance;
     public double floorDistance;
 
-    public static int LEVEL_ONE_HEIGHT = 15;
+    public static int LEVEL_ONE_HEIGHT = 20;
     public static int LEVEL_TWO_HEIGHT = 31;
     public static int LEVEL_THREE_HEIGHT = 50;
 
