@@ -12,10 +12,10 @@ public class BlueWarehouseAuto extends LinearOpMode {
     Drive drive = new Drive(robot, telemetry, this);
     Strafe strafe = new Strafe(robot, telemetry, this);
     FindTeamFreight findTeamFreight = new FindTeamFreight(robot, telemetry, this);
-    Arm arm = new Arm(robot, telemetry, this);
+    Wrist wrist = new Wrist(robot, telemetry, this);
+    Arm arm = new Arm(robot, telemetry, this, wrist);
     Claw claw = new Claw(robot, telemetry, this);
     Mast mast = new Mast(robot, telemetry, this);
-    Wrist wrist = new Wrist(robot, telemetry, this);
     DuckSpinner duckspinner = new DuckSpinner(robot, telemetry, this);
     GyroTurn gyroTurn = new GyroTurn(robot, telemetry, this);
 
