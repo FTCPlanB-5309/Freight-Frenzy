@@ -34,8 +34,6 @@ public class MechanumTeleop extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
-            telemetry.addData("Claw Distance", robot.clawDistanceSensor.getDistance(DistanceUnit.INCH));
-            telemetry.update();
             // Drivetrain
             ly = -gamepad1.left_stick_y; //drive forward
             lx = gamepad1.left_stick_x; //strafe
@@ -116,6 +114,7 @@ public class MechanumTeleop extends LinearOpMode {
                 telemetry.addData("wrist", robot.wristServo.getPosition());
                 telemetry.addData("arm",robot.armMotor.getCurrentPosition());
                 telemetry.addData("mast", robot.mastRotator.getCurrentPosition());
+                telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
                 telemetry.update();
 
             }
