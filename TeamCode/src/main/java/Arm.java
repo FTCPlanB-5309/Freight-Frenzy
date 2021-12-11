@@ -49,9 +49,9 @@ public class Arm {
         while (Math.abs(clawHeight-newHeight) > 2 && linearOpMode.opModeIsActive()) {
 
             if(clawHeight > newHeight){
-                robot.armMotor.setPower(0.73);
+                robot.armMotor.setPower(-0.73);
             }
-            else robot.armMotor.setPower(-0.73);
+            else robot.armMotor.setPower(0.73);
 
             Thread.yield();
             wrist.updatePosition();
