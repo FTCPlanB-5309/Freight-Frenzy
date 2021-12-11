@@ -29,6 +29,7 @@ public class MechanumHardware
 
     public Rev2mDistanceSensor rightDistanceSensor;
     public Rev2mDistanceSensor leftDistanceSensor;
+    public Rev2mDistanceSensor clawDistanceSensor;
 
     HardwareMap hwMap = null;
 
@@ -78,6 +79,7 @@ public class MechanumHardware
 
     public double leftObjectDistance;
     public double rightObjectDistance;
+    public double floorDistance;
 
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -101,6 +103,7 @@ public class MechanumHardware
 
         leftDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "leftDistanceSensor");
         rightDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "rightDistanceSensor");
+        clawDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "clawDistanceSensor");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;

@@ -3,6 +3,9 @@ import com.qualcomm.robotcore.util.Range;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 @com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mechanaum Teleop", group="Teleop")
 
 public class MechanumTeleop extends LinearOpMode {
@@ -31,6 +34,8 @@ public class MechanumTeleop extends LinearOpMode {
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
 
+            telemetry.addData("Claw Distance", robot.clawDistanceSensor.getDistance(DistanceUnit.INCH));
+            telemetry.update();
             // Drivetrain
             ly = -gamepad1.left_stick_y; //drive forward
             lx = gamepad1.left_stick_x; //strafe
