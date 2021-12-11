@@ -44,7 +44,7 @@ public class Arm {
         double  clawHeight;
         clawHeight = robot.clawDistanceSensor.getDistance(DistanceUnit.CM);
 
-        robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
         while (Math.abs(clawHeight-newHeight) > 2 && linearOpMode.opModeIsActive()) {
 
@@ -57,6 +57,10 @@ public class Arm {
             wrist.updatePosition();
 
             clawHeight = robot.clawDistanceSensor.getDistance(DistanceUnit.CM);
+
+            telemetry.addData("Set Height",newHeight);
+            telemetry.addData("clawHeight", clawHeight);
+            telemetry.update();
         }
         robot.armMotor.setPower(0);
     }

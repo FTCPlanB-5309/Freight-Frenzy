@@ -1,6 +1,8 @@
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 @Autonomous(name = "RedDuckSideAuto")
 
 public class RedDuckSideAuto extends LinearOpMode {
@@ -29,7 +31,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         if (level == FreightLevel.level2)
             arm.setHeight(robot.LEVEL_TWO_HEIGHT);
 
-        if (level == FreightLevel.level3) {
+        if (level == FreightLevel.level3)
             arm.setHeight(robot.LEVEL_THREE_HEIGHT);
 
         mast.setPosition(robot.MAST_RIGHT_POSITION);
@@ -46,6 +48,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
         telemetry.addData("wrist", robot.wristServo.getPosition());
+        telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
         telemetry.update();
         //drive.forward1000(.5);
 
