@@ -23,23 +23,17 @@ public class RedDuckSideAuto extends LinearOpMode {
         drive.forward(0.10, 32 );
 
         FreightLevel level = findTeamFreight.getLevel();
-        if (level == FreightLevel.level1) {
-            arm.setPosition(robot.ARM_BOTTOM_POSITION);
-            wrist.setPosition(robot.WRIST_BOTTOM_POSITION);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
+        if (level == FreightLevel.level1)
+        arm.setHeight(robot.LEVEL_ONE_HEIGHT);
 
-        }
-        if (level == FreightLevel.level2) {
-            arm.setPosition(robot.ARM_MIDDLE_POSITION);
-            wrist.setPosition(robot.WRIST_MIDDLE_POSITION);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
-        }
+        if (level == FreightLevel.level2)
+            arm.setHeight(robot.LEVEL_TWO_HEIGHT);
+
         if (level == FreightLevel.level3) {
-            arm.setPosition(robot.ARM_TOP_POSITION);
-            wrist.setPosition(robot.WRIST_TOP_POSITION);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            arm.setHeight(robot.LEVEL_THREE_HEIGHT);
 
-        }
+        mast.setPosition(robot.MAST_RIGHT_POSITION);
+
         strafe.right(.15, 2);
         claw.open();
         strafe.left(0.25, 31);

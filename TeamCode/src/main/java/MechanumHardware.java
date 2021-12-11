@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
+
 public class MechanumHardware
 {
     public DcMotor leftFrontDrive = null;
@@ -18,6 +19,7 @@ public class MechanumHardware
     public DcMotor duckSpinner = null;
     public DcMotor armMotor = null;
     public DcMotor mastRotator = null;
+
 
 
 //    public Servo duckArm = null;
@@ -81,6 +83,9 @@ public class MechanumHardware
     public double rightObjectDistance;
     public double floorDistance;
 
+    public static int LEVEL_ONE_HEIGHT = 15;
+    public static int LEVEL_TWO_HEIGHT = 31;
+    public static int LEVEL_THREE_HEIGHT = 50;
 
     public void teleopInit(HardwareMap ahwMap) {
         // Save reference to Hardware map
