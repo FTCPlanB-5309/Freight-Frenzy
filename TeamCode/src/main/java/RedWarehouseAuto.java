@@ -41,7 +41,6 @@ public class RedWarehouseAuto extends LinearOpMode {
         claw.open();
         strafe.right(0.25, 2);
         mast.setPosition(robot.MAST_FORWARD_POSITION);
-        arm.setPosition(robot.ARM_FLOOR_POSITION);
         drive.backward(0.25, 28);
         arm.setPosition(robot.ARM_MIDDLE_POSITION);
         gyroTurn.absolute(-90);
