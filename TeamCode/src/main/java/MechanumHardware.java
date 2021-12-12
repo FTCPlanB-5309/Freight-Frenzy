@@ -1,6 +1,7 @@
 import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
+import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -20,8 +21,6 @@ public class MechanumHardware
     public DcMotor armMotor = null;
     public DcMotor mastRotator = null;
 
-
-
 //    public Servo duckArm = null;
     public Servo leftClawServo = null;
     public Servo rightClawServo = null;
@@ -32,6 +31,7 @@ public class MechanumHardware
     public Rev2mDistanceSensor rightDistanceSensor;
     public Rev2mDistanceSensor leftDistanceSensor;
     public Rev2mDistanceSensor clawDistanceSensor;
+    public RevColorSensorV3 colorSensor;
 
     HardwareMap hwMap = null;
 
@@ -109,6 +109,7 @@ public class MechanumHardware
         leftDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "leftDistanceSensor");
         rightDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "rightDistanceSensor");
         clawDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "clawDistanceSensor");
+        colorSensor = hwMap.get(RevColorSensorV3.class, "colorSensor");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;

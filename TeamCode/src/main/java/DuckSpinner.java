@@ -1,6 +1,5 @@
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
@@ -16,8 +15,8 @@ public class DuckSpinner {
         this.linearOpMode = linearOpMode;
     }
 
-    public void spin(AllianceColor alliance) throws InterruptedException {
-        if (alliance == AllianceColor.red)
+    public void spin(Color alliance) throws InterruptedException {
+        if (alliance == Color.red)
             robot.duckSpinner.setPower(-0.45);
         else
             robot.duckSpinner.setPower(0.45);
