@@ -42,7 +42,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         wrist.setPosition(robot.WRIST_FLOOR_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
         drive.backward(0.25, 27);
-        duckspinner.spin(AllianceColor.red);
+        duckspinner.spin(Color.red);
         drive.forward(.25,17);
 
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
