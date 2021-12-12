@@ -39,7 +39,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         strafe.right(.15, 2);
         claw.open();
         strafe.left(0.25, 31);
-        mast.setPosition(robot.MAST_LEFT_POSITION);
+        mast.setPosition(robot.MAST_RIGHT_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
         drive.backward(0.25, 27);
         duckspinner.spin(Color.red);

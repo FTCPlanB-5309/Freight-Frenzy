@@ -48,7 +48,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
         wrist.setPosition(robot.WRIST_FLOOR_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
         drive.backward(0.25, 27);
-        duckspinner.spin(AllianceColor.blue);
+        duckspinner.spin(Color.blue);
 
         drive.forward(0.25,3);
         Thread.sleep(250);
