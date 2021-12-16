@@ -46,7 +46,8 @@ public class Arm {
 
         robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        while (Math.abs(clawHeight-newHeight) > 1 && linearOpMode.opModeIsActive()) {
+        while (Math.abs(clawHeight-newHeight) > 1 && linearOpMode.opModeIsActive()
+                && Math.abs(robot.armMotor.getCurrentPosition())<robot.ARM_TOP_POSITION) {
 
             if(clawHeight > newHeight){
                 robot.armMotor.setPower(-0.73);

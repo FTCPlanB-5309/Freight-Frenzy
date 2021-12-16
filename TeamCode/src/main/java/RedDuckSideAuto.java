@@ -50,21 +50,5 @@ public class RedDuckSideAuto extends LinearOpMode {
         telemetry.addData("wrist", robot.wristServo.getPosition());
         telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
         telemetry.update();
-        //drive.forward1000(.5);
-
-        /*
-        find out where the special marker is (1 out of 3)
-        move forward
-        turn left 90
-        Move arm to specific level (based on the marker position)
-        move forward
-        drop block
-        move backward
-        move arm back
-        extend the "duck wheel" out
-        spin wheel
-        bring arm back
-        make sure to StOp!11!!!!!11!111!!!
-         */
     }
 }
