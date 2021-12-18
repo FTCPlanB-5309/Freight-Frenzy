@@ -21,6 +21,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
         robot.teleopInit(hardwareMap);
         waitForStart();
 
+        wrist.setPosition(robot.WRIST_FLOOR_POSITION);
         arm.setPosition(robot.ARM_MIDDLE_POSITION);
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         drive.forward(0.10, 32 );
@@ -44,7 +45,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
         arm.setPosition(robot.ARM_FLOOR_POSITION);
         drive.backward(0.25, 27);
         duckspinner.spin(Color.blue);
-        drive.forward(.25,17);
+        drive.forward(.25,19);
 
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());

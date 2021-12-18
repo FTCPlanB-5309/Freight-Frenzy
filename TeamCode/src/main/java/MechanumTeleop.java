@@ -104,6 +104,12 @@ public class MechanumTeleop extends LinearOpMode {
                     robot.rightClawServo.setPosition(robot.RIGHT_CLAW_OPEN);
                 }
 
+                //Grabber open wide
+            if (gamepad2.left_trigger > 0.5) {
+                robot.leftClawServo.setPosition(robot.LEFT_CLAW_WIDE);
+                robot.rightClawServo.setPosition(robot.RIGHT_CLAW_WIDE);
+            }
+
                 // Arm Control
                 if (Math.abs(gamepad2.left_stick_y) > robot.TELEOPDEADZONE) {
                     robot.armMotor.setPower(-gamepad2.left_stick_y);

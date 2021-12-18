@@ -20,6 +20,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         robot.teleopInit(hardwareMap);
         waitForStart();
 
+        wrist.setPosition(robot.WRIST_FLOOR_POSITION);
         arm.setPosition(robot.ARM_MIDDLE_POSITION);
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         drive.forward(0.10, 32 );

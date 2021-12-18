@@ -62,6 +62,8 @@ public class MechanumHardware
     public static final double RIGHT_CLAW_OPEN = 0.72;
     public static final double LEFT_CLAW_CLOSED = 0.27;
     public static final double LEFT_CLAW_OPEN = 0.43;
+    public static final double LEFT_CLAW_WIDE = 0.5;
+    public static final double RIGHT_CLAW_WIDE = 0.6;
 
     public static final double MAST_START_POSITION = 0.5;
 
@@ -69,6 +71,7 @@ public class MechanumHardware
     public static final double WRIST_BOTTOM_POSITION = .54;
     public static final double WRIST_MIDDLE_POSITION = .39;
     public static final double WRIST_TOP_POSITION = .27;
+    public static final double WRIST_INIT_POSITION = 0.8;
 
     public static final int MAST_LEFT_POSITION = 860;
     public static final int MAST_RIGHT_POSITION = 0;
@@ -130,7 +133,7 @@ public class MechanumHardware
 //        duckArm.setPosition(DUCK_ARM_IN);
         leftClawServo.setPosition(LEFT_CLAW_CLOSED);
         rightClawServo.setPosition(RIGHT_CLAW_CLOSED);
-        wristServo.setPosition(GRABBER_GROUND_POS);
+        wristServo.setPosition(WRIST_INIT_POSITION);
 
         // Set all motors to zero power
         leftFrontDrive.setPower(0);

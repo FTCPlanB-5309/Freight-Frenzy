@@ -77,7 +77,6 @@ public class Drive {
         while (robot.leftRearDrive.isBusy() && robot.leftFrontDrive.isBusy() && robot.rightRearDrive.isBusy()
                 && robot.rightFrontDrive.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
-            Thread.yield();
                 robot.leftFrontDrive.setPower(-speed);
                 robot.leftRearDrive.setPower(-speed);
                 robot.rightFrontDrive.setPower(-speed);
