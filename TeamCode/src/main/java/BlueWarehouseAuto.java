@@ -56,6 +56,7 @@ public class BlueWarehouseAuto extends LinearOpMode {
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
         telemetry.addData("wrist", robot.wristServo.getPosition());
+
         telemetry.update();
     }
 }

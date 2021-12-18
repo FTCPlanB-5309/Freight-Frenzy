@@ -47,8 +47,8 @@ public class GyroTurn {
                 }
             } else {
                 if (target >= 0) {
-                    if ((target - currHeading) >= ((180 - target) + (-180 - currHeading))) {
-                        //todo change + to - if fails
+                    if ((target - currHeading) >= ((180 - target) - (-180 - currHeading))) {
+                        //todo change + to - if fails -active
                         diff = -((180 - target) - (-180 - currHeading));
                     } else {
                         diff = (target - currHeading);

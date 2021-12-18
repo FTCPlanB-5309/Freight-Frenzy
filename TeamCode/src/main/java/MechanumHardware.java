@@ -130,7 +130,6 @@ public class MechanumHardware
         mastRotator.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set servos to start positions
-//        duckArm.setPosition(DUCK_ARM_IN);
         leftClawServo.setPosition(LEFT_CLAW_CLOSED);
         rightClawServo.setPosition(RIGHT_CLAW_CLOSED);
         wristServo.setPosition(WRIST_INIT_POSITION);

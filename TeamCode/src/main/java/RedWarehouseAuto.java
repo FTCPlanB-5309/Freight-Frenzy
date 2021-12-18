@@ -53,5 +53,6 @@ public class RedWarehouseAuto extends LinearOpMode {
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
         telemetry.addData("wrist", robot.wristServo.getPosition());
         telemetry.update();
+        gyroTurn.updateHeading();
     }
 }
