@@ -7,6 +7,8 @@ import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 
+import java.security.cert.TrustAnchor;
+
 public class GyroTurn {
     MechanumHardware robot;
     Telemetry telemetry;
@@ -24,83 +26,62 @@ public class GyroTurn {
     }
 
     public void absolute(double target) {
+
+        double diff;
+        double speed;
+
         if (!linearOpMode.opModeIsActive())
             return;
         robot.driveUsingEncoders();
 
-//        updateHeading();
-        double diff = 42;
-        int direction;
-        if (target == 180)
-            target = -180;
-        while (Math.abs(diff) > 1 && linearOpMode.opModeIsActive()) {
-            //right = -heading
-            if (currHeading >= 0) {
-                if (target >= 0) {
-                    diff = target - currHeading;
-                } else {
-                    if ((currHeading - target) >= ((180 - currHeading) - (-180 - target))) {
-                        diff = ((180 - currHeading) - (-180 - target));
-                    } else {
-                        diff = -(currHeading - target);
-                    }
-                }
-            } else {
-                if (target >= 0) {
-                    if ((target - currHeading) >= ((180 - target) - (-180 - currHeading))) {
-                        //todo change + to - if fails -active
-                        diff = -((180 - target) - (-180 - currHeading));
-                    } else {
-                        diff = (target - currHeading);
-                    }
-                } else {
-                    diff = (target - currHeading);
-                }
-            }
-            telemetry.addData("diff:", diff);
-            telemetry.update();
+        updateHeading();
 
-            if (diff > 0) {
-                if (Math.abs(diff) > 25) {
-                    robot.leftFrontDrive.setPower(robot.HIGH_TURN_POWER);
-                    robot.leftRearDrive.setPower(robot.HIGH_TURN_POWER);
-                    robot.rightFrontDrive.setPower(-robot.HIGH_TURN_POWER);
-                    robot.rightRearDrive.setPower(-robot.HIGH_TURN_POWER);
-                } else if (Math.abs(diff) > 5) {
-                    robot.leftFrontDrive.setPower(robot.MEDIUM_TURN_POWER);
-                    robot.leftRearDrive.setPower(robot.MEDIUM_TURN_POWER);
-                    robot.rightFrontDrive.setPower(-robot.MEDIUM_TURN_POWER);
-                    robot.rightRearDrive.setPower(-robot.MEDIUM_TURN_POWER);
-                } else {
-                    robot.leftFrontDrive.setPower(robot.LOW_TURN_POWER);
-                    robot.leftRearDrive.setPower(robot.LOW_TURN_POWER);
-                    robot.rightFrontDrive.setPower(-robot.LOW_TURN_POWER);
-                    robot.rightRearDrive.setPower(-robot.LOW_TURN_POWER);
-                }
-            }
-            if (diff < 0) {
-                if (Math.abs(diff) > 25) {
-                    robot.leftFrontDrive.setPower(-robot.HIGH_TURN_POWER);
-                    robot.leftRearDrive.setPower(-robot.HIGH_TURN_POWER);
-                    robot.rightFrontDrive.setPower(robot.HIGH_TURN_POWER);
-                    robot.rightRearDrive.setPower(robot.HIGH_TURN_POWER);
-                } else if (Math.abs(diff) > 5) {
-                    robot.leftFrontDrive.setPower(-robot.MEDIUM_TURN_POWER);
-                    robot.leftRearDrive.setPower(-robot.MEDIUM_TURN_POWER);
-                    robot.rightFrontDrive.setPower(robot.MEDIUM_TURN_POWER);
-                    robot.rightRearDrive.setPower(robot.MEDIUM_TURN_POWER);
-                } else {
-                    robot.leftFrontDrive.setPower(-robot.LOW_TURN_POWER);
-                    robot.leftRearDrive.setPower(-robot.LOW_TURN_POWER);
-                    robot.rightFrontDrive.setPower(robot.LOW_TURN_POWER);
-                    robot.rightRearDrive.setPower(robot.LOW_TURN_POWER);
-                }
-            }
+        while (currHeading != target && linearOpMode.opModeIsActive()) {
+
+            diff = Math.abs(currHeading - target);
+            speed = TurnSpeed(diff);
+
+            if (target > currHeading)
+                TurnRight(speed);
+            else if (target < currHeading)
+                TurnLeft(speed);
+            
             updateHeading();
+
         }
         robot.stop ();
     }
 
+
+    private double TurnSpeed (double diff) {
+
+        if (diff > 25) {
+        return robot.HIGH_TURN_POWER;
+        }
+        else if (diff > 5) {
+            return robot.MEDIUM_TURN_POWER;
+        }
+        else
+            return robot.LOW_TURN_POWER;
+    }
+
+    private void TurnRight (double speed) {
+
+        robot.leftFrontDrive.setPower(speed);
+        robot.leftRearDrive.setPower(speed);
+        robot.rightFrontDrive.setPower(-speed);
+        robot.rightRearDrive.setPower(-speed);
+
+    }
+
+    private void TurnLeft (double speed) {
+
+        robot.leftFrontDrive.setPower(-speed);
+        robot.leftRearDrive.setPower(-speed);
+        robot.rightFrontDrive.setPower(speed);
+        robot.rightRearDrive.setPower(speed);
+
+    }
 
     public void updateHeading() {
         angles = robot.imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
