@@ -42,6 +42,8 @@ public class RedDuckSideAuto extends LinearOpMode {
         gyroturn.absolute(100);
         strafe.right(.15, 19);
         drive.backward(.3, 15);
+        duckspinner.spin(Color.red);
+        
         /*
         strafe.right(0.25, 31);
         mast.setPosition(robot.MAST_RIGHT_POSITION);

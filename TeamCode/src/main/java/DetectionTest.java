@@ -65,10 +65,10 @@ public class DetectionTest extends LinearOpMode {
    */
     private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
     private static final String[] LABELS = {
-      "Ball",
-      "Cube",
-      "Duck",
-      "Marker"
+     // "Ball",
+     // "Cube",
+      "Duck" ,
+     // "Marker"
     };
 
     /*
