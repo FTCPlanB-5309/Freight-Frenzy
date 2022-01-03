@@ -11,7 +11,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 public class MechanumTeleop extends LinearOpMode {
 
     MechanumHardware robot = new MechanumHardware();
-    Wrist wrist = new Wrist(robot, telemetry, this);
 
 
     @Override
@@ -82,17 +81,6 @@ public class MechanumTeleop extends LinearOpMode {
                     robot.mastRotator.setPower(0);
 
 
-                // Wrist Up/Down
-            if (gamepad2.right_stick_y > robot.TELEOPDEADZONE)
-                robot.wristServo.setPosition(robot.wristServo.getPosition() - 0.0005);
-            else if (gamepad2.right_stick_y < -robot.TELEOPDEADZONE)
-                robot.wristServo.setPosition(robot.wristServo.getPosition() + 0.0005);
-            if (gamepad2.a)
-                robot.wristServo.setPosition(robot.GRABBER_GROUND_POS);
-            if (gamepad2.y)
-                robot.wristServo.setPosition(robot.GRABBER_AIR_POS);
-
-
                 // Grabber Open/Close
                 if (gamepad2.right_trigger > 0.5) {
                     robot.leftClawServo.setPosition(robot.LEFT_CLAW_CLOSED);
@@ -113,11 +101,9 @@ public class MechanumTeleop extends LinearOpMode {
                 // Arm Control
                 if (Math.abs(gamepad2.left_stick_y) > robot.TELEOPDEADZONE) {
                     robot.armMotor.setPower(-gamepad2.left_stick_y);
-                    wrist.updatePosition();
                 } else {
                     robot.armMotor.setPower(0);
                 }
-                telemetry.addData("wrist", robot.wristServo.getPosition());
                 telemetry.addData("arm",robot.armMotor.getCurrentPosition());
                 telemetry.addData("mast", robot.mastRotator.getCurrentPosition());
                 telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));

@@ -10,8 +10,7 @@ public class RedPickupAuto extends LinearOpMode {
     Drive drive = new Drive(robot, telemetry, this);
     Strafe strafe = new Strafe(robot, telemetry, this);
     FindTeamFreight findTeamFreight = new FindTeamFreight(robot, telemetry, this);
-    Wrist wrist = new Wrist(robot, telemetry, this);
-    Arm arm = new Arm(robot, telemetry, this, wrist);
+    Arm arm = new Arm(robot, telemetry, this);
     Claw claw = new Claw(robot, telemetry, this);
     Mast mast = new Mast(robot, telemetry, this);
     DuckSpinner duckspinner = new DuckSpinner(robot, telemetry,this);
@@ -54,7 +53,6 @@ public class RedPickupAuto extends LinearOpMode {
     */
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
-        telemetry.addData("wrist", robot.wristServo.getPosition());
         telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
         telemetry.update();
     }

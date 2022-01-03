@@ -1,9 +1,11 @@
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "RedWarehouseAuto")
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-public class RedWarehouseAuto extends LinearOpMode {
+@Autonomous(name = "RedDuckSideAuto")
+
+public class RedDuckSideAuto extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
     Drive drive = new Drive(robot, telemetry, this);
     Strafe strafe = new Strafe(robot, telemetry, this);
@@ -11,8 +13,7 @@ public class RedWarehouseAuto extends LinearOpMode {
     Arm arm = new Arm(robot, telemetry, this);
     Claw claw = new Claw(robot, telemetry, this);
     Mast mast = new Mast(robot, telemetry, this);
-    DuckSpinner duckspinner = new DuckSpinner(robot, telemetry, this);
-    GyroTurn gyroTurn = new GyroTurn(robot,telemetry, this);
+    DuckSpinner duckspinner = new DuckSpinner(robot, telemetry,this);
 
     public void runOpMode() throws InterruptedException {
         robot.teleopInit(hardwareMap);
@@ -20,9 +21,7 @@ public class RedWarehouseAuto extends LinearOpMode {
 
         arm.setPosition(robot.ARM_MIDDLE_POSITION);
         mast.setPosition(robot.MAST_FORWARD_POSITION);
-        drive.forward(0.10, 2);
-        strafe.right(.25, 5);
-        drive.forward(.10, 30);
+        drive.forward(0.10, 32 );
 
         FreightLevel level = findTeamFreight.getLevel();
         if (level == FreightLevel.level1)
@@ -34,22 +33,20 @@ public class RedWarehouseAuto extends LinearOpMode {
         if (level == FreightLevel.level3)
             arm.setHeight(robot.LEVEL_THREE_HEIGHT);
 
-        mast.setPosition(robot.MAST_LEFT_POSITION);
+        mast.setPosition(robot.MAST_RIGHT_POSITION);
 
-        strafe.left(.15, 2);
+        strafe.right(.15, 2);
         claw.open();
-        strafe.right(0.25, 2);
-        mast.setPosition(robot.MAST_FORWARD_POSITION);
-        drive.backward(0.25, 28);
-        arm.setPosition(robot.ARM_MIDDLE_POSITION);
-        gyroTurn.absolute(-90);
-        strafe.right(.25,4);
-        drive.forward(.24,26);
+        strafe.left(0.25, 31);
+        mast.setPosition(robot.MAST_RIGHT_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
+        drive.backward(0.25, 27);
+        duckspinner.spin(Color.red);
+        drive.forward(.25,17);
 
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
+        telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
         telemetry.update();
-        gyroTurn.updateHeading();
     }
 }

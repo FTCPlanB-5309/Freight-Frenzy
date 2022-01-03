@@ -10,14 +10,12 @@ public class Arm {
     MechanumHardware robot;
     Telemetry telemetry;
     LinearOpMode linearOpMode;
-    Wrist wrist;
 
 
-    public Arm(MechanumHardware robot, Telemetry telemetry, LinearOpMode linearOpMode, Wrist wrist){
+    public Arm(MechanumHardware robot, Telemetry telemetry, LinearOpMode linearOpMode){
         this.robot = robot;
         this.telemetry = telemetry;
         this.linearOpMode = linearOpMode;
-        this.wrist = wrist;
     }
 
     public void setPosition(int newPosition) {
@@ -26,7 +24,6 @@ public class Arm {
         robot.armMotor.setPower(-0.73);
         while (robot.armMotor.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
-            wrist.updatePosition();
         }
         robot.armMotor.setPower(0);
     }
@@ -55,7 +52,6 @@ public class Arm {
             else robot.armMotor.setPower(0.73);
 
             Thread.yield();
-            wrist.updatePosition();
 
             clawHeight = robot.clawDistanceSensor.getDistance(DistanceUnit.CM);
 

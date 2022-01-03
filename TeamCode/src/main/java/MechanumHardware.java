@@ -24,8 +24,6 @@ public class MechanumHardware
 //    public Servo duckArm = null;
     public Servo leftClawServo = null;
     public Servo rightClawServo = null;
-    public Servo wristServo = null;
-
     BNO055IMU imu;
 
     public Rev2mDistanceSensor rightDistanceSensor;
@@ -67,11 +65,6 @@ public class MechanumHardware
 
     public static final double MAST_START_POSITION = 0.5;
 
-    public static final double WRIST_FLOOR_POSITION = .60;
-    public static final double WRIST_BOTTOM_POSITION = .54;
-    public static final double WRIST_MIDDLE_POSITION = .39;
-    public static final double WRIST_TOP_POSITION = .27;
-    public static final double WRIST_INIT_POSITION = 0.8;
 
     public static final int MAST_LEFT_POSITION = 860;
     public static final int MAST_RIGHT_POSITION = 0;
@@ -79,15 +72,15 @@ public class MechanumHardware
 
     public static final int ARM_FLOOR_POSITION = 0;
     public static final int ARM_BOTTOM_POSITION = 1200;
-    public static final int ARM_MIDDLE_POSITION = 3000;
-    public static final int ARM_TOP_POSITION = 5000;
+    public static final int ARM_MIDDLE_POSITION = 4300;
+    public static final int ARM_TOP_POSITION = 7000;
 
     public double leftObjectDistance;
     public double rightObjectDistance;
     public double floorDistance;
 
-    public static int LEVEL_ONE_HEIGHT = 20;
-    public static int LEVEL_TWO_HEIGHT = 31;
+    public static int LEVEL_ONE_HEIGHT = 14;
+    public static int LEVEL_TWO_HEIGHT = 30;
     public static int LEVEL_THREE_HEIGHT = 50;
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -105,7 +98,6 @@ public class MechanumHardware
 //        duckArm = hwMap.get(Servo.class, "duckArm");
         leftClawServo = hwMap.get(Servo.class, "leftClawServo");
         rightClawServo = hwMap.get(Servo.class, "rightClawServo");
-        wristServo = hwMap.get(Servo.class, "wristServo");
 
         mastRotator = hwMap.get(DcMotor.class, "mastRotator");
 
@@ -132,8 +124,6 @@ public class MechanumHardware
         // Set servos to start positions
         leftClawServo.setPosition(LEFT_CLAW_CLOSED);
         rightClawServo.setPosition(RIGHT_CLAW_CLOSED);
-        wristServo.setPosition(WRIST_INIT_POSITION);
-
         // Set all motors to zero power
         leftFrontDrive.setPower(0);
         rightFrontDrive.setPower(0);
