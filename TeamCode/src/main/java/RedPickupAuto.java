@@ -3,9 +3,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name = "RedDuckSideAuto")
+@Autonomous(name = "RedPickupAuto")
 
-public class RedDuckSideAuto extends LinearOpMode {
+public class RedPickupAuto extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
     Drive drive = new Drive(robot, telemetry, this);
     Strafe strafe = new Strafe(robot, telemetry, this);
