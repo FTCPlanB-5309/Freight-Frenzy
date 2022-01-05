@@ -144,14 +144,6 @@ public class DetectionTest extends LinearOpMode {
         }
     }
 
-    /**
-     * Test method for detecting ducks, adapted from example.
-     * It will display brief label for non-duck objects detected, with
-     * telemetry data for ducks including size and confidence.
-     * If a duck's size is more than 300 in width or height,
-     * it is likely a false positive and the object's description displays "Fake Duck" under the label
-     * (real ducks should be less than  275 in either direction).
-     */
     public void scanForDuck() {
         if (tfod != null) {
             List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
@@ -165,12 +157,10 @@ public class DetectionTest extends LinearOpMode {
                         float width = Math.abs(recognition.getRight() - recognition.getLeft());
                         float height = Math.abs(recognition.getBottom() - recognition.getTop());
                         if (width > 300 || height > 300) {
-                            telemetry.addData("  Fake Duck", true);
+                            telemetry.addData(" Fake Duck", true);
                         }
-//                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-//                                recognition.getLeft(), recognition.getTop());
-                        telemetry.addData(" Size (lr)", width);
-                        telemetry.addData(" Size (tb)", height);
+                        telemetry.addData(" Size (width)", "%.03f", width);
+                        telemetry.addData(" Size (height)", "%.03f", height);
                         telemetry.addData(" Confidence", recognition.getConfidence());
 //                              telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
 //                                      recognition.getRight(), recognition.getBottom());
