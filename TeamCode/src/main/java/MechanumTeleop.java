@@ -104,6 +104,8 @@ public class MechanumTeleop extends LinearOpMode {
                 } else {
                     robot.armMotor.setPower(0);
                 }
+                telemetry.addData("Red", robot.colorSensor.red());
+                telemetry.addData("Blue", robot.colorSensor.blue());
                 telemetry.addData("arm",robot.armMotor.getCurrentPosition());
                 telemetry.addData("mast", robot.mastRotator.getCurrentPosition());
                 telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));

@@ -44,12 +44,11 @@ public class DriveToLine {
             red = robot.colorSensor.red();
             blue = robot.colorSensor.blue();
 
-            //ToDo: change 2 to appropriate value once lines have been tested
-            if (lineColor.equals(Color.red) && red > 2)
+            if (lineColor.equals(Color.red) && red > 200)
                 break;
-            else if (lineColor.equals(Color.blue) && blue > 2)
+            else if (lineColor.equals(Color.blue) && blue > 200)
                 break;
-            else if (lineColor.equals(Color.white) && blue > 2 && red > 2)
+            else if (lineColor.equals(Color.white) && blue > 200 && red > 200)
                 break;
 
             telemetry.addData("red = ", red);

@@ -63,12 +63,17 @@ public class DetectionTest extends LinearOpMode {
    *  FreightFrenzy_BC.tflite  0: Ball,  1: Cube
    *  FreightFrenzy_DM.tflite  0: Duck,  1: Marker
    */
-    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
+//    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_BCDM.tflite";
+//    private static final String[] LABELS = {
+//      "Ball",
+//      "Cube",
+//      "Duck" ,
+//      "Marker"
+//    };
+    private static final String TFOD_MODEL_ASSET = "FreightFrenzy_DM.tflite";
     private static final String[] LABELS = {
-     // "Ball",
-     // "Cube",
-      "Duck" ,
-     // "Marker"
+      "Duck",
+      "Marker"
     };
 
     /*
@@ -109,10 +114,6 @@ public class DetectionTest extends LinearOpMode {
         initVuforia();
         initTfod();
 
-        /**
-         * Activate TensorFlow Object Detection before we wait for the start command.
-         * Do it here so that the Camera Stream window will have the TensorFlow annotations visible.
-         **/
         if (tfod != null) {
             tfod.activate();
 
@@ -122,7 +123,7 @@ public class DetectionTest extends LinearOpMode {
             // to artificially zoom in to the center of image.  For best results, the "aspectRatio" argument
             // should be set to the value of the images used to create the TensorFlow Object Detection model
             // (typically 16/9).
-            tfod.setZoom(2.5, 16.0/9.0);
+            tfod.setZoom(1, 16.0/9.0);
         }
 
         /** Wait for the game to begin */
@@ -132,30 +133,54 @@ public class DetectionTest extends LinearOpMode {
 
         if (opModeIsActive()) {
             while (opModeIsActive()) {
-                if (tfod != null) {
-                    // getUpdatedRecognitions() will return null if no new information is available since
-                    // the last time that call was made.
-                    List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-                    if (updatedRecognitions != null) {
-                      telemetry.addData("# Object Detected", updatedRecognitions.size());
-
-                      // step through the list of recognitions and display boundary info.
-                      int i = 0;
-                      for (Recognition recognition : updatedRecognitions) {
-                        telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                                          recognition.getLeft(), recognition.getTop());
-                        telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                                recognition.getRight(), recognition.getBottom());
-                        i++;
-                      }
-                      telemetry.update();
-                    }
+                scanForDuck();
+                try {
+                    Thread.sleep(250);
+                }
+                catch (Exception e) {
+                    telemetry.addData("Error", e.getMessage());
                 }
             }
         }
     }
 
+    /**
+     * Test method for detecting ducks, adapted from example.
+     * It will display brief label for non-duck objects detected, with
+     * telemetry data for ducks including size and confidence.
+     * If a duck's size is more than 300 in width or height,
+     * it is likely a false positive and the object's description displays "Fake Duck" under the label
+     * (real ducks should be less than  275 in either direction).
+     */
+    public void scanForDuck() {
+        if (tfod != null) {
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            if (updatedRecognitions != null) {
+                telemetry.addData("# Object Detected", updatedRecognitions.size());
+                int i = 0;
+
+                for (Recognition recognition : updatedRecognitions) {
+                    telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                    if (recognition.getLabel().equals("Duck")) {
+                        float width = Math.abs(recognition.getRight() - recognition.getLeft());
+                        float height = Math.abs(recognition.getBottom() - recognition.getTop());
+                        if (width > 300 || height > 300) {
+                            telemetry.addData("  Fake Duck", true);
+                        }
+//                        telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
+//                                recognition.getLeft(), recognition.getTop());
+                        telemetry.addData(" Size (lr)", width);
+                        telemetry.addData(" Size (tb)", height);
+                        telemetry.addData(" Confidence", recognition.getConfidence());
+//                              telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
+//                                      recognition.getRight(), recognition.getBottom());
+                    }
+                    i++;
+                }
+                telemetry.update();
+            }
+        }
+    }
     /**
      * Initialize the Vuforia localization engine.
      */
@@ -181,7 +206,7 @@ public class DetectionTest extends LinearOpMode {
         int tfodMonitorViewId = hardwareMap.appContext.getResources().getIdentifier(
             "tfodMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         TFObjectDetector.Parameters tfodParameters = new TFObjectDetector.Parameters(tfodMonitorViewId);
-        tfodParameters.minResultConfidence = 0.8f;
+        tfodParameters.minResultConfidence = 0.4f; //was 0.8
         tfodParameters.isModelTensorFlow2 = true;
         tfodParameters.inputSize = 320;
         tfod = ClassFactory.getInstance().createTFObjectDetector(tfodParameters, vuforia);

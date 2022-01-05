@@ -20,18 +20,7 @@ public class DuckDetector {
             "Marker"
     };
 
-    /*
-     * IMPORTANT: You need to obtain your own license key to use Vuforia. The string below with which
-     * 'parameters.vuforiaLicenseKey' is initialized is for illustration only, and will not function.
-     * A Vuforia 'Development' license key, can be obtained free of charge from the Vuforia developer
-     * web site at https://developer.vuforia.com/license-manager.
-     *
-     * Vuforia license keys are always 380 characters long, and look as if they contain mostly
-     * random data. As an example, here is a example of a fragment of a valid key:
-     *      ... yIgIzTqZ4mWjk9wd3cZO9T1axEqzuhxoGlfOOI2dRzKS4T0hQ8kT ...
-     * Once you've obtained a license key, copy the string from the Vuforia web site
-     * and paste it in to your code on the next line, between the double quotes.
-     */
+
     private static final String VUFORIA_KEY =
             "AV5lMdL/////AAABmYl8p4yeaEBpg80chUBr03OEyO2uvBZSdFt80EPGeZY6RLNOxd+um0wYnUnvUtSKSRGDHPxjUybk/" +
                     "5S3xKgJn0vYHVl5OhDJeo75MxhpDax25TizaBl/eJ19okrNQV2D8DYyURQktmaETVqx5X2GL4SNmkovGNQV6O" +
@@ -47,11 +36,8 @@ public class DuckDetector {
         this.robot = robot;
         this.telemetry = telemetry;
         this.linearOpMode = linearOpMode;
-     }
-
-     public void init(){
-
-
+    }
+    public void init(){
         VuforiaLocalizer.Parameters parameters = new VuforiaLocalizer.Parameters();
 
          parameters.vuforiaLicenseKey = VUFORIA_KEY;
@@ -78,40 +64,41 @@ public class DuckDetector {
              // to artificially zoom in to the center of image.  For best results, the "aspectRatio" argument
              // should be set to the value of the images used to create the TensorFlow Object Detection model
              // (typically 16/9).
-             tfod.setZoom(2.5, 16.0/9.0);
+             tfod.setZoom(1, 16.0/9.0);
          }
-
-         /** Wait for the game to begin */
-         telemetry.addData(">", "Press Play to start op mode");
-         telemetry.update();
-     }
-
-     public void findDuck()
-     {
-
-
-         if (tfod != null) { while (linearOpMode.opModeIsActive())
-         {
-
-         // getUpdatedRecognitions() will return null if no new information is available since
-             // the last time that call was made.
-        List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
-        if (updatedRecognitions != null) {
-            telemetry.addData("# Object Detected", updatedRecognitions.size());
-
-            // step through the list of recognitions and display boundary info.
-            int i = 0;
-            for (Recognition recognition : updatedRecognitions) {
-                telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
-                telemetry.addData(String.format("  left,top (%d)", i), "%.03f , %.03f",
-                        recognition.getLeft(), recognition.getTop());
-                telemetry.addData(String.format("  right,bottom (%d)", i), "%.03f , %.03f",
-                        recognition.getRight(), recognition.getBottom());
-                i++;
+    }
+    /**
+     * Test method for detecting ducks, adapted from example.
+     * It will display a brief label for non-duck objects detected, with
+     * telemetry data for ducks including size and confidence.
+     * If a duck's size is more than 300 in width or height,
+     * it will not be counted as it's likely a false positive
+     * (real ducks should be less than  275 in either direction).
+     * @return true if a normal-sized duck is found, false if there are no ducks or the ducks detected are likely not real
+     */
+    public boolean scanForDuck() {
+        if (tfod != null) {
+            List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
+            if (updatedRecognitions != null) {
+                telemetry.addData("# Object Detected", updatedRecognitions.size());
+                int i = 0;
+                for (Recognition recognition : updatedRecognitions) {
+                    telemetry.addData(String.format("label (%d)", i), recognition.getLabel());
+                    if (recognition.getLabel().equals("Duck")) {
+                        float width = Math.abs(recognition.getRight() - recognition.getLeft());
+                        float height = Math.abs(recognition.getBottom() - recognition.getTop());
+                        if (width < 300 && height < 300) {
+                            i++;
+                            return true;
+                        }
+                        telemetry.addData(" Size (lr)", width);
+                        telemetry.addData(" Size (tb)", height);
+                        telemetry.addData(" Confidence", recognition.getConfidence());
+                    }
+                }
+                telemetry.update();
             }
-            telemetry.update();
         }
-         }
-      }
+        return false;
     }
 }
