@@ -14,6 +14,7 @@ public class RedDuckSideAuto extends LinearOpMode {
     Claw claw = new Claw(robot, telemetry, this);
     Mast mast = new Mast(robot, telemetry, this);
     DuckSpinner duckspinner = new DuckSpinner(robot, telemetry,this);
+    DriveToLine driveToLine = new DriveToLine(robot,telemetry,this);
 
     public void runOpMode() throws InterruptedException {
         robot.teleopInit(hardwareMap);
@@ -35,14 +36,18 @@ public class RedDuckSideAuto extends LinearOpMode {
 
         mast.setPosition(robot.MAST_RIGHT_POSITION);
 
-        strafe.right(.15, 2);
+        strafe.right(.15, 4);
         claw.open();
-        strafe.left(0.25, 31);
+        strafe.left(0.25, 8);
         mast.setPosition(robot.MAST_RIGHT_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
-        drive.backward(0.25, 27);
+        drive.backward(0.25, 16);
+        strafe.left(.25, 25);
+        drive.backward(.25, 9);
         duckspinner.spin(Color.red);
-        drive.forward(.25,17);
+        drive.forward(.25, 7);
+        driveToLine.forward(25, .25, Color.red);
+        drive.backward(.25, 3);
 
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());

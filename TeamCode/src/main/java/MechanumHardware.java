@@ -72,15 +72,15 @@ public class MechanumHardware
 
     public static final int ARM_FLOOR_POSITION = 0;
     public static final int ARM_BOTTOM_POSITION = 1200;
-    public static final int ARM_MIDDLE_POSITION = 4300;
+    public static final int ARM_MIDDLE_POSITION = 3800;
     public static final int ARM_TOP_POSITION = 7000;
 
     public double leftObjectDistance;
     public double rightObjectDistance;
     public double floorDistance;
 
-    public static int LEVEL_ONE_HEIGHT = 14;
-    public static int LEVEL_TWO_HEIGHT = 30;
+    public static int LEVEL_ONE_HEIGHT = 17;
+    public static int LEVEL_TWO_HEIGHT = 32;
     public static int LEVEL_THREE_HEIGHT = 50;
 
     public void teleopInit(HardwareMap ahwMap) {

@@ -20,10 +20,10 @@ public class DuckSpinner {
             robot.duckSpinner.setPower(-0.45);
         else
             robot.duckSpinner.setPower(0.45);
-        robot.leftFrontDrive.setPower(-.05);
-        robot.rightFrontDrive.setPower(-.05);
-        robot.rightRearDrive.setPower(-.05);
-        robot.leftRearDrive.setPower(-0.05);
+        robot.leftFrontDrive.setPower(-.1);
+        robot.rightFrontDrive.setPower(-.1);
+        robot.rightRearDrive.setPower(-.1);
+        robot.leftRearDrive.setPower(-.1);
         for (int i=0; linearOpMode.opModeIsActive() && i < 30; i++) {
             Thread.sleep(100);
         }

@@ -14,7 +14,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
     Claw claw = new Claw(robot, telemetry, this);
     Mast mast = new Mast(robot, telemetry, this);
     DuckSpinner duckspinner = new DuckSpinner(robot, telemetry,this);
-    GyroTurn gyroTurn = new GyroTurn(robot, telemetry, this);
+    DriveToLine driveToLine = new DriveToLine(robot,telemetry,this);
 
     public void runOpMode() throws InterruptedException {
         robot.teleopInit(hardwareMap);
@@ -26,24 +26,28 @@ public class BlueDuckSideAuto extends LinearOpMode {
 
         FreightLevel level = findTeamFreight.getLevel();
         if (level == FreightLevel.level1)
-            arm.setHeight(robot.LEVEL_ONE_HEIGHT);
+            arm.setHeight(robot.LEVEL_THREE_HEIGHT);
 
         if (level == FreightLevel.level2)
             arm.setHeight(robot.LEVEL_TWO_HEIGHT);
 
         if (level == FreightLevel.level3)
-            arm.setHeight(robot.LEVEL_THREE_HEIGHT);
+            arm.setHeight(robot.LEVEL_ONE_HEIGHT);
 
         mast.setPosition(robot.MAST_LEFT_POSITION);
 
-        strafe.left(.15, 2);
+        strafe.left(.15, 4);
         claw.open();
-        strafe.right(0.25, 31);
+        strafe.right(0.25, 8);
         mast.setPosition(robot.MAST_LEFT_POSITION);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
-        drive.backward(0.25, 27);
+        drive.backward(0.25, 16);
+        strafe.right(.25, 25);
+        drive.backward(.25, 9);
         duckspinner.spin(Color.blue);
-        drive.forward(.25,19);
+        drive.forward(.25, 7);
+        driveToLine.forward(25, .25, Color.blue);
+        drive.backward(.25, 3);
 
         telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
         telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
