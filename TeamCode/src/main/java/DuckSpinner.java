@@ -17,9 +17,9 @@ public class DuckSpinner {
 
     public void spin(Color alliance) throws InterruptedException {
         if (alliance == Color.red)
-            robot.duckSpinner.setPower(-0.45);
+            robot.duckSpinner.setPower(-0.4);
         else
-            robot.duckSpinner.setPower(0.45);
+            robot.duckSpinner.setPower(0.4);
         robot.leftFrontDrive.setPower(-.1);
         robot.rightFrontDrive.setPower(-.1);
         robot.rightRearDrive.setPower(-.1);
