@@ -28,16 +28,8 @@ public class BlueWarehouseAuto extends LinearOpMode {
         strafe.left(.25, 5);
         drive.forward(.10, 30);
 
-        FreightLevel level = findTeamFreight.getLevel();
-        if (level == FreightLevel.level1)
-            arm.setHeight(robot.LEVEL_ONE_HEIGHT);
-
-        if (level == FreightLevel.level2)
-            arm.setHeight(robot.LEVEL_TWO_HEIGHT);
-
-        if (level == FreightLevel.level3)
-            arm.setHeight(robot.LEVEL_THREE_HEIGHT);
-
+        int levelHeight = findTeamFreight.getLevel(SetupDirection.forward);
+        arm.setHeight(levelHeight);
         mast.setPosition(robot.MAST_RIGHT_POSITION);
 
         strafe.right(.15, 2);

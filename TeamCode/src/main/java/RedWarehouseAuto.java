@@ -24,18 +24,9 @@ public class RedWarehouseAuto extends LinearOpMode {
         strafe.right(.25, 5);
         drive.forward(.10, 30);
 
-        FreightLevel level = findTeamFreight.getLevel();
-        if (level == FreightLevel.level1)
-            arm.setHeight(robot.LEVEL_ONE_HEIGHT);
-
-        if (level == FreightLevel.level2)
-            arm.setHeight(robot.LEVEL_TWO_HEIGHT);
-
-        if (level == FreightLevel.level3)
-            arm.setHeight(robot.LEVEL_THREE_HEIGHT);
-
+        int levelHeight = findTeamFreight.getLevel(SetupDirection.forward);
+        arm.setHeight(levelHeight);
         mast.setPosition(robot.MAST_LEFT_POSITION);
-
         strafe.left(.15, 2);
         claw.open();
         strafe.right(0.25, 2);

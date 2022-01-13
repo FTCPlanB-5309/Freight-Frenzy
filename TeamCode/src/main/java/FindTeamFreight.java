@@ -14,13 +14,24 @@ public class FindTeamFreight {
         this.linearOpMode = linearOpMode;
     }
 
-public FreightLevel getLevel() {
-    if (robot.leftObjectDistance < 7)
-        return FreightLevel.level1;
-    else if (robot.rightObjectDistance < 7)
-        return FreightLevel.level3;
-    else return FreightLevel.level2;
+public int getLevel(SetupDirection sd) {
+        FreightLevel level;
+    if (sd == SetupDirection.forward) {
+        if (robot.leftObjectDistance < 7)
+            return robot.LEVEL_ONE_HEIGHT;
+        else if (robot.rightObjectDistance < 7)
+            return robot.LEVEL_THREE_HEIGHT;
+        else return robot.LEVEL_TWO_HEIGHT;
+    }
+        else {
+            if (robot.leftObjectDistance < 7)
+                return robot.LEVEL_THREE_HEIGHT;
+            else if (robot.rightObjectDistance < 7)
+                return robot.LEVEL_ONE_HEIGHT;
+            else return robot.LEVEL_TWO_HEIGHT;
 
-}
+        }
+
+ }
 
 }

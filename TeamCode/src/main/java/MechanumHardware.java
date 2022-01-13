@@ -29,6 +29,7 @@ public class MechanumHardware
     public Rev2mDistanceSensor rightDistanceSensor;
     public Rev2mDistanceSensor leftDistanceSensor;
     public Rev2mDistanceSensor clawDistanceSensor;
+    public Rev2mDistanceSensor frontDistanceSensor;
     public RevColorSensorV3 colorSensor;
 
     HardwareMap hwMap = null;
@@ -104,6 +105,7 @@ public class MechanumHardware
         leftDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "leftDistanceSensor");
         rightDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "rightDistanceSensor");
         clawDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "clawDistanceSensor");
+        frontDistanceSensor = hwMap.get(Rev2mDistanceSensor.class, "frontDistanceSensor");
         colorSensor = hwMap.get(RevColorSensorV3.class, "colorSensor");
 
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
@@ -120,6 +122,7 @@ public class MechanumHardware
         rightFrontDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         rightRearDrive.setDirection(DcMotorSimple.Direction.REVERSE);
         mastRotator.setDirection(DcMotorSimple.Direction.REVERSE);
+        armMotor.setDirection(DcMotorSimple.Direction.REVERSE);
 
         // Set servos to start positions
         leftClawServo.setPosition(LEFT_CLAW_CLOSED);

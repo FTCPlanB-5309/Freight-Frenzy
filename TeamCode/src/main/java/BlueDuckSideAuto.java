@@ -24,16 +24,8 @@ public class BlueDuckSideAuto extends LinearOpMode {
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         drive.forward(0.10, 32 );
 
-        FreightLevel level = findTeamFreight.getLevel();
-        if (level == FreightLevel.level1)
-            arm.setHeight(robot.LEVEL_ONE_HEIGHT);
-
-        if (level == FreightLevel.level2)
-            arm.setHeight(robot.LEVEL_TWO_HEIGHT);
-
-        if (level == FreightLevel.level3)
-            arm.setHeight(robot.LEVEL_THREE_HEIGHT);
-
+        int levelHeight = findTeamFreight.getLevel(SetupDirection.forward);
+        arm.setHeight(levelHeight);
         mast.setPosition(robot.MAST_LEFT_POSITION);
 
         strafe.left(.15, 4);
