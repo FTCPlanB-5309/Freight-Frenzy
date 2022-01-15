@@ -35,7 +35,7 @@ public class RedDuckSideAuto extends LinearOpMode {
         drive.backward(0.25, 16);
         strafe.left(.25, 25);
         drive.backward(.25, 9);
-        duckspinner.spin(Color.red);
+        duckspinner.spin(Color.red, SetupDirection.forward);
         drive.forward(.25, 7);
         driveToLine.forward(25, .25, Color.red);
         drive.backward(.25, 3);

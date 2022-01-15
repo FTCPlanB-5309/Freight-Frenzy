@@ -22,7 +22,7 @@ public class Mast {
             return;
         robot.mastRotator.setTargetPosition(newPosition);
         robot.mastRotator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.mastRotator.setPower(0.1);
+        robot.mastRotator.setPower(0.5);
         while (robot.mastRotator.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
         }
@@ -34,6 +34,6 @@ public class Mast {
             return;
         robot.mastRotator.setTargetPosition(newPosition);
         robot.mastRotator.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.mastRotator.setPower(0.1);
+        robot.mastRotator.setPower(0.5);
     }
 }

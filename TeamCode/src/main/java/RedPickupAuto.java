@@ -19,33 +19,34 @@ public class RedPickupAuto extends LinearOpMode {
         robot.teleopInit(hardwareMap);
         waitForStart();
 
-      drive.backward(.3, 24);
-      arm.setPosition(robot.ARM_MIDDLE_POSITION);
-      drive.backward(.1, 15);
-
+        arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
+        drive.backward(.3, 24);
+        mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
+        drive.backward(.1, 17);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
         arm.setHeight(levelHeight);
         mast.setPosition(robot.MAST_LEFT_POSITION);
         strafe.left(.15, 5);
         claw.open();
-        strafe.right(.15, 5);
-        drive.forward(.3, 22);
-        gyroturn.absolute(100);
-        strafe.right(.15, 19);
-        drive.backward(.3, 15);
-        duckspinner.spin(Color.red);
-        
-        /*
-        strafe.right(0.25, 31);
-        mast.setPosition(robot.MAST_RIGHT_POSITION);
-        arm.setPosition(robot.ARM_FLOOR_POSITION);
-        drive.backward(0.25, 27);
-        duckspinner.spin(Color.red);
-        drive.forward(.25,17);
-    */
-        telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
-        telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
-        telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
-        telemetry.update();
+        strafe.right(0.5,24);
+        drive.forward(0.5,36);
+        gyroturn.absolute(90);
+        drive.backward(0.25,3);
+        strafe.right(0.25,5 );
+        duckspinner.spin(Color.red,SetupDirection.backward);
+        strafe.left(0.5,20);
+        gyroturn.absolute(0);
+        while (true) {
+            telemetry.addData("Front Distance",robot.frontDistanceSensor.getDistance(DistanceUnit.CM));
+            telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
+            telemetry.addData("mastRotator", robot.mastRotator.getCurrentPosition());
+            telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
+            telemetry.update();
+
+        }
+
+//        mast.setPosition(robot.MAST_RIGHT_POSITION);
+//        arm.setPosition(robot.ARM_FLOOR_POSITION);
+
     }
 }

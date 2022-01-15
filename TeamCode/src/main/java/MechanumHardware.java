@@ -67,14 +67,14 @@ public class MechanumHardware
     public static final double MAST_START_POSITION = 0.5;
 
 
-    public static final int MAST_LEFT_POSITION = 860;
+    public static final int MAST_LEFT_POSITION = 6000;
     public static final int MAST_RIGHT_POSITION = 0;
-    public static final int MAST_FORWARD_POSITION = 430;
+    public static final int MAST_FORWARD_POSITION = 3000;
 
     public static final int ARM_FLOOR_POSITION = 0;
     public static final int ARM_BOTTOM_POSITION = 1200;
-    public static final int ARM_MIDDLE_POSITION = 3800;
-    public static final int ARM_TOP_POSITION = 7000;
+    public static final int ARM_MIDDLE_POSITION = 3100;
+    public static final int ARM_TOP_POSITION = 5500;
 
     public double leftObjectDistance;
     public double rightObjectDistance;
@@ -149,6 +149,8 @@ public class MechanumHardware
         armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         mastRotator.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
     }
+
+
     public void getSideDistance() {
         double leftDistance = leftDistanceSensor.getDistance(DistanceUnit.INCH);
         double rightDistance = rightDistanceSensor.getDistance(DistanceUnit.INCH);

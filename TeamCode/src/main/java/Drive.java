@@ -74,6 +74,9 @@ public class Drive {
         robot.rightFrontDrive.setPower(-speed);
         robot.rightRearDrive.setPower(-speed);
 
+        robot.leftObjectDistance = 40;
+        robot.rightObjectDistance = 40;
+
         while (robot.leftRearDrive.isBusy() && robot.leftFrontDrive.isBusy() && robot.rightRearDrive.isBusy()
                 && robot.rightFrontDrive.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
@@ -81,11 +84,18 @@ public class Drive {
                 robot.leftRearDrive.setPower(-speed);
                 robot.rightFrontDrive.setPower(-speed);
                 robot.rightRearDrive.setPower(-speed);
+
+            robot.getSideDistance();
+            telemetry.addData("leftDistanceSensorValue", robot.leftObjectDistance);
+            telemetry.addData("RightDistanseSensorValue", robot.rightObjectDistance);
+
+            telemetry.addData("linear opmode is working, target = ", target);
+            telemetry.addData("Encoder Clicks", robot.leftRearDrive.getCurrentPosition());
+            telemetry.update();
+
         }
 
-        telemetry.addData("linear opmode is working, target = ", target);
-        telemetry.addData("Encoder Clicks", robot.leftRearDrive.getCurrentPosition());
-        telemetry.update();
+
 
         robot.stop ();
 

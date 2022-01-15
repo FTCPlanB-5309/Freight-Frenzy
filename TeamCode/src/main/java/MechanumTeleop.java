@@ -76,7 +76,7 @@ public class MechanumTeleop extends LinearOpMode {
                 //Rotate Center Mast
 
                 if (Math.abs(gamepad2.right_stick_x) > robot.TELEOPDEADZONE)
-                    robot.mastRotator.setPower(-gamepad2.right_stick_x );
+                    robot.mastRotator.setPower(-gamepad2.right_stick_x  );
                 else
                     robot.mastRotator.setPower(0);
 
@@ -109,7 +109,9 @@ public class MechanumTeleop extends LinearOpMode {
                 telemetry.addData("arm",robot.armMotor.getCurrentPosition());
                 telemetry.addData("mast", robot.mastRotator.getCurrentPosition());
                 telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
-                telemetry.update();
+                telemetry.addData("Front Distance",robot.frontDistanceSensor.getDistance(DistanceUnit.CM));
+
+            telemetry.update();
 
             }
         }

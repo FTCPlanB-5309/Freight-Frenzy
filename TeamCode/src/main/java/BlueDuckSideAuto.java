@@ -36,7 +36,7 @@ public class BlueDuckSideAuto extends LinearOpMode {
         drive.backward(0.25, 16);
         strafe.right(.25, 25);
         drive.backward(.25, 9);
-        duckspinner.spin(Color.blue);
+        duckspinner.spin(Color.blue, SetupDirection.forward);
         drive.forward(.25, 7);
         driveToLine.forward(25, .25, Color.blue);
         drive.backward(.25, 3);
