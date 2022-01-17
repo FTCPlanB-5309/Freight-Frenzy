@@ -46,7 +46,7 @@ public class MechanumHardware
 
     public final double HIGH_TURN_POWER = 0.3;
     public final double MEDIUM_TURN_POWER = 0.12;
-    public final double LOW_TURN_POWER = 0.1;
+    public final double LOW_TURN_POWER = 0.05;
 
     public static final double DUCK_ARM_OUT = 0;
     public static final double DUCK_ARM_IN = 0.33;
@@ -80,7 +80,7 @@ public class MechanumHardware
     public double rightObjectDistance;
     public double floorDistance;
 
-    public static int LEVEL_ONE_HEIGHT = 17;
+    public static int LEVEL_ONE_HEIGHT = 19;
     public static int LEVEL_TWO_HEIGHT = 32;
     public static int LEVEL_THREE_HEIGHT = 50;
 

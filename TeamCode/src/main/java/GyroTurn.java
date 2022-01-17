@@ -59,7 +59,7 @@ public class GyroTurn {
         return robot.HIGH_TURN_POWER;
         }
         else if (diff > 5) {
-            return robot.MEDIUM_TURN_POWER;
+            return 0.01 * diff;
         }
         else
             return robot.LOW_TURN_POWER;
