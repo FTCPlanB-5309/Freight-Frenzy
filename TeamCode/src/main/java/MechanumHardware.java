@@ -44,7 +44,7 @@ public class MechanumHardware
     public static final int DIAGONAL_CLICKS_PER_INCH = 44;
 
 
-    public final double HIGH_TURN_POWER = 0.3;
+    public final double HIGH_TURN_POWER = 0.6;
     public final double MEDIUM_TURN_POWER = 0.12;
     public final double LOW_TURN_POWER = 0.05;
 

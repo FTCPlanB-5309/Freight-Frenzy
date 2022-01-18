@@ -55,14 +55,14 @@ public class GyroTurn {
 
     private double TurnSpeed (double diff) {
 
-        if (diff > 25) {
+        if (diff > 80) {
         return robot.HIGH_TURN_POWER;
         }
-        else if (diff > 5) {
-            return 0.01 * diff;
+        else if (diff < 5) {
+            return robot.LOW_TURN_POWER;
         }
         else
-            return robot.LOW_TURN_POWER;
+            return .005667 * diff + .046667;
     }
 
     private void TurnRight (double speed) {
