@@ -20,7 +20,7 @@ public class RedPickupAuto extends LinearOpMode {
         waitForStart();
 
         arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
-        drive.backward(.3, 24);
+        drive.backward(.5, 24);
         mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
         drive.backward(.1, 17);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
@@ -32,10 +32,29 @@ public class RedPickupAuto extends LinearOpMode {
         drive.forward(0.5,36);
         gyroturn.absolute(90);
         drive.backward(0.25,3);
-        strafe.right(0.25,5 );
+        strafe.right(0.25,7 );
         duckspinner.spin(Color.red,SetupDirection.backward);
         strafe.left(0.5,20);
+        mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
+        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         gyroturn.absolute(0);
+        strafe.right(.3, 3);
+        int distanceToWall = (int) ((robot.frontDistanceSensor.getDistance(DistanceUnit.CM) - 29) / 2.54);
+        mast.setPositionNoWait(robot.MAST_CENTER_RIGHT_POSITION);
+        claw.close();
+        drive.forward(0.2,distanceToWall);
+        strafe.left(.25, 13);
+        drive.backward(.25, 6);
+        claw.openWide();
+        mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
+        drive.forward(.25, 6);
+        claw.close();
+        arm.setPositionNoWait(robot.ARM_TOP_POSITION);
+        mast.setPositionNoWait(robot.MAST_LEFT_POSITION);
+        drive.backward(.5, 35);
+        //strafe.left(.5, (int)(36 - robot.rightDistanceSensor.getDistance(DistanceUnit.INCH)));
+        //add some logic in case of crazy distance sensor values
+
         while (true) {
             telemetry.addData("Front Distance",robot.frontDistanceSensor.getDistance(DistanceUnit.CM));
             telemetry.addData("armMotor", robot.armMotor.getCurrentPosition());
