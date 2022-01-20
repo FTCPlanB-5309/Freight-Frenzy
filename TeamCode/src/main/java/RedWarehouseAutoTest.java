@@ -20,7 +20,7 @@ public class RedWarehouseAutoTest extends LinearOpMode{
         drive.backward(.3, 24);
         drive.backward(.1, 19);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
-        strafe.left(.15,6);
+        strafe.left(.2,7);
         arm.setHeight(levelHeight);
         mast.setPosition(robot.MAST_RIGHT_POSITION);
         strafe.right(.15, 10);
@@ -38,7 +38,8 @@ public class RedWarehouseAutoTest extends LinearOpMode{
         strafe.right(.35,27);
         drive.backward(.35,19);
         gyroturn.absolute(0);
-        mast.setPosition(robot.ARM_MIDDLE_POSITION);
+        mast.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
+        strafe.left(.3, 4);
         arm.setPosition(robot.ARM_FLOOR_POSITION);
     }
 }

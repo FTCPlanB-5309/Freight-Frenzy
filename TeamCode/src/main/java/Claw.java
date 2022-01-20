@@ -27,10 +27,11 @@ public class Claw {
         robot.leftClawServo.setPosition(robot.LEFT_CLAW_WIDE);
         robot.rightClawServo.setPosition(robot.RIGHT_CLAW_WIDE);
     }
-   public void close(){
+   public void close() throws InterruptedException {
        if (!linearOpMode.opModeIsActive())
            return;
         robot.leftClawServo.setPosition(robot.LEFT_CLAW_CLOSED);
         robot.rightClawServo.setPosition(robot.RIGHT_CLAW_CLOSED);
+        Thread.sleep(100);
    }
 }

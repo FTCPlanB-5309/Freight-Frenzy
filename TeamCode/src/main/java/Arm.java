@@ -31,7 +31,7 @@ public class Arm {
     public void setPositionNoWait(int newPosition) {
         robot.armMotor.setTargetPosition(newPosition);
         robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.armMotor.setPower(-0.73);
+        robot.armMotor.setPower(-1);
     }
 
 

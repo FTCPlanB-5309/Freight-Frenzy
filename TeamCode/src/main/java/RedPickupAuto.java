@@ -20,13 +20,14 @@ public class RedPickupAuto extends LinearOpMode {
         waitForStart();
 
         arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
-        drive.backward(.5, 24);
+        drive.backward(.5, 25);
         mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
-        drive.backward(.1, 17);
+        drive.backward(.1, 6);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
         arm.setHeight(levelHeight);
+        drive.backward(.5,10);
         mast.setPosition(robot.MAST_LEFT_POSITION);
-        strafe.left(.15, 5);
+        strafe.left(.5, 5);
         claw.open();
         strafe.right(0.5,24);
         drive.forward(0.5,36);
@@ -52,7 +53,9 @@ public class RedPickupAuto extends LinearOpMode {
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
         mast.setPositionNoWait(robot.MAST_LEFT_POSITION);
         drive.backward(.5, 35);
-        //strafe.left(.5, (int)(36 - robot.rightDistanceSensor.getDistance(DistanceUnit.INCH)));
+        strafe.left(.5, (int)(18));
+        claw.open();
+        strafe.right(.5,33);
         //add some logic in case of crazy distance sensor values
 
         while (true) {
