@@ -52,6 +52,34 @@ public class GyroTurn {
         robot.stop ();
     }
 
+    public void goodEnough(double target) {
+
+        double diff;
+        double speed;
+
+        if (!linearOpMode.opModeIsActive())
+            return;
+        robot.driveUsingEncoders();
+
+        updateHeading();
+
+        while (Math.abs(currHeading - target) > 1 && linearOpMode.opModeIsActive()) {
+
+            diff = Math.abs(currHeading - target);
+            speed = TurnSpeed(diff);
+
+            if (target > currHeading)
+                TurnRight(speed);
+            else if (target < currHeading)
+                TurnLeft(speed);
+
+            updateHeading();
+
+        }
+        robot.stop ();
+    }
+
+
 
     private double TurnSpeed (double diff) {
 

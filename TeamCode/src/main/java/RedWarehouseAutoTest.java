@@ -29,15 +29,15 @@ public class RedWarehouseAutoTest extends LinearOpMode{
             arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         }
         strafe.left(.15,5);
-        gyroturn.absolute(0);
+        gyroturn.goodEnough(0);
         drive.forward(.3,36);
         strafe.right(.15,2);
-        gyroturn.absolute(-90);
+        gyroturn.goodEnough(-90);
         strafe.left(.15,8);
         drive.backward(.35,28);
         strafe.right(.35,27);
         drive.backward(.35,19);
-        gyroturn.absolute(0);
+        gyroturn.goodEnough(0);
         mast.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         strafe.left(.3, 4);
         arm.setPosition(robot.ARM_FLOOR_POSITION);

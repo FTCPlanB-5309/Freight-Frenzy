@@ -31,14 +31,14 @@ public class RedPickupAuto extends LinearOpMode {
         claw.open();
         strafe.right(0.5,24);
         drive.forward(0.5,36);
-        gyroturn.absolute(90);
+        gyroturn.goodEnough(90);
         drive.backward(0.25,3);
         strafe.right(0.25,7 );
         duckspinner.spin(Color.red,SetupDirection.backward);
         strafe.left(0.5,20);
         mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
-        gyroturn.absolute(0);
+        gyroturn.goodEnough(0);
         strafe.right(.3, 3);
         int distanceToWall = (int) ((robot.frontDistanceSensor.getDistance(DistanceUnit.CM) - 29) / 2.54);
         mast.setPositionNoWait(robot.MAST_CENTER_RIGHT_POSITION);
