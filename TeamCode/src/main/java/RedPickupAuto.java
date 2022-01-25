@@ -19,6 +19,10 @@ public class RedPickupAuto extends LinearOpMode {
         robot.teleopInit(hardwareMap);
         waitForStart();
 
+        //TODO compress this to just drive @ .4 and do the nowaits before driving
+        // also change mast position to Left Center
+
+        // Delivering the autonomous freight item.
         arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         drive.backward(.5, 25);
         mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
@@ -29,12 +33,25 @@ public class RedPickupAuto extends LinearOpMode {
         mast.setPosition(robot.MAST_LEFT_POSITION);
         strafe.left(.5, 5);
         claw.open();
+
+        // TODO check the distance with the distance sensor before strafing in to the turn table
+        // TODO also set a default in case of bad sensor reading
+
+        // Driving to the duck turn table
         strafe.right(0.5,24);
         drive.forward(0.5,36);
         gyroturn.goodEnough(90);
         drive.backward(0.25,3);
         strafe.right(0.25,7 );
+
+        // TODO Deploy the right duck wings
+
+        // Spin the turn table to drop the duck
         duckspinner.spin(Color.red,SetupDirection.backward);
+
+        // TODO retract duck wings and take out strafing for duck
+
+        // Grabbing the duck
         strafe.left(0.5,20);
         mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
@@ -50,11 +67,17 @@ public class RedPickupAuto extends LinearOpMode {
         mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
         drive.forward(.25, 6);
         claw.close();
+
+        // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
         mast.setPositionNoWait(robot.MAST_LEFT_POSITION);
         drive.backward(.5, 35);
         strafe.left(.5, (int)(18));
         claw.open();
+
+        // TODO Finish navigation and sense the line
+
+        // Park in Storage Facility
         strafe.right(.5,33);
         //add some logic in case of crazy distance sensor values
 
