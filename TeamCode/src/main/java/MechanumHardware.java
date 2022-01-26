@@ -24,10 +24,10 @@ public class MechanumHardware
 //    public Servo duckArm = null;
     public Servo leftClawServo = null;
     public Servo rightClawServo = null;
-    public Servo FrontLeftWingServo = null;
-    public Servo FrontRightWingServo = null;
-    public Servo BackLeftWingServo = null;
-    public Servo BackRightWingServo = null;
+    public Servo frontLeftWingServo = null;
+    public Servo frontRightWingServo = null;
+    public Servo backLeftWingServo = null;
+    public Servo backRightWingServo = null;
     BNO055IMU imu;
 
     public Rev2mDistanceSensor rightDistanceSensor;
@@ -82,13 +82,13 @@ public class MechanumHardware
     public static final int ARM_MIDDLE_POSITION = 3100;
     public static final int ARM_TOP_POSITION = 5250;
 
-    public static final double FRONT_RIGHT_WING_OPEN = .2;
+    public static final double FRONT_RIGHT_WING_OPEN = .5;
     public static final double FRONT_LEFT_WING_OPEN = 0;
-    public static final double BACK_RIGHT_WING_OPEN = .5;
+    public static final double BACK_RIGHT_WING_OPEN = .48;
     public static final double BACK_LEFT_WING_OPEN = 0;
     public static final double FRONT_RIGHT_WING_CLOSE = .2;
     public static final double FRONT_LEFT_WING_CLOSE = .2;
-    public static final double BACK_RIGHT_WING_CLOSE = .2;
+    public static final double BACK_RIGHT_WING_CLOSE = .17;
     public static final double BACK_LEFT_WING_CLOSE = .2;
 
     public double leftObjectDistance;
@@ -114,10 +114,10 @@ public class MechanumHardware
 //        duckArm = hwMap.get(Servo.class, "duckArm");
         leftClawServo = hwMap.get(Servo.class, "leftClawServo");
         rightClawServo = hwMap.get(Servo.class, "rightClawServo");
-        FrontLeftWingServo = hwMap.get(Servo.class,"FrontLeftWingServo");
-        FrontRightWingServo = hwMap.get(Servo.class,"FrontRightWingServo");
-        BackLeftWingServo = hwMap.get(Servo.class,"BackLeftWingServo");
-        BackRightWingServo = hwMap.get(Servo.class,"BackRightWingServo");
+        frontLeftWingServo = hwMap.get(Servo.class,"FrontLeftWingServo");
+        frontRightWingServo = hwMap.get(Servo.class,"FrontRightWingServo");
+        backLeftWingServo = hwMap.get(Servo.class,"BackLeftWingServo");
+        backRightWingServo = hwMap.get(Servo.class,"BackRightWingServo");
 
         mastRotator = hwMap.get(DcMotor.class, "mastRotator");
 
@@ -146,10 +146,10 @@ public class MechanumHardware
         // Set servos to start positions
         leftClawServo.setPosition(LEFT_CLAW_CLOSED);
         rightClawServo.setPosition(RIGHT_CLAW_CLOSED);
-        FrontRightWingServo.setPosition(FRONT_RIGHT_WING_CLOSE);
-        FrontLeftWingServo.setPosition(FRONT_LEFT_WING_CLOSE);
-        BackRightWingServo.setPosition(BACK_RIGHT_WING_CLOSE);
-        BackLeftWingServo.setPosition(BACK_LEFT_WING_CLOSE);
+        frontRightWingServo.setPosition(FRONT_RIGHT_WING_CLOSE);
+        frontLeftWingServo.setPosition(FRONT_LEFT_WING_CLOSE);
+        backRightWingServo.setPosition(BACK_RIGHT_WING_CLOSE);
+        backLeftWingServo.setPosition(BACK_LEFT_WING_CLOSE);
         // Set all motors to zero power
         leftFrontDrive.setPower(0);
         rightFrontDrive.setPower(0);
