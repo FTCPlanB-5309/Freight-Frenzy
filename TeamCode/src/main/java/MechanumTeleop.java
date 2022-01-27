@@ -73,6 +73,20 @@ public class MechanumTeleop extends LinearOpMode {
                 }
                 else {robot.duckSpinner.setPower(0);}
 
+                if (gamepad1.a) {
+                    robot.frontRightWingServo.setPosition(robot.FRONT_RIGHT_WING_CLOSE);
+                    robot.backRightWingServo.setPosition(robot.BACK_RIGHT_WING_CLOSE);
+                    robot.frontLeftWingServo.setPosition(robot.FRONT_LEFT_WING_CLOSE);
+                    robot.backLeftWingServo.setPosition(robot.BACK_RIGHT_WING_CLOSE);
+                }
+
+                if (gamepad1.b) {
+                    robot.frontRightWingServo.setPosition(robot.FRONT_RIGHT_WING_OPEN);
+                    robot.backRightWingServo.setPosition(robot.BACK_RIGHT_WING_OPEN);
+                    robot.frontLeftWingServo.setPosition(robot.FRONT_LEFT_WING_OPEN);
+                    robot.backLeftWingServo.setPosition(robot.BACK_RIGHT_WING_OPEN);
+                }
+
                 //Rotate Center Mast
 
                 if (Math.abs(gamepad2.right_stick_x) > robot.TELEOPDEADZONE)

@@ -23,18 +23,18 @@ public class DuckSpinner {
         //Strafe Right
         if (direction == SetupDirection.backward && alliance == Color.red) {
 //            robot.leftFrontDrive.setPower(0.1);
-            robot.leftRearDrive.setPower(-0.13);
+            robot.leftRearDrive.setPower(-0.16);
 //            robot.rightFrontDrive.setPower(-0.1);
-            robot.rightRearDrive.setPower(0.13);
+            robot.rightRearDrive.setPower(0.16);
             telemetry.addData("strafe right", "ok");
             telemetry.update();
         }
-        //Srafe Left
+        //Strafe Left
         if (direction == SetupDirection.backward && alliance == Color.blue) {
 //            robot.leftFrontDrive.setPower(-0.1);
-            robot.leftRearDrive.setPower(0.13);
+            robot.leftRearDrive.setPower(0.16);
 //            robot.rightFrontDrive.setPower(0.1);
-            robot.rightRearDrive.setPower(-0.13);
+            robot.rightRearDrive.setPower(-0.16);
             telemetry.addData("strafe left", "ok");
             telemetry.update();
 

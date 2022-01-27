@@ -46,7 +46,7 @@ public class DriveToLine {
 
             if (lineColor.equals(Color.red) && red > 250)
                 break;
-            else if (lineColor.equals(Color.blue) && blue > 300)
+            else if (lineColor.equals(Color.blue) && blue > 250)
                 break;
             else if (lineColor.equals(Color.white) && blue > 300 && red > 250)
                 break;

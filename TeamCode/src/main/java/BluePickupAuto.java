@@ -3,9 +3,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name = "RedPickupAuto")
+@Autonomous(name = "BluePickupAuto")
 
-public class RedPickupAuto extends LinearOpMode {
+public class BluePickupAuto extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
     Drive drive = new Drive(robot, telemetry, this);
     Strafe strafe = new Strafe(robot, telemetry, this);
@@ -24,42 +24,42 @@ public class RedPickupAuto extends LinearOpMode {
 
         // Delivering the autonomous freight item.
         arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
-        mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
+        mast.setPositionNoWait(robot.MAST_CENTER_RIGHT_POSITION);
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
         arm.setHeight(levelHeight);
-        mast.setPosition(robot.MAST_LEFT_POSITION);
-        strafe.left(.5, 5);
+        mast.setPosition(robot.MAST_RIGHT_POSITION);
+        strafe.right(.5, 5);
         claw.open();
 
 
         // Driving to the duck turn table
-        strafe.right(0.5,23);
+        strafe.left(0.5,23);
         drive.forward(0.5,42);
-        gyroturn.goodEnough(90);
+        gyroturn.goodEnough(-90);
         drive.backward(0.25,2);
         int distanceToWall = (int) ((robot.frontDistanceSensor.getDistance(DistanceUnit.CM) - 29) / 2.54);
         int distance = (distanceToWall -12) + 12;
         if (Math.abs(distance)>10)
-            strafe.right(0.2,6 );
+            strafe.left(0.2,6 );
         else
-            strafe.right(.2, distance);
+            strafe.left(.2, distance);
 
 
         // Spin the turn table to drop the duck
-        duckWings.open(Color.red);
-        duckspinner.spin(Color.red,SetupDirection.backward);
+        duckWings.open(Color.blue);
+        duckspinner.spin(Color.blue,SetupDirection.backward);
 
 
         // Grabbing the duck
-        gyroturn.goodEnough(90);
-        strafe.left(0.5,20);
-        duckWings.close(Color.red);
+        gyroturn.goodEnough(-90);
+        strafe.right(0.5,20);
+        duckWings.close(Color.blue);
         mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         gyroturn.goodEnough(0);
-        strafe.right(.2,1);
-        distanceToWall = (int) ((robot.frontDistanceSensor.getDistance(DistanceUnit.CM) - 29) / 2.54);
+        strafe.left(.2,1);
+        distanceToWall = (int) robot.frontDistanceSensor.getDistance(DistanceUnit.INCH)+1;
         mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
         claw.openWide();
         drive.forward(0.2,distanceToWall);
@@ -67,17 +67,17 @@ public class RedPickupAuto extends LinearOpMode {
 
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
-        mast.setPositionNoWait(robot.MAST_LEFT_POSITION);
+        mast.setPositionNoWait(robot.MAST_RIGHT_POSITION);
         drive.backward(.5, 35);
-        strafe.left(.5, (int)(27));
+        strafe.right(.5, (int)(27));
         claw.open();
 
 
         // Park in Storage Facility
-        strafe.right(.5,35);
+        strafe.left(.5,34);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         drive.forward(.5,12);
-        driveToLine.forward(25, .5, Color.red);
+        driveToLine.forward(25, .5, Color.blue);
         drive.backward(.5, 6);
         gyroturn.goodEnough(0);
         //add some logic in case of crazy distance sensor values
