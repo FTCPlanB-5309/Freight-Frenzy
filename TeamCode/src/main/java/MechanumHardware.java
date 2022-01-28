@@ -85,11 +85,11 @@ public class MechanumHardware
     public static final double FRONT_RIGHT_WING_OPEN = .5;
     public static final double FRONT_LEFT_WING_OPEN = .53;
     public static final double BACK_RIGHT_WING_OPEN = .48;
-    public static final double BACK_LEFT_WING_OPEN = 1;
+    public static final double BACK_LEFT_WING_OPEN = .7;
     public static final double FRONT_RIGHT_WING_CLOSE = .2;
     public static final double FRONT_LEFT_WING_CLOSE = .16;
     public static final double BACK_RIGHT_WING_CLOSE = .17;
-    public static final double BACK_LEFT_WING_CLOSE = .45;
+    public static final double BACK_LEFT_WING_CLOSE = .35;
 
     public double leftObjectDistance;
     public double rightObjectDistance;
