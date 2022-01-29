@@ -117,7 +117,9 @@ public class MechanumTeleop extends LinearOpMode {
                 telemetry.addData("arm",robot.armMotor.getCurrentPosition());
                 telemetry.addData("mast", robot.mastRotator.getCurrentPosition());
                 telemetry.addData("Claw Distance in CM", robot.clawDistanceSensor.getDistance(DistanceUnit.CM));
-                telemetry.addData("Front Distance",robot.frontDistanceSensor.getDistance(DistanceUnit.CM));
+                telemetry.addData("Front Distance",robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+                telemetry.addData("Left Distance",robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
+                telemetry.addData("Right Distance",robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
 
             telemetry.update();
 
