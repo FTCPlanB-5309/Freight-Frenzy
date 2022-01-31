@@ -35,19 +35,26 @@ public class RedPickupAuto extends LinearOpMode {
 
         // Driving to the duck turn table
         strafe.right(0.5,23);
-        drive.forward(0.5,42);
+        drive.forward(0.5,41);
+        long distanceToWall;
+        int distance;
+        distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
+        distance = (int) distanceToWall - 10;
+        strafe.right(.3, distance);
         gyroturn.goodEnough(90);
         drive.backward(0.25,2);
-        int distanceToWall = (int) ((robot.frontDistanceSensor.getDistance(DistanceUnit.CM) - 29) / 2.54);
-        int distance = (distanceToWall -12) + 12;
+        distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
+        distance = (int)(distanceToWall - 7);
         if (Math.abs(distance)>10)
-            strafe.right(0.2,6 );
+            strafe.right(0.2,1 );
         else
             strafe.right(.2, distance);
 
 
         // Spin the turn table to drop the duck
         duckWings.open(Color.red);
+        mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
+        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         duckspinner.spin(Color.red,SetupDirection.backward);
 
 
@@ -59,10 +66,11 @@ public class RedPickupAuto extends LinearOpMode {
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         gyroturn.goodEnough(0);
         strafe.right(.2,1);
-        distanceToWall = (int) ((robot.frontDistanceSensor.getDistance(DistanceUnit.CM) - 29) / 2.54);
+        distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        distance = (int) distanceToWall - 9;
         mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
         claw.openWide();
-        drive.forward(0.2,distanceToWall);
+        drive.forward(0.2,distance);
         claw.close();
 
         // Driving to the alliance hub to score the duck
@@ -74,7 +82,7 @@ public class RedPickupAuto extends LinearOpMode {
 
 
         // Park in Storage Facility
-        strafe.right(.5,35);
+        strafe.right(.5,32);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         drive.forward(.5,12);
         driveToLine.forward(25, .5, Color.red);
