@@ -64,11 +64,11 @@ public class BluePickupAuto extends LinearOpMode {
         strafe.right(0.5,20);
         duckWings.close(Color.blue);
         gyroturn.goodEnough(0);
-        strafe.left(.2,1);
         distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int) distanceToWall - 9;
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         claw.openWide();
+        strafe.right(.2,2);
         drive.forward(0.2, distance);
         claw.close();
 
@@ -81,7 +81,7 @@ public class BluePickupAuto extends LinearOpMode {
 
 
         // Park in Storage Facility
-        strafe.left(.5,32);
+        strafe.left(.5,30);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         drive.forward(.5,12);
         driveToLine.forward(25, .5, Color.blue);

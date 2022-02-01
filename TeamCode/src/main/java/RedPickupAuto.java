@@ -36,6 +36,7 @@ public class RedPickupAuto extends LinearOpMode {
         // Driving to the duck turn table
         strafe.right(0.5,23);
         drive.forward(0.5,41);
+        gyroturn.goodEnough(0);
         long distanceToWall;
         int distance;
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
@@ -62,16 +63,15 @@ public class RedPickupAuto extends LinearOpMode {
         gyroturn.goodEnough(90);
         strafe.left(0.5,20);
         duckWings.close(Color.red);
-        mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
-        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         gyroturn.goodEnough(0);
-        strafe.right(.2,1);
         distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int) distanceToWall - 9;
-        mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
+        mast.setPosition(robot.MAST_FORWARD_POSITION);
         claw.openWide();
-        drive.forward(0.2,distance);
+        strafe.left(.2,2);
+        drive.forward(0.2, distance);
         claw.close();
+
 
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
@@ -82,7 +82,7 @@ public class RedPickupAuto extends LinearOpMode {
 
 
         // Park in Storage Facility
-        strafe.right(.5,32);
+        strafe.right(.5,30);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         drive.forward(.5,12);
         driveToLine.forward(25, .5, Color.red);

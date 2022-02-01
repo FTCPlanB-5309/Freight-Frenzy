@@ -82,14 +82,14 @@ public class MechanumHardware
     public static final int ARM_MIDDLE_POSITION = 3100;
     public static final int ARM_TOP_POSITION = 5250;
 
-    public static final double FRONT_RIGHT_WING_OPEN = .5;
+    public static final double FRONT_RIGHT_WING_OPEN = .69;
     public static final double FRONT_LEFT_WING_OPEN = .53;
-    public static final double BACK_RIGHT_WING_OPEN = .48;
+    public static final double BACK_RIGHT_WING_OPEN = 0;
     public static final double BACK_LEFT_WING_OPEN = .7;
-    public static final double FRONT_RIGHT_WING_CLOSE = .2;
+    public static final double FRONT_RIGHT_WING_CLOSE = 1;
     public static final double FRONT_LEFT_WING_CLOSE = .16;
-    public static final double BACK_RIGHT_WING_CLOSE = .17;
-    public static final double BACK_LEFT_WING_CLOSE = .35;
+    public static final double BACK_RIGHT_WING_CLOSE = .34;
+    public static final double BACK_LEFT_WING_CLOSE = .33;
 
     public double leftObjectDistance;
     public double rightObjectDistance;
