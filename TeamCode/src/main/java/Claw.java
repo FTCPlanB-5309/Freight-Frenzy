@@ -32,6 +32,6 @@ public class Claw {
            return;
         robot.leftClawServo.setPosition(robot.LEFT_CLAW_CLOSED);
         robot.rightClawServo.setPosition(robot.RIGHT_CLAW_CLOSED);
-        Thread.sleep(100);
+        Thread.sleep(200);
    }
 }

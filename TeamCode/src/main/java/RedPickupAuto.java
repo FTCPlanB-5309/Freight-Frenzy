@@ -41,16 +41,18 @@ public class RedPickupAuto extends LinearOpMode {
         int distance;
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int) distanceToWall - 10;
-        strafe.right(.3, distance);
+        if (Math.abs(distance)>10)
+            strafe.right(0.2,1 );
+        else
+            strafe.right(.2, distance);
         gyroturn.goodEnough(90);
-        drive.backward(0.25,2);
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int)(distanceToWall - 7);
         if (Math.abs(distance)>10)
             strafe.right(0.2,1 );
         else
             strafe.right(.2, distance);
-
+        drive.backward(0.25,1);
 
         // Spin the turn table to drop the duck
         duckWings.open(Color.red);
@@ -64,19 +66,22 @@ public class RedPickupAuto extends LinearOpMode {
         strafe.left(0.5,20);
         duckWings.close(Color.red);
         gyroturn.goodEnough(0);
-        distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 9;
-        mast.setPosition(robot.MAST_FORWARD_POSITION);
         claw.openWide();
-        strafe.left(.2,2);
-        drive.forward(0.2, distance);
+        distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        distance = (int) distanceToWall - 10;
+        mast.setPosition(robot.MAST_FORWARD_POSITION);
+        if (Math.abs(distance)>15)
+            drive.forward(0.2,10 );
+        else
+            drive.forward(.2, distance);
+
         claw.close();
 
 
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
         mast.setPositionNoWait(robot.MAST_LEFT_POSITION);
-        drive.backward(.5, 35);
+        drive.backward(.5, 36);
         strafe.left(.5, (int)(27));
         claw.open();
 
@@ -86,8 +91,9 @@ public class RedPickupAuto extends LinearOpMode {
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         drive.forward(.5,12);
         driveToLine.forward(25, .5, Color.red);
-        drive.backward(.5, 6);
+        drive.backward(.5, 7);
         gyroturn.goodEnough(0);
+        strafe.right(.2,2);
         //add some logic in case of crazy distance sensor values
 
 

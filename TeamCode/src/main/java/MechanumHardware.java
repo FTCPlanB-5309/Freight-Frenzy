@@ -65,8 +65,8 @@ public class MechanumHardware
     public static final double RIGHT_CLAW_OPEN = 0.72;
     public static final double LEFT_CLAW_CLOSED = 0.27;
     public static final double LEFT_CLAW_OPEN = 0.43;
-    public static final double LEFT_CLAW_WIDE = 0.5;
-    public static final double RIGHT_CLAW_WIDE = 0.6;
+    public static final double LEFT_CLAW_WIDE = 0.57;
+    public static final double RIGHT_CLAW_WIDE = 0.55;
 
     public static final double MAST_START_POSITION = 0.5;
 
@@ -82,21 +82,21 @@ public class MechanumHardware
     public static final int ARM_MIDDLE_POSITION = 3100;
     public static final int ARM_TOP_POSITION = 5250;
 
-    public static final double FRONT_RIGHT_WING_OPEN = .69;
+    public static final double FRONT_RIGHT_WING_OPEN = .39;
     public static final double FRONT_LEFT_WING_OPEN = .53;
-    public static final double BACK_RIGHT_WING_OPEN = 0;
+    public static final double BACK_RIGHT_WING_OPEN = .30;
     public static final double BACK_LEFT_WING_OPEN = .7;
-    public static final double FRONT_RIGHT_WING_CLOSE = 1;
+    public static final double FRONT_RIGHT_WING_CLOSE = .76;
     public static final double FRONT_LEFT_WING_CLOSE = .16;
-    public static final double BACK_RIGHT_WING_CLOSE = .34;
-    public static final double BACK_LEFT_WING_CLOSE = .33;
+    public static final double BACK_RIGHT_WING_CLOSE = .68;
+    public static final double BACK_LEFT_WING_CLOSE = .31;
 
     public double leftObjectDistance;
     public double rightObjectDistance;
     public double floorDistance;
 
     public static int LEVEL_ONE_HEIGHT = 19;
-    public static int LEVEL_TWO_HEIGHT = 32;
+    public static int LEVEL_TWO_HEIGHT = 33;
     public static int LEVEL_THREE_HEIGHT = 50;
 
     public void teleopInit(HardwareMap ahwMap) {
