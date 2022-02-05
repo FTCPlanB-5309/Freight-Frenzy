@@ -96,7 +96,7 @@ public class MechanumHardware
     public double floorDistance;
 
     public static int LEVEL_ONE_HEIGHT = 19;
-    public static int LEVEL_TWO_HEIGHT = 33;
+    public static int LEVEL_TWO_HEIGHT = 34;
     public static int LEVEL_THREE_HEIGHT = 50;
 
     public void teleopInit(HardwareMap ahwMap) {
