@@ -47,7 +47,7 @@ public class BluePickupAuto extends LinearOpMode {
             strafe.left(.2, distance);
         gyroturn.goodEnough(-90);
         distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int)(distanceToWall - 7);
+        distance = (int)(distanceToWall - 6);
         if (Math.abs(distance)>10)
             strafe.left(0.2,1 );
         else

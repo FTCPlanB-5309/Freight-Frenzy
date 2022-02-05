@@ -47,7 +47,7 @@ public class RedPickupAuto extends LinearOpMode {
             strafe.right(.2, distance);
         gyroturn.goodEnough(90);
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int)(distanceToWall - 7);
+        distance = (int)(distanceToWall - 6);
         if (Math.abs(distance)>10)
             strafe.right(0.2,1 );
         else
