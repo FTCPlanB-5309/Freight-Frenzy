@@ -44,7 +44,7 @@ public class DriveToLine {
             red = robot.colorSensor.red();
             blue = robot.colorSensor.blue();
 
-            if (lineColor.equals(Color.red) && red > 250)
+            if (lineColor.equals(Color.red) && red > 200)
                 break;
             else if (lineColor.equals(Color.blue) && blue > 250)
                 break;

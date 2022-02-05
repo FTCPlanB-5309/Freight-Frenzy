@@ -40,14 +40,14 @@ public class BluePickupAuto extends LinearOpMode {
         long distanceToWall;
         int distance;
         distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 10;
+        distance = (int) distanceToWall - 9;
         if (Math.abs(distance)>10)
             strafe.left(0.2,1 );
         else
             strafe.left(.2, distance);
         gyroturn.goodEnough(-90);
         distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int)(distanceToWall - 6);
+        distance = (int)(distanceToWall - 5);
         if (Math.abs(distance)>10)
             strafe.left(0.2,1 );
         else
@@ -67,7 +67,7 @@ public class BluePickupAuto extends LinearOpMode {
         duckWings.close(Color.blue);
         gyroturn.goodEnough(0);
         distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 10;
+        distance = (int) distanceToWall - 8;
         claw.openWide();
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         if (Math.abs(distance)>15)
@@ -93,7 +93,7 @@ public class BluePickupAuto extends LinearOpMode {
         driveToLine.forward(25, .5, Color.blue);
         drive.backward(.5, 7);
         gyroturn.goodEnough(0);
-        strafe.left(.2,2);
+        strafe.left(.2,4);
         //add some logic in case of crazy distance sensor values
 
 
