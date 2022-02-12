@@ -66,10 +66,10 @@ public class MechanumTeleop extends LinearOpMode {
 
                 // Attachments
                 if (gamepad1.left_bumper) {
-                    robot.duckSpinner.setPower(.75);
+                    robot.duckSpinner.setPower(.5);
                 }
                 else if (gamepad1.left_trigger>0.5){
-                    robot.duckSpinner.setPower(-.75);
+                    robot.duckSpinner.setPower(-.5);
                 }
                 else {robot.duckSpinner.setPower(0);}
 

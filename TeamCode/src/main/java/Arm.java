@@ -21,7 +21,7 @@ public class Arm {
     public void setPosition(int newPosition) {
         robot.armMotor.setTargetPosition(newPosition);
         robot.armMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.armMotor.setPower(-0.73);
+        robot.armMotor.setPower(-1); // -0.73 former
         while (robot.armMotor.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
         }
@@ -47,9 +47,9 @@ public class Arm {
                 && Math.abs(robot.armMotor.getCurrentPosition())<robot.ARM_TOP_POSITION) {
 
             if(clawHeight > newHeight){
-                robot.armMotor.setPower(-0.73);
+                robot.armMotor.setPower(-1); // -0.73 former
             }
-            else robot.armMotor.setPower(0.73);
+            else robot.armMotor.setPower(1); // 0.73 former
 
             Thread.yield();
 

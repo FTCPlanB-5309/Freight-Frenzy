@@ -35,12 +35,14 @@ public class RedPickupAuto extends LinearOpMode {
 
         // Driving to the duck turn table
         strafe.right(0.5,23);
+        if(levelHeight == robot.LEVEL_ONE_HEIGHT)
+            arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         drive.forward(0.5,41);
         gyroturn.goodEnough(0);
         long distanceToWall;
         int distance;
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 9;
+        distance = (int) distanceToWall - 11;
         if (Math.abs(distance)>10)
             strafe.right(0.2,1 );
         else
@@ -93,7 +95,7 @@ public class RedPickupAuto extends LinearOpMode {
         driveToLine.forward(25, .5, Color.red);
         drive.backward(.5, 7);
         gyroturn.goodEnough(0);
-        strafe.right(.2,4);
+        strafe.right(.2,(int) Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH)));
         //add some logic in case of crazy distance sensor values
 
 

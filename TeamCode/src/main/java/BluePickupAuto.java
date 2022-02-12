@@ -40,7 +40,7 @@ public class BluePickupAuto extends LinearOpMode {
         long distanceToWall;
         int distance;
         distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 9;
+        distance = (int) distanceToWall - 11;
         if (Math.abs(distance)>10)
             strafe.left(0.2,1 );
         else
@@ -58,7 +58,7 @@ public class BluePickupAuto extends LinearOpMode {
         duckWings.open(Color.blue);
         mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
-        duckspinner.spin(Color.blue,SetupDirection.backward);
+        duckspinner.spin(Color.blue, SetupDirection.backward);
 
 
         // Grabbing the duck
@@ -93,7 +93,7 @@ public class BluePickupAuto extends LinearOpMode {
         driveToLine.forward(25, .5, Color.blue);
         drive.backward(.5, 7);
         gyroturn.goodEnough(0);
-        strafe.left(.2,4);
+        strafe.left(.2, (int) Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH)));
         //add some logic in case of crazy distance sensor values
 
 
