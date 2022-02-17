@@ -1,10 +1,11 @@
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous(name = "BlueDuckSideAuto")
-
+@Disabled
 public class BlueDuckSideAuto extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
     Drive drive = new Drive(robot, telemetry, this);
