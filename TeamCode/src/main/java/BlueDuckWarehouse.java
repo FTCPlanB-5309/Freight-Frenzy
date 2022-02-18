@@ -5,7 +5,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 @Autonomous(name = "BluePickupAuto")
 
-public class BluePickupAuto extends LinearOpMode {
+public class BlueDuckWarehouse extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
     Drive drive = new Drive(robot, telemetry, this);
     Strafe strafe = new Strafe(robot, telemetry, this);
@@ -94,15 +94,24 @@ public class BluePickupAuto extends LinearOpMode {
         strafe.right(.5, (int)(27));
         claw.open();
 
-
+        //Park in Warehouse
+        frontDistanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        frontDistance = (int) frontDistanceToWall - 5;
+        if (Math.abs(frontDistance)>60)
+            drive.forward(0.5,41);
+        else
+            drive.forward(0.5, frontDistance);
+        gyroturn.goodEnough(90);
+        strafe.left(0.4,4);
+        drive.forward(0.5,64);
         // Park in Storage Facility
-        strafe.left(.5,30);
-        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
-        drive.forward(.5,12);
-        driveToLine.forward(25, .5, Color.blue);
-        drive.backward(.5, 7);
-        gyroturn.goodEnough(0);
-        strafe.left(.2, (int) Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH)));
+//        strafe.left(.5,30);
+//        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
+//        drive.forward(.5,12);
+//        driveToLine.forward(25, .5, Color.blue);
+//        drive.backward(.5, 7);
+//        gyroturn.goodEnough(0);
+//        strafe.left(.2, (int) Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH)));
         //add some logic in case of crazy distance sensor values
 
 
