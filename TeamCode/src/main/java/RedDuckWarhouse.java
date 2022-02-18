@@ -3,9 +3,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name = "RedPickupAuto")
+@Autonomous(name = "RedDuckWarehouse")
 
-public class RedPickupAuto extends LinearOpMode {
+public class RedDuckWarhouse extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
     Drive drive = new Drive(robot, telemetry, this);
     Strafe strafe = new Strafe(robot, telemetry, this);
@@ -39,7 +39,6 @@ public class RedPickupAuto extends LinearOpMode {
         gyroturn.goodEnough(0);
         if(levelHeight == robot.LEVEL_ONE_HEIGHT)
             arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
-
         long distanceToWall;
         int distance;
         distanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
@@ -72,7 +71,6 @@ public class RedPickupAuto extends LinearOpMode {
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         duckspinner.spin(Color.red,SetupDirection.backward);
 
-
         // Grabbing the duck
         gyroturn.goodEnough(90);
         strafe.left(0.5,20);
@@ -86,9 +84,7 @@ public class RedPickupAuto extends LinearOpMode {
             drive.forward(0.2,10 );
         else
             drive.forward(.2, distance);
-
         claw.close();
-
 
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
@@ -97,21 +93,17 @@ public class RedPickupAuto extends LinearOpMode {
         strafe.left(.5, (int)(27));
         claw.open();
 
-
-        // Park in Storage Facility
-        strafe.right(.5,30);
-        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
-        drive.forward(.5,12);
-        driveToLine.forward(25, .5, Color.red);
-        drive.backward(.5, 7);
-        gyroturn.goodEnough(0);
-        strafe.right(.2,(int) Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH)));
-        //add some logic in case of crazy distance sensor values
-
-
-
-//        mast.setPosition(robot.MAST_RIGHT_POSITION);
-//        arm.setPosition(robot.ARM_FLOOR_POSITION);
+        // Park in Warehouse
+        strafe.right(.5,3);
+        distanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        distance = (int) distanceToWall - 5;
+        if (Math.abs(distance)>60)
+            drive.forward(0.5,41 );
+        else
+            drive.forward(.5, distance);
+        gyroturn.goodEnough(90);
+        strafe.right(.3,4);
+        drive.forward(.5,64);
 
     }
 }
