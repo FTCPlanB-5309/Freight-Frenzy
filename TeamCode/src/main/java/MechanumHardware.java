@@ -78,8 +78,8 @@ public class MechanumHardware
     public static final int MAST_CENTER_RIGHT_POSITION = 2500;
 
     public static final int ARM_FLOOR_POSITION = 0;
-    public static final int ARM_BOTTOM_POSITION = 1600;
-    public static final int ARM_MIDDLE_POSITION = 3000;
+    public static final int ARM_BOTTOM_POSITION = 1800;
+    public static final int ARM_MIDDLE_POSITION = 3200;
     public static final int ARM_TOP_POSITION = 5500;
 
     public static final double FRONT_RIGHT_WING_OPEN = .39;
@@ -95,7 +95,7 @@ public class MechanumHardware
     public double rightObjectDistance;
     public double floorDistance;
 
-    public static int LEVEL_ONE_HEIGHT = 19;
+    public static int LEVEL_ONE_HEIGHT = 20;
     public static int LEVEL_TWO_HEIGHT = 30;
     public static int LEVEL_THREE_HEIGHT = 55;
 

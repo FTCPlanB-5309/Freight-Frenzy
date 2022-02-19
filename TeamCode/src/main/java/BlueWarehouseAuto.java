@@ -58,6 +58,7 @@ public class BlueWarehouseAuto extends LinearOpMode {
         gyroTurn.goodEnough(0);
         drive.forward(.3,36);
         strafe.left(.15,2);
+
         gyroTurn.goodEnough(90);
         strafe.right(.15,8);
         drive.backward(.35,28);

@@ -3,7 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name = "RedWarehouseAutoTest")
+@Autonomous(name = "RedWarehouseAutoNew")
 
 public class RedWarehouseAutoTest extends LinearOpMode{
     MechanumHardware robot = new MechanumHardware();
@@ -28,37 +28,34 @@ public class RedWarehouseAutoTest extends LinearOpMode{
         if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
             if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
                 arm.setPosition(robot.ARM_BOTTOM_POSITION);
-                mast.setPosition(robot.MAST_RIGHT_POSITION);
                 strafe.right(.15, 10);
+                claw.open();
             } else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
                 arm.setPosition(robot.ARM_TOP_POSITION);
-                mast.setPosition(robot.MAST_RIGHT_POSITION);
                 strafe.right(.15, 10);
                 claw.open();
             } else {
-                mast.setPosition(robot.MAST_RIGHT_POSITION);
                 strafe.right(.15, 10);
                 claw.open();
             }
-        } else {
-            arm.setHeight(levelHeight);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
-            strafe.right(.15, 10);
-            claw.open();
         }
-
-        arm.setHeight(levelHeight);
-        mast.setPosition(robot.MAST_RIGHT_POSITION);
-        strafe.right(.15, 10);
-        claw.open();
-
+        else {
+                arm.setHeight(levelHeight);
+                strafe.right(.15, 10);
+                claw.open();
+        }
+        if(levelHeight != robot.LEVEL_THREE_HEIGHT) {
+            strafe.left(.15, 9);
+        }
         if (levelHeight == robot.LEVEL_ONE_HEIGHT){
             arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         }
-        strafe.left(.15,5);
+
         gyroTurn.goodEnough(0);
         drive.forward(.3,36);
-        strafe.right(.15,2);
+        if (levelHeight != robot.LEVEL_THREE_HEIGHT) {
+            strafe.right(.15, 4);
+        }
         gyroTurn.goodEnough(-90);
         strafe.left(.15,8);
         drive.backward(.35,28);
