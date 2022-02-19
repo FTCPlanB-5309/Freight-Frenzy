@@ -52,10 +52,10 @@ public class BlueDuckWarehouse extends LinearOpMode {
 
         } else {
             if (levelHeight == (robot.LEVEL_ONE_HEIGHT)) {
-                strafe.left(.5,5);
+                strafe.left(.5,7);
                 arm.setHeight(levelHeight);
                 mast.setPosition(robot.MAST_RIGHT_POSITION);
-                strafe.right(.5, 10);
+                strafe.right(.5, 12);
                 claw.open();
             } else {
                 arm.setHeight(levelHeight);

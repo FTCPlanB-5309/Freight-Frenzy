@@ -31,10 +31,10 @@ public class BluePickupAuto extends LinearOpMode {
         //logic to use encoder value if claw distance is too high.
         if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
             if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
-                strafe.left(.5, 5);
+                strafe.left(.5, 7);
                 arm.setPosition(robot.ARM_BOTTOM_POSITION);
                 mast.setPosition(robot.MAST_RIGHT_POSITION);
-                strafe.right(.5, 10);
+                strafe.right(.5, 12);
                 claw.open();
             }else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
                 arm.setPosition(robot.ARM_TOP_POSITION);
