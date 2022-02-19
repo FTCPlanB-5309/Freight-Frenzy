@@ -27,12 +27,32 @@ public class RedDuckWarhouse extends LinearOpMode {
         mast.setPositionNoWait(robot.MAST_CENTER_LEFT_POSITION);
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
-        arm.setHeight(levelHeight);
-        mast.setPosition(robot.MAST_LEFT_POSITION);
-        strafe.left(.5, 5);
-        gyroturn.goodEnough(0);
-        claw.open();
 
+        //logic to use arm encoder value if claw distance is too high.
+        if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
+
+            if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
+                arm.setPosition(robot.ARM_BOTTOM_POSITION);
+                mast.setPosition(robot.MAST_LEFT_POSITION);
+                strafe.left(.5, 5);
+                claw.open();
+            }else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
+                arm.setPosition(robot.ARM_TOP_POSITION);
+                mast.setPosition(robot.MAST_LEFT_POSITION);
+                strafe.left(.5, 5);
+                claw.open();
+            } else {
+                mast.setPosition(robot.MAST_LEFT_POSITION);
+                strafe.left(.5, 5);
+                claw.open();
+            }
+        } else {
+            arm.setHeight(levelHeight);
+            mast.setPosition(robot.MAST_LEFT_POSITION);
+            strafe.left(.5, 5);
+            gyroturn.goodEnough(0);
+            claw.open();
+        }
 
         // Driving to the duck turn table
         strafe.right(0.5,23);

@@ -27,17 +27,38 @@ public class BluePickupAuto extends LinearOpMode {
         mast.setPositionNoWait(robot.MAST_CENTER_RIGHT_POSITION);
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
-        if (levelHeight == (robot.LEVEL_ONE_HEIGHT)) {
-            strafe.left(.5,5);
-            arm.setHeight(levelHeight);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
-            strafe.right(.5, 10);
-            claw.open();
+
+        //logic to use encoder value if claw distance is too high.
+        if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
+            if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
+                strafe.left(.5, 5);
+                arm.setPosition(robot.ARM_BOTTOM_POSITION);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 10);
+                claw.open();
+            }else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
+                arm.setPosition(robot.ARM_TOP_POSITION);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 5);
+                claw.open();
+            } else {
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 5);
+                claw.open();
+            }
         } else {
-            arm.setHeight(levelHeight);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
-            strafe.right(.5, 5);
-            claw.open();
+            if (levelHeight == (robot.LEVEL_ONE_HEIGHT)) {
+                strafe.left(.5,7);
+                arm.setHeight(levelHeight);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 12);
+                claw.open();
+            } else {
+                arm.setHeight(levelHeight);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 5);
+                claw.open();
+            }
         }
 
 

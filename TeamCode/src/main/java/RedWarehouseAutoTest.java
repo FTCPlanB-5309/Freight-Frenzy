@@ -1,6 +1,8 @@
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
+import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
 @Autonomous(name = "RedWarehouseAutoTest")
 
 public class RedWarehouseAutoTest extends LinearOpMode{
@@ -21,10 +23,35 @@ public class RedWarehouseAutoTest extends LinearOpMode{
         drive.backward(.1, 19);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
         strafe.left(.2,7);
+
+        //logic to use arm encoder value if claw distance is too high.
+        if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
+            if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
+                arm.setPosition(robot.ARM_BOTTOM_POSITION);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.15, 10);
+            } else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
+                arm.setPosition(robot.ARM_TOP_POSITION);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.15, 10);
+                claw.open();
+            } else {
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.15, 10);
+                claw.open();
+            }
+        } else {
+            arm.setHeight(levelHeight);
+            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            strafe.right(.15, 10);
+            claw.open();
+        }
+
         arm.setHeight(levelHeight);
         mast.setPosition(robot.MAST_RIGHT_POSITION);
         strafe.right(.15, 10);
         claw.open();
+
         if (levelHeight == robot.LEVEL_ONE_HEIGHT){
             arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         }

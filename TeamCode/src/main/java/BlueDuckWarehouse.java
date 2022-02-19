@@ -29,17 +29,40 @@ public class BlueDuckWarehouse extends LinearOpMode {
         mast.setPositionNoWait(robot.MAST_CENTER_RIGHT_POSITION);
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
-        if (levelHeight == (robot.LEVEL_ONE_HEIGHT)) {
-            strafe.left(.5,5);
-            arm.setHeight(levelHeight);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
-            strafe.right(.5, 10);
-            claw.open();
+
+        //logic to use arm encoder value if claw distance is too high.
+        if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
+
+            if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
+                strafe.left(.5, 7);
+                arm.setPosition(robot.ARM_BOTTOM_POSITION);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 12);
+                claw.open();
+            }else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
+                arm.setPosition(robot.ARM_TOP_POSITION);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 5);
+                claw.open();
+            } else {
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 5);
+                claw.open();
+            }
+
         } else {
-            arm.setHeight(levelHeight);
-            mast.setPosition(robot.MAST_RIGHT_POSITION);
-            strafe.right(.5, 5);
-            claw.open();
+            if (levelHeight == (robot.LEVEL_ONE_HEIGHT)) {
+                strafe.left(.5,5);
+                arm.setHeight(levelHeight);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 10);
+                claw.open();
+            } else {
+                arm.setHeight(levelHeight);
+                mast.setPosition(robot.MAST_RIGHT_POSITION);
+                strafe.right(.5, 5);
+                claw.open();
+            }
         }
 
         // Driving to the duck turn table
@@ -103,23 +126,34 @@ public class BlueDuckWarehouse extends LinearOpMode {
         strafe.right(.5, (int)(27));
         claw.open();
 
-        //Park in Warehouse
-        frontDistanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
-        frontDistance = (int) frontDistanceToWall - 5;
-        if (Math.abs(frontDistance)>60)
-            drive.forward(0.5,41);
-        else
-            drive.forward(0.5, frontDistance);
-        gyroturn.goodEnough(-90);
-        distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int)(distanceToWall - 1);
-        if (Math.abs(distance)>10)
-            strafe.left(0.5,8 );
-        else
-            strafe.left(.5, distance);
-//        strafe.left(0.4,4);
-        drive.forward(0.75,70);
+
+        if (levelHeight != robot.LEVEL_ONE_HEIGHT) {
+            //Park in Warehouse
+            frontDistanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+            frontDistance = (int) frontDistanceToWall - 5;
+            if (Math.abs(frontDistance) > 60)
+                drive.forward(0.5, 41);
+            else
+                drive.forward(0.5, frontDistance);
+            gyroturn.goodEnough(-90);
+            distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
+            distance = (int) (distanceToWall - 1);
+            if (Math.abs(distance) > 10)
+                strafe.left(0.5, 8);
+            else
+                strafe.left(.5, distance);
+            drive.forward(0.75, 70);
+        }
+        else {
         // Park in Storage Facility
+            strafe.left(.5,30);
+            arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
+            drive.forward(.5,12);
+            driveToLine.forward(25, .5, Color.blue);
+            drive.backward(.5, 7);
+            gyroturn.goodEnough(0);
+            strafe.left(.2, (int) Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH)));
+        }
 //        strafe.left(.5,30);
 //        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
 //        drive.forward(.5,12);
