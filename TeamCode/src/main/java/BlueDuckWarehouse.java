@@ -3,7 +3,9 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@Autonomous(name = "BluePickupAuto")
+import java.util.logging.Level;
+
+@Autonomous(name = "BlueDuckWarehouse")
 
 public class BlueDuckWarehouse extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
@@ -27,11 +29,18 @@ public class BlueDuckWarehouse extends LinearOpMode {
         mast.setPositionNoWait(robot.MAST_CENTER_RIGHT_POSITION);
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
-        arm.setHeight(levelHeight);
-        mast.setPosition(robot.MAST_RIGHT_POSITION);
-        strafe.right(.5, 5);
-        claw.open();
-
+        if (levelHeight == (robot.LEVEL_ONE_HEIGHT)) {
+            strafe.left(.5,5);
+            arm.setHeight(levelHeight);
+            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            strafe.right(.5, 10);
+            claw.open();
+        } else {
+            arm.setHeight(levelHeight);
+            mast.setPosition(robot.MAST_RIGHT_POSITION);
+            strafe.right(.5, 5);
+            claw.open();
+        }
 
         // Driving to the duck turn table
         strafe.left(0.5,23);
@@ -101,9 +110,15 @@ public class BlueDuckWarehouse extends LinearOpMode {
             drive.forward(0.5,41);
         else
             drive.forward(0.5, frontDistance);
-        gyroturn.goodEnough(90);
-        strafe.left(0.4,4);
-        drive.forward(0.5,64);
+        gyroturn.goodEnough(-90);
+        distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
+        distance = (int)(distanceToWall - 1);
+        if (Math.abs(distance)>10)
+            strafe.left(0.5,8 );
+        else
+            strafe.left(.5, distance);
+//        strafe.left(0.4,4);
+        drive.forward(0.75,70);
         // Park in Storage Facility
 //        strafe.left(.5,30);
 //        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);

@@ -44,9 +44,9 @@ public class RedDuckWarhouse extends LinearOpMode {
         distanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int) distanceToWall - 5;
         if (Math.abs(distance)>60)
-            drive.forward(0.2,41 );
+            drive.forward(0.5,39 );
         else
-            drive.forward(.2, distance);
+            drive.forward(.5, distance);
 
         gyroturn.goodEnough(0);
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
@@ -102,8 +102,14 @@ public class RedDuckWarhouse extends LinearOpMode {
         else
             drive.forward(.5, distance);
         gyroturn.goodEnough(90);
-        strafe.right(.3,4);
-        drive.forward(.5,64);
+        distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
+        distance = (int) distanceToWall - 1;
+        if (Math.abs(distance)>10)
+            strafe.right(0.5,8 );
+        else
+            strafe.right(.5, distance);
+//        strafe.right(.3,4);
+        drive.forward(.75,70);
 
     }
 }
