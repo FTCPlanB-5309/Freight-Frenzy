@@ -23,14 +23,14 @@ public int getLevel(SetupDirection sd) {
             return robot.LEVEL_THREE_HEIGHT;
         else return robot.LEVEL_TWO_HEIGHT;
     }
-        else {
-            if (robot.leftObjectDistance < 7)
-                return robot.LEVEL_THREE_HEIGHT;
-            else if (robot.rightObjectDistance < 7)
-                return robot.LEVEL_ONE_HEIGHT;
-            else return robot.LEVEL_TWO_HEIGHT;
+    else {
+        if (robot.leftObjectDistance < 7)
+            return robot.LEVEL_THREE_HEIGHT;
+        else if (robot.rightObjectDistance < 7)
+            return robot.LEVEL_ONE_HEIGHT;
+        else return robot.LEVEL_TWO_HEIGHT;
 
-        }
+    }
 
  }
 

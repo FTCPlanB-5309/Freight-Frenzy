@@ -53,9 +53,9 @@ public class RedWarehouseAutoTest extends LinearOpMode{
 
         gyroTurn.goodEnough(0);
         drive.forward(.3,36);
-        if (levelHeight != robot.LEVEL_THREE_HEIGHT) {
-            strafe.right(.15, 4);
-        }
+        //if (levelHeight != robot.LEVEL_THREE_HEIGHT) {
+            strafe.right(.2, 5);
+        //}
         gyroTurn.goodEnough(-90);
         strafe.left(.15,8);
         drive.backward(.35,28);

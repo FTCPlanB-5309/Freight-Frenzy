@@ -80,24 +80,8 @@ public class Drive {
         while (robot.leftRearDrive.isBusy() && robot.leftFrontDrive.isBusy() && robot.rightRearDrive.isBusy()
                 && robot.rightFrontDrive.isBusy() && linearOpMode.opModeIsActive()) {
             Thread.yield();
-                robot.leftFrontDrive.setPower(-speed);
-                robot.leftRearDrive.setPower(-speed);
-                robot.rightFrontDrive.setPower(-speed);
-                robot.rightRearDrive.setPower(-speed);
-
             robot.getSideDistance();
-            telemetry.addData("leftDistanceSensorValue", robot.leftObjectDistance);
-            telemetry.addData("RightDistanseSensorValue", robot.rightObjectDistance);
-
-            telemetry.addData("linear opmode is working, target = ", target);
-            telemetry.addData("Encoder Clicks", robot.leftRearDrive.getCurrentPosition());
-            telemetry.update();
-
         }
-
-
-
         robot.stop ();
-
     }
 }

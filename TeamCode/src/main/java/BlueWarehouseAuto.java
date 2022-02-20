@@ -34,6 +34,7 @@ public class BlueWarehouseAuto extends LinearOpMode {
                 arm.setPosition(robot.ARM_BOTTOM_POSITION);
                 mast.setPosition(robot.MAST_LEFT_POSITION);
                 strafe.left(.15, 10);
+                claw.open();
             } else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
                 arm.setPosition(robot.ARM_TOP_POSITION);
                 mast.setPosition(robot.MAST_LEFT_POSITION);
@@ -44,17 +45,19 @@ public class BlueWarehouseAuto extends LinearOpMode {
                 strafe.left(.15, 10);
                 claw.open();
             }
-        } else {
+        }
+        else {
+            mast.setPosition(robot.MAST_FORWARD_POSITION);
             arm.setHeight(levelHeight);
             mast.setPosition(robot.MAST_LEFT_POSITION);
             strafe.left(.15, 10);
             claw.open();
             }
 
+        strafe.right(.15,5);
         if (levelHeight == robot.LEVEL_ONE_HEIGHT){
             arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         }
-        strafe.right(.15,5);
         gyroTurn.goodEnough(0);
         drive.forward(.3,36);
         strafe.left(.15,2);

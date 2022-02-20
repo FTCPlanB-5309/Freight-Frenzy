@@ -93,10 +93,12 @@ public class MechanumHardware
 
     public double leftObjectDistance;
     public double rightObjectDistance;
+    double leftDistance;
+    double rightDistance;
     public double floorDistance;
 
     public static int LEVEL_ONE_HEIGHT = 20;
-    public static int LEVEL_TWO_HEIGHT = 30;
+    public static int LEVEL_TWO_HEIGHT = 33;
     public static int LEVEL_THREE_HEIGHT = 55;
 
     public void teleopInit(HardwareMap ahwMap) {
@@ -175,12 +177,14 @@ public class MechanumHardware
 
 
     public void getSideDistance() {
-        double leftDistance = leftDistanceSensor.getDistance(DistanceUnit.INCH);
-        double rightDistance = rightDistanceSensor.getDistance(DistanceUnit.INCH);
-        if (leftDistance < leftObjectDistance) {
+        leftDistance = leftDistanceSensor.getDistance(DistanceUnit.INCH);
+        rightDistance = rightDistanceSensor.getDistance(DistanceUnit.INCH);
+        if (leftDistance < leftObjectDistance &&
+            leftDistance != 0) {
             leftObjectDistance = leftDistance;
         }
-        if (rightDistance < rightObjectDistance) {
+        if (rightDistance < rightObjectDistance &&
+            rightDistance != 0) {
             rightObjectDistance = rightDistance;
         }
     }
