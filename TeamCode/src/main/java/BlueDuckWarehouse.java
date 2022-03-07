@@ -1,10 +1,11 @@
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
 import java.util.logging.Level;
-
+@Disabled
 @Autonomous(name = "BlueDuckWarehouse")
 
 public class BlueDuckWarehouse extends LinearOpMode {
@@ -88,7 +89,7 @@ public class BlueDuckWarehouse extends LinearOpMode {
             strafe.left(.2, distance);
         gyroturn.goodEnough(-90);
         distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int)(distanceToWall - 6);
+        distance = (int)(distanceToWall - 5);
         if (Math.abs(distance)>10)
             strafe.left(0.2,1 );
         else
@@ -116,13 +117,13 @@ public class BlueDuckWarehouse extends LinearOpMode {
         else
             drive.forward(.2, distance);
 
-
+        //Grab the duck
         claw.close();
 
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
         mast.setPositionNoWait(robot.MAST_RIGHT_POSITION);
-        drive.backward(.5, 36);
+        drive.backward(.5, 37);
         strafe.right(.5, (int)(27));
         claw.open();
 
@@ -137,12 +138,12 @@ public class BlueDuckWarehouse extends LinearOpMode {
                 drive.forward(0.5, frontDistance);
             gyroturn.goodEnough(-90);
             distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-            distance = (int) (distanceToWall - 1);
+            distance = (int) (distanceToWall - 0);
             if (Math.abs(distance) > 10)
-                strafe.left(0.5, 8);
+                strafe.left(0.5, 10);
             else
                 strafe.left(.5, distance);
-            drive.forward(0.75, 70);
+            drive.forward(0.75, 71);
         }
         else {
         // Park in Storage Facility

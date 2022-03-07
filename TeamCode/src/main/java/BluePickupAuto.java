@@ -73,21 +73,21 @@ public class BluePickupAuto extends LinearOpMode {
             drive.forward(0.5,38);
         else
             drive.forward(0.5, frontDistance);
-//        drive.forward(0.5,41);
+
         gyroturn.goodEnough(0);
         long distanceToWall;
         int distance;
         distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 9;
+        distance = (int) distanceToWall - 7;
         if (Math.abs(distance)>10)
-            strafe.left(0.2,5 );
+            strafe.left(0.2,8 );
         else
             strafe.left(.2, distance);
         gyroturn.goodEnough(-90);
         distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int)(distanceToWall - 6);
+        distance = (int)(distanceToWall - 4);
         if (Math.abs(distance)>10)
-            strafe.left(0.2,1 );
+            strafe.left(0.2,4 );
         else
             strafe.left(.2, distance);
         drive.backward(0.2,1);
@@ -109,23 +109,23 @@ public class BluePickupAuto extends LinearOpMode {
         claw.openWide();
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         if (Math.abs(distance)>15)
-            drive.forward(0.2,10 );
+            drive.forward(0.2,11 );
         else
             drive.forward(.2, distance);
 
-
+        //Grab the duck
         claw.close();
 
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
         mast.setPositionNoWait(robot.MAST_RIGHT_POSITION);
-        drive.backward(.5, 36);
-        strafe.right(.5, (int)(27));
+        drive.backward(.5, 37);
+        strafe.right(.5, (int)(28));
         claw.open();
 
 
         // Park in Storage Facility
-        strafe.left(.5,30);
+        strafe.left(.5,31);
         arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
         drive.forward(.5,12);
         driveToLine.forward(25, .5, Color.blue);
@@ -133,8 +133,6 @@ public class BluePickupAuto extends LinearOpMode {
         gyroturn.goodEnough(0);
         strafe.left(.2, (int) Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH)));
         //add some logic in case of crazy distance sensor values
-
-
 
 //        mast.setPosition(robot.MAST_RIGHT_POSITION);
 //        arm.setPosition(robot.ARM_FLOOR_POSITION);
