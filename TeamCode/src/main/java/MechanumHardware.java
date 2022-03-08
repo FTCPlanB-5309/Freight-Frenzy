@@ -43,7 +43,7 @@ public class MechanumHardware
     //Hardware constants
     public static final double TELEOPDEADZONE = 0.05;
     public static final int CLICKS_PER_INCH = 44;
-    public static final double DRIVE_SPEED_REDUCTION = 0.75;
+    public static final double DRIVE_SPEED_REDUCTION = 1;
     public static final int STRAFE_CLICKS_PER_INCH = 48;
     public static final int DIAGONAL_CLICKS_PER_INCH = 44;
 
