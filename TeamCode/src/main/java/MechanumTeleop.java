@@ -6,7 +6,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
 
-@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mechanaum Teleop", group="Teleop")
+@com.qualcomm.robotcore.eventloop.opmode.TeleOp(name="Mecanum Teleop", group="Teleop")
 
 public class MechanumTeleop extends LinearOpMode {
 

@@ -3,8 +3,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-@Disabled
-@Autonomous(name = "RedDuckWarehouse")
+@Autonomous(name = "1RedDuckWarehouse")
 
 public class RedDuckWarhouse extends LinearOpMode {
     MechanumHardware robot = new MechanumHardware();
@@ -35,56 +34,56 @@ public class RedDuckWarhouse extends LinearOpMode {
             if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
                 arm.setPosition(robot.ARM_BOTTOM_POSITION);
                 mast.setPosition(robot.MAST_LEFT_POSITION);
-                strafe.left(.5, 5);
+                strafe.left(.6, 7);
                 claw.open();
             }else if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
                 arm.setPosition(robot.ARM_TOP_POSITION);
                 mast.setPosition(robot.MAST_LEFT_POSITION);
-                strafe.left(.5, 5);
+                strafe.left(.6, 7);
                 claw.open();
             } else {
                 mast.setPosition(robot.MAST_LEFT_POSITION);
-                strafe.left(.5, 5);
+                strafe.left(.6, 7);
                 claw.open();
             }
         } else {
             arm.setHeight(levelHeight);
             mast.setPosition(robot.MAST_LEFT_POSITION);
-            strafe.left(.5, 5);
+            strafe.left(.6, 7);
             gyroturn.goodEnough(0);
             claw.open();
         }
 
         // Driving to the duck turn table
-        strafe.right(0.5,25);
+        strafe.right(0.6,27);
         gyroturn.goodEnough(0);
         if(levelHeight == robot.LEVEL_ONE_HEIGHT)
             arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         long distanceToWall;
         int distance;
         distanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 5;
+        distance = (int) distanceToWall - 6;
         if (Math.abs(distance)>60)
-            drive.forward(0.5,39 );
+            drive.forward(0.6,39 );
         else
-            drive.forward(.5, distance);
+            drive.forward(0.6, distance);
 
         gyroturn.goodEnough(0);
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 11;
+        distance = (int) distanceToWall - 10;
         if (Math.abs(distance)>10)
-            strafe.right(0.2,5 );
+            strafe.right(0.3,5 );
         else
-            strafe.right(.2, distance);
+            strafe.right(0.3, distance);
         gyroturn.goodEnough(90);
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int)(distanceToWall - 5);
         if (Math.abs(distance)>10)
-            strafe.right(0.2,1 );
+            strafe.right(0.3,1 );
         else
-            strafe.right(.2, distance);
+            strafe.right(0.3, distance);
         gyroturn.goodEnough(90);
-        drive.backward(0.25,1);
+        drive.backward(0.3,1);
 
         // Spin the turn table to drop the duck
         duckWings.open(Color.red);
@@ -94,7 +93,7 @@ public class RedDuckWarhouse extends LinearOpMode {
 
         // Grabbing the duck
         gyroturn.goodEnough(90);
-        strafe.left(0.5,20);
+        strafe.left(0.6,20);
         duckWings.close(Color.red);
         gyroturn.goodEnough(0);
         claw.openWide();
@@ -112,34 +111,32 @@ public class RedDuckWarhouse extends LinearOpMode {
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
         mast.setPositionNoWait(robot.MAST_LEFT_POSITION);
-        drive.backward(.5, 37);
-        strafe.left(.5, (int)(27));
+        drive.backward(.6, 37);
+        strafe.left(.6, (int)(27));
         claw.open();
 
-        // Park in Warehouse
+        // Avoid hitting the team shipping element
+        strafe.right(.6, 6);
 
-        if (levelHeight == robot.LEVEL_THREE_HEIGHT) {
-            strafe.right(.5, 4);
-        } else {
-            strafe.right(.5, 3);
-
-        }
         distanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int) distanceToWall - 5;
         if (Math.abs(distance)>60)
-            drive.forward(0.5,41 );
+            drive.forward(0.6,41 );
         else
-            drive.forward(.5, distance);
+            drive.forward(.6, distance);
+
+        arm.setPositionNoWait(robot.ARM_FLOOR_POSITION);
+        mast.setPositionNoWait(robot.MAST_FORWARD_POSITION);
         gyroturn.goodEnough(90);
         distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
         distance = (int) distanceToWall - 0;
         if (Math.abs(distance)>10)
-            strafe.right(0.5,10 );
+            strafe.right(0.6,10 );
         else
-            strafe.right(.5, distance);
+            strafe.right(.6, distance);
 //        strafe.right(.3,4);
 
-        drive.forward(.75,71);
+        drive.forward(0.85,73);
 
     }
 }
