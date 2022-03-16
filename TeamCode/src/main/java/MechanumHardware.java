@@ -4,11 +4,14 @@ import com.qualcomm.hardware.rev.Rev2mDistanceSensor;
 import com.qualcomm.hardware.rev.RevColorSensorV3;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
+
+import java.util.Arrays;
 
 
 public class MechanumHardware
@@ -188,6 +191,18 @@ public class MechanumHardware
             rightDistance != 0) {
             rightObjectDistance = rightDistance;
         }
+    }
+
+    public int getAverageDistance(Rev2mDistanceSensor sensor, DistanceUnit units) {
+        double [] sensorValues = new double[5];
+        double averageValue;
+        int roundedValue;
+        for (int i = 0; i<5; i++)
+            sensorValues [i] = sensor.getDistance(units);
+        Arrays.sort(sensorValues);
+        averageValue = (sensorValues[1]+sensorValues[2]+sensorValues[3]) / 3;
+        roundedValue = (int)Math.round(averageValue);
+        return roundedValue;
     }
 
     public void resetDriveEncoders () {

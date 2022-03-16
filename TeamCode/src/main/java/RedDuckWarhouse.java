@@ -61,7 +61,7 @@ public class RedDuckWarhouse extends LinearOpMode {
             arm.setPositionNoWait(robot.ARM_MIDDLE_POSITION);
         long distanceToWall;
         int distance;
-        distanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = robot.getAverageDistance(robot.frontDistanceSensor, DistanceUnit.INCH);
         distance = (int) distanceToWall - 6;
         if (Math.abs(distance)>60)
             drive.forward(0.6,39 );
@@ -76,11 +76,15 @@ public class RedDuckWarhouse extends LinearOpMode {
         else
             strafe.right(0.3, distance);
         gyroturn.goodEnough(90);
-        distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = robot.getAverageDistance(robot.rightDistanceSensor, DistanceUnit.INCH);
         distance = (int)(distanceToWall - 5);
         if (Math.abs(distance)>10)
             strafe.right(0.3,1 );
         else
+            strafe.right(0.3, distance);
+        distanceToWall = robot.getAverageDistance(robot.rightDistanceSensor, DistanceUnit.INCH);
+        distance = (int)(distanceToWall - 5);
+        if (Math.abs(distance)<10 && distance != 0)
             strafe.right(0.3, distance);
         gyroturn.goodEnough(90);
         drive.backward(0.3,1);
@@ -101,9 +105,9 @@ public class RedDuckWarhouse extends LinearOpMode {
         distance = (int) distanceToWall - 7;
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         if (Math.abs(distance)>15)
-            drive.forward(0.2,10 );
+            drive.forward(0.3,10 );
         else
-            drive.forward(.2, distance);
+            drive.forward(.3, distance);
 
         //Grab the duck
         claw.close();
@@ -111,7 +115,7 @@ public class RedDuckWarhouse extends LinearOpMode {
         // Driving to the alliance hub to score the duck
         arm.setPositionNoWait(robot.ARM_TOP_POSITION);
         mast.setPositionNoWait(robot.MAST_LEFT_POSITION);
-        drive.backward(.6, 37);
+        drive.backward(.5, 37);
         strafe.left(.6, (int)(27));
         claw.open();
 
