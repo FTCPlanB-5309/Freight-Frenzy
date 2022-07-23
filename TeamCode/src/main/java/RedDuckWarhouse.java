@@ -28,7 +28,7 @@ public class RedDuckWarhouse extends LinearOpMode {
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
 
-        //logic to use arm encoder value if claw distance is too high.
+        //Use arm encoder value if claw distance is too high.
         if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
 
             if (levelHeight == robot.LEVEL_ONE_HEIGHT) {

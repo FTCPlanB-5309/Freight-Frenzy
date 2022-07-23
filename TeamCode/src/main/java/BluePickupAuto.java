@@ -2,7 +2,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.navigation.DistanceUnit;
-
 @Autonomous(name = "BluePickupAuto")
 
 public class BluePickupAuto extends LinearOpMode {
@@ -28,8 +27,9 @@ public class BluePickupAuto extends LinearOpMode {
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
 
-        //logic to use encoder value if claw distance is too high.
-        if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
+        //Use arm encoder value if claw distance is too high.
+        if(robot.getAverageDistance(robot.clawDistanceSensor, DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
+
             if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
                 strafe.left(.5, 7);
                 arm.setPosition(robot.ARM_BOTTOM_POSITION);
@@ -65,32 +65,38 @@ public class BluePickupAuto extends LinearOpMode {
         // Driving to the duck turn table
         strafe.left(0.5,23);
         gyroturn.goodEnough(0);
-        long frontDistanceToWall;
-        int frontDistance;
-        frontDistanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
-        frontDistance = (int) frontDistanceToWall - 5;
-        if (Math.abs(frontDistance)>60)
-            drive.forward(0.5,38);
-        else
-            drive.forward(0.5, frontDistance);
-
-        gyroturn.goodEnough(0);
         long distanceToWall;
         int distance;
-        distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
-        distance = (int) distanceToWall - 7;
+        distanceToWall = robot.getAverageDistance(robot.frontDistanceSensor, DistanceUnit.INCH);
+        distance = (int) distanceToWall - 5;
+        if (Math.abs(distance)>60)
+            drive.forward(0.5,38);
+        else
+            drive.forward(0.5, distance);
+
+        gyroturn.goodEnough(0);
+        distanceToWall = robot.getAverageDistance(robot.leftDistanceSensor, DistanceUnit.INCH);
+        distance = (int) distanceToWall - 9;
         if (Math.abs(distance)>10)
-            strafe.left(0.2,8 );
+            strafe.left(0.2,7);
         else
             strafe.left(.2, distance);
         gyroturn.goodEnough(-90);
-        distanceToWall = Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = robot.getAverageDistance(robot.leftDistanceSensor, DistanceUnit.INCH);
         distance = (int)(distanceToWall - 4);
         if (Math.abs(distance)>10)
             strafe.left(0.2,4 );
         else
             strafe.left(.2, distance);
-        drive.backward(0.2,1);
+
+        //Double check for correct distance to the turntable
+        distanceToWall = robot.getAverageDistance(robot.leftDistanceSensor, DistanceUnit.INCH);
+        distance = (int)(distanceToWall - 4);
+        if (Math.abs(distance)>1 && (Math.abs(distance) < 10))
+            strafe.left(.2, distance);
+
+        drive.backward(0.25,1);
+
 
         // Spin the turn table to drop the duck
         duckWings.open(Color.blue);
@@ -104,7 +110,7 @@ public class BluePickupAuto extends LinearOpMode {
         strafe.right(0.5,20);
         duckWings.close(Color.blue);
         gyroturn.goodEnough(0);
-        distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = (int) robot.getAverageDistance(robot.frontDistanceSensor, DistanceUnit.INCH);
         distance = (int) distanceToWall - 8;
         claw.openWide();
         mast.setPosition(robot.MAST_FORWARD_POSITION);
@@ -131,7 +137,7 @@ public class BluePickupAuto extends LinearOpMode {
         driveToLine.forward(25, .5, Color.blue);
         drive.backward(.5, 7);
         gyroturn.goodEnough(0);
-        strafe.left(.2, (int) Math.round(robot.leftDistanceSensor.getDistance(DistanceUnit.INCH)));
+        strafe.left(.2, (int) robot.getAverageDistance(robot.leftDistanceSensor, DistanceUnit.INCH));
         //add some logic in case of crazy distance sensor values
 
 //        mast.setPosition(robot.MAST_RIGHT_POSITION);

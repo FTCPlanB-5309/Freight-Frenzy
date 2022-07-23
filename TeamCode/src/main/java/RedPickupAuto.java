@@ -28,9 +28,8 @@ public class RedPickupAuto extends LinearOpMode {
         drive.backward(.4, 43);
         int levelHeight = findTeamFreight.getLevel(SetupDirection.backward);
 
-        //logic to use arm encoder value if claw distance is too high.
-        if(robot.clawDistanceSensor.getDistance(DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
-
+        //Use arm encoder value if claw distance is too high.
+        if(robot.getAverageDistance(robot.clawDistanceSensor, DistanceUnit.CM) > robot.LEVEL_THREE_HEIGHT) {
             if (levelHeight == robot.LEVEL_ONE_HEIGHT) {
                 arm.setPosition(robot.ARM_BOTTOM_POSITION);
                 mast.setPosition(robot.MAST_LEFT_POSITION);
@@ -63,7 +62,7 @@ public class RedPickupAuto extends LinearOpMode {
 
         long distanceToWall;
         int distance;
-        distanceToWall = Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = robot.getAverageDistance(robot.frontDistanceSensor, DistanceUnit.INCH);
         distance = (int) distanceToWall - 5;
         if (Math.abs(distance)>60)
             drive.forward(0.5,41 );
@@ -71,20 +70,27 @@ public class RedPickupAuto extends LinearOpMode {
             drive.forward(.5, distance);
 
         gyroturn.goodEnough(0);
-        distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = robot.getAverageDistance(robot.rightDistanceSensor, DistanceUnit.INCH);
         distance = (int) distanceToWall - 8;
         if (Math.abs(distance)>10)
             strafe.right(0.2,5 );
         else
             strafe.right(.2, distance);
         gyroturn.goodEnough(90);
-        distanceToWall = Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = robot.getAverageDistance(robot.rightDistanceSensor, DistanceUnit.INCH);
         distance = (int)(distanceToWall - 4);
         if (Math.abs(distance)>10)
             strafe.right(0.2,1 );
         else
             strafe.right(.2, distance);
         gyroturn.goodEnough(90);
+
+        //Double check for correct distance to the turntable
+        distanceToWall = robot.getAverageDistance(robot.rightDistanceSensor, DistanceUnit.INCH);
+        distance = (int)(distanceToWall - 4);
+        if (Math.abs(distance)>1 && (Math.abs(distance) < 10))
+            strafe.left(.2, distance);
+
         drive.backward(0.25,1);
 
         // Spin the turn table to drop the duck
@@ -100,7 +106,7 @@ public class RedPickupAuto extends LinearOpMode {
         duckWings.close(Color.red);
         gyroturn.goodEnough(0);
         claw.openWide();
-        distanceToWall = (int) Math.round(robot.frontDistanceSensor.getDistance(DistanceUnit.INCH));
+        distanceToWall = (int) robot.getAverageDistance(robot.frontDistanceSensor, DistanceUnit.INCH);
         distance = (int) distanceToWall - 6;
         mast.setPosition(robot.MAST_FORWARD_POSITION);
         if (Math.abs(distance)>15)
@@ -127,7 +133,7 @@ public class RedPickupAuto extends LinearOpMode {
         driveToLine.forward(25, .5, Color.red);
         drive.backward(.5, 7);
         gyroturn.goodEnough(0);
-        strafe.right(.2,(int) Math.round(robot.rightDistanceSensor.getDistance(DistanceUnit.INCH)));
+        strafe.right(.2,(int) robot.getAverageDistance(robot.rightDistanceSensor, DistanceUnit.INCH));
         //add some logic in case of crazy distance sensor values
 
 
