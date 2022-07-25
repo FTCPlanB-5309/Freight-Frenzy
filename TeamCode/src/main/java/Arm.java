@@ -39,7 +39,7 @@ public class Arm {
     public void setHeight(int newHeight) {
 
         double  clawHeight;
-        clawHeight = robot.clawDistanceSensor.getDistance(DistanceUnit.CM);
+        clawHeight = robot.getAverageDistance(robot.clawDistanceSensor, DistanceUnit.CM);
 
         robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
@@ -53,7 +53,7 @@ public class Arm {
 
             Thread.yield();
 
-            clawHeight = robot.clawDistanceSensor.getDistance(DistanceUnit.CM);
+            clawHeight = robot.getAverageDistance(robot.clawDistanceSensor, DistanceUnit.CM);
 
             telemetry.addData("Set Height",newHeight);
             telemetry.addData("clawHeight", clawHeight);

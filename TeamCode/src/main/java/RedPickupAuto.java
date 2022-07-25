@@ -47,6 +47,7 @@ public class RedPickupAuto extends LinearOpMode {
             }
         } else {
             arm.setHeight(levelHeight);
+            arm.setHeight(levelHeight);
             mast.setPosition(robot.MAST_LEFT_POSITION);
             strafe.left(.5, 5);
             gyroturn.goodEnough(0);
@@ -89,7 +90,7 @@ public class RedPickupAuto extends LinearOpMode {
         distanceToWall = robot.getAverageDistance(robot.rightDistanceSensor, DistanceUnit.INCH);
         distance = (int)(distanceToWall - 4);
         if (Math.abs(distance)>1 && (Math.abs(distance) < 10))
-            strafe.left(.2, distance);
+            strafe.right(.2, distance);
 
         drive.backward(0.25,1);
 
