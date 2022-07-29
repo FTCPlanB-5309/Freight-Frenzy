@@ -36,9 +36,10 @@ public class Arm {
 
 
 
-    public void setHeight(int newHeight) {
+    public void setHeight(int newHeight) throws InterruptedException {
 
         double  clawHeight;
+        int encoderValueAtDesiredClawHeight = robot.armMotor.getCurrentPosition();
         clawHeight = robot.getAverageDistance(robot.clawDistanceSensor, DistanceUnit.CM);
 
         robot.armMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -47,19 +48,22 @@ public class Arm {
                 && Math.abs(robot.armMotor.getCurrentPosition())<robot.ARM_TOP_POSITION) {
 
             if(clawHeight > newHeight){
-                robot.armMotor.setPower(-1); // -0.73 former
+                robot.armMotor.setPower(-.73); // -0.73 former
             }
-            else robot.armMotor.setPower(1); // 0.73 former
+            else robot.armMotor.setPower(.73); // 0.73 former
 
             Thread.yield();
 
             clawHeight = robot.getAverageDistance(robot.clawDistanceSensor, DistanceUnit.CM);
+            encoderValueAtDesiredClawHeight = robot.armMotor.getCurrentPosition();
 
             telemetry.addData("Set Height",newHeight);
             telemetry.addData("clawHeight", clawHeight);
+            telemetry.addData("encoder value", encoderValueAtDesiredClawHeight);
             telemetry.update();
         }
         robot.armMotor.setPower(0);
+        setPosition(encoderValueAtDesiredClawHeight);
     }
 
 }

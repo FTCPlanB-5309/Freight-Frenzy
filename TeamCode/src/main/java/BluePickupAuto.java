@@ -53,7 +53,7 @@ public class BluePickupAuto extends LinearOpMode {
             if (levelHeight == (robot.LEVEL_ONE_HEIGHT)) {
                 strafe.left(.5,7);
                 arm.setHeight(levelHeight);
-                arm.setHeight(levelHeight);
+                //arm.setHeight(levelHeight);
                 mast.setPosition(robot.MAST_RIGHT_POSITION);
                 strafe.right(.5, 12);
                 claw.open();
@@ -62,7 +62,7 @@ public class BluePickupAuto extends LinearOpMode {
             //
             } else {
                 arm.setHeight(levelHeight);
-                arm.setHeight(levelHeight);
+                //arm.setHeight(levelHeight);
                 mast.setPosition(robot.MAST_RIGHT_POSITION);
                 strafe.right(.5, 5);
                 claw.open();

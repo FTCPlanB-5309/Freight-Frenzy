@@ -47,7 +47,7 @@ public class RedPickupAuto extends LinearOpMode {
             }
         } else {
             arm.setHeight(levelHeight);
-            arm.setHeight(levelHeight);
+            // arm.setHeight(levelHeight);
             mast.setPosition(robot.MAST_LEFT_POSITION);
             strafe.left(.5, 5);
             gyroturn.goodEnough(0);
